@@ -810,3 +810,109 @@ body:not(.page-home) .site-footer {
   background: #060814;
 }
 .post-hero img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ========== Top page: news rail at the very top, right of the hero (index.html only) ========== */
+.page-top { --max-top: 1320px; --rail-w: clamp(300px, 25vw, 340px); }
+.page-top .topbar,
+.page-top .site-footer { max-width: var(--max-top); }
+.home-layout {
+  max-width: var(--max-top);
+  margin: 0 auto;
+  padding: 0 var(--pad-x);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+}
+.home-layout > .hero,
+.home-layout > .features,
+.home-layout > .latest {
+  max-width: none;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+.home-layout > .latest { padding-top: clamp(1rem, 3vw, 2rem); }
+.home-rail {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  margin-top: 0;
+}
+.home-rail .rail-title { margin-bottom: 0.75rem; }
+.home-rail .news-rail-list {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0 0.45rem 0 3px;   /* 左 3px: 内側スクロールで日付「1」の端が切れないように */
+  margin: 0 -0.45rem 0 -3px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+.rail-more {
+  flex: none;
+  margin: 0;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border);
+  text-align: right;
+}
+.rail-more a {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--accent);
+  text-decoration: none;
+}
+.rail-more a:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* PC: two columns — left = hero / tiles / latest, right = sticky news rail */
+@media (min-width: 1100px) {
+  .home-layout {
+    grid-template-columns: minmax(0, 1fr) var(--rail-w);
+    column-gap: clamp(2rem, 3.5vw, 3.5rem);
+    align-items: start;
+  }
+  .home-layout > .hero,
+  .home-layout > .features,
+  .home-layout > .latest { grid-column: 1; }
+  .home-rail {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    align-self: start;
+    position: sticky;
+    top: 24px;
+    margin-top: 0.5rem;
+    /* 初期表示（ヘッダー下）でも下端と「すべての見出し →」が画面内に収まる高さ */
+    max-height: calc(100vh - 112px);
+  }
+  .home-layout > .hero {
+    text-align: left;
+    padding-top: clamp(2.5rem, 5vw, 4.5rem);
+    padding-bottom: clamp(3rem, 5vw, 4.5rem);
+  }
+  .home-layout > .hero .hero-title { font-size: clamp(3.6rem, 5.9vw, 5.4rem); line-height: 1.18; }
+  .home-layout > .hero .hero-lead { margin-left: 0; }
+  .home-layout > .features { gap: clamp(2.5rem, 4vw, 3.75rem); }
+  .home-layout .feature { grid-template-columns: 1.15fr 1fr; gap: clamp(1.5rem, 2.6vw, 2.5rem); }
+  .home-layout .feature--tile-right { grid-template-columns: 1fr 1.15fr; }
+  .home-layout .feature-copy h2 { font-size: clamp(1.45rem, 2.1vw, 1.9rem); }
+  .home-layout .feature-copy p { font-size: 0.98rem; }
+}
+
+/* Medium / mobile: rail sits right under the hero, list capped with inner scroll */
+@media (max-width: 1099.98px) {
+  .home-rail {
+    position: static;
+    max-height: none;
+    margin: 0 0 clamp(2.5rem, 6vw, 4rem);
+  }
+  .home-rail .news-rail-list { max-height: 420px; }
+  .home-layout > .hero { padding-bottom: clamp(2rem, 5vw, 3rem); }
+}
+@media (max-width: 480px) {
+  .home-layout { padding: 0 1.1rem; }
+  .home-layout > .hero { padding: 2.5rem 0 2rem; }
+  .home-layout > .features { padding: 0 0 2.5rem; }
+  .home-layout > .latest { padding: 1rem 0 2.5rem; }
+  .home-rail { padding: 1.2rem 1.1rem 1rem; border-radius: 22px; margin-bottom: 2.5rem; }
+  .home-rail .news-rail-list { max-height: 400px; }
+}
