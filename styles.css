@@ -931,3 +931,30 @@ body:not(.page-home) .site-footer {
 .news-rail-list .news-body { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
 .news-rail-list .news-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
 .news-rail-list .news-tags .tag { font-size: 0.68rem; padding: 0.08rem 0.5rem; line-height: 1.5; }
+
+/* ========== "すべての見出し" button at the bottom of the home rail ========== */
+.rail-more { padding-top: 0.9rem; text-align: center; }
+.rail-more a.rail-more-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(142, 197, 255, 0.16), rgba(196, 181, 253, 0.16));
+  border: 1px solid rgba(142, 197, 255, 0.35);
+  color: var(--text-bright);
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: border-color .2s, background .2s, box-shadow .2s;
+}
+.rail-more a.rail-more-btn span { color: var(--accent); transition: transform .2s; }
+.rail-more a.rail-more-btn:hover {
+  text-decoration: none;
+  border-color: rgba(142, 197, 255, 0.7);
+  background: linear-gradient(135deg, rgba(142, 197, 255, 0.26), rgba(196, 181, 253, 0.26));
+  box-shadow: 0 0 24px rgba(142, 197, 255, 0.18);
+}
+.rail-more a.rail-more-btn:hover span { transform: translateX(3px); }
+#headlines { scroll-margin-top: 1.5rem; }
