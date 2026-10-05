@@ -865,7 +865,7 @@ body:not(.page-home) .site-footer {
 .rail-more a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
 /* PC: two columns — left = hero / tiles / latest, right = sticky news rail */
-@media (min-width: 1100px) {
+@media (min-width: 760px) {
   .home-layout {
     grid-template-columns: minmax(0, 1fr) var(--rail-w);
     column-gap: clamp(2rem, 3.5vw, 3.5rem);
@@ -898,8 +898,8 @@ body:not(.page-home) .site-footer {
   .home-layout .feature-copy p { font-size: 0.98rem; }
 }
 
-/* Medium / mobile: rail sits right under the hero, list capped with inner scroll */
-@media (max-width: 1099.98px) {
+/* Mobile: rail sits right under the hero, list capped with inner scroll */
+@media (max-width: 759.98px) {
   .home-rail {
     position: static;
     max-height: none;
@@ -915,6 +915,16 @@ body:not(.page-home) .site-footer {
   .home-layout > .latest { padding: 1rem 0 2.5rem; }
   .home-rail { padding: 1.2rem 1.1rem 1rem; border-radius: 22px; margin-bottom: 2.5rem; }
   .home-rail .news-rail-list { max-height: 400px; }
+}
+
+/* Tablet / small laptop (760–1099px): keep the rail on the right, narrower; tiles stack inside the left column */
+@media (min-width: 760px) and (max-width: 1099.98px) {
+  .home-layout { grid-template-columns: minmax(0, 1fr) clamp(260px, 32vw, 320px); column-gap: clamp(1.25rem, 2.5vw, 2rem); }
+  .home-layout > .hero .hero-title { font-size: clamp(2.6rem, 5.4vw, 3.6rem); }
+  .home-layout .feature,
+  .home-layout .feature--tile-right { grid-template-columns: 1fr; gap: 1rem; }
+  .home-layout .feature--tile-right .feature-tile { order: -1; }
+  .home-rail { padding: 1.1rem 1rem 0.9rem; }
 }
 
 /* ========== Tags on news headlines ========== */
