@@ -916,3 +916,8 @@ body:not(.page-home) .site-footer {
   .home-rail { padding: 1.2rem 1.1rem 1rem; border-radius: 22px; margin-bottom: 2.5rem; }
   .home-rail .news-rail-list { max-height: 400px; }
 }
+
+/* ========== Tags on news headlines ========== */
+.news-rail-list .news-body { display: flex; flex-direction: column; gap: 0.3rem; min-width: 0; }
+.news-rail-list .news-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.news-rail-list .news-tags .tag { font-size: 0.68rem; padding: 0.08rem 0.5rem; line-height: 1.5; }

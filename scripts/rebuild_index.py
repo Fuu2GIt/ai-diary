@@ -103,11 +103,6 @@ GENERIC_TAGS = {"政策・規制", "政策", "規制", "その他", "国内"}
 
 def to_headline(fragment: str) -> str:
     text = clean(TAG_SPAN.sub("", SOURCE_SPAN.sub("", fragment)))
-    # 会社名タグは見出しの主語になるので先頭に残す（政策・その他などの分類タグは外す）
-    names = [clean(n) for n in TAG_SPAN.findall(fragment)]
-    lead = [n for n in names if n and n not in GENERIC_TAGS and not text.startswith(n)]
-    if lead and not any(n in text[:20] for n in lead):
-        text = "・".join(lead) + " " + text
     if "。" in text:
         text = text.split("。", 1)[0].strip()
     if len(text) > HEADLINE_LEN:
@@ -147,7 +142,12 @@ def extract_headlines(source: str) -> list[dict]:
         if not text or "{{" in text:
             continue
         url = source_url(chunk)
-        headlines.append({"text": text, "url": "" if "{{" in url else url})
+        tags = []
+        for raw in TAG_SPAN.findall(chunk):
+            name = clean(raw)
+            if name and name not in tags and "{{" not in name:
+                tags.append(name)
+        headlines.append({"text": text, "url": "" if "{{" in url else url, "tags": tags})
     return headlines
 
 
@@ -233,7 +233,10 @@ def headline_html(p: dict, h: dict) -> str:
         )
     else:
         link = f'<a class="news-link" href="{p["url"]}">{html.escape(h["text"])}</a>'
-    return f"<li>{date_link}{link}</li>"
+    tags = ""
+    if h.get("tags"):
+        tags = '<span class="news-tags">' + "".join(tag_html(t) for t in h["tags"]) + "</span>"
+    return f'<li>{date_link}<div class="news-body">{tags}{link}</div></li>'
 
 
 def render_headlines(posts: list[dict], limit: int | None = None, indent: str = "      ") -> str:
