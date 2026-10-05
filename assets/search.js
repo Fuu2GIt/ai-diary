@@ -27,6 +27,10 @@
     return '<span class="tag tag-' + cls + '">' + esc(name) + "</span>";
   }
   function norm(s) { return String(s).toLowerCase().normalize("NFKC"); }
+  function byDateDesc(a, b) {
+    if (a.date === b.date) return 0;
+    return a.date < b.date ? 1 : -1;
+  }
 
   function snippet(text, terms) {
     var t = norm(text), at = -1;
@@ -48,21 +52,32 @@
     });
   }
 
+  function showStatic() {
+    results.hidden = true;
+    results.innerHTML = "";
+    status.hidden = true;
+    status.textContent = "";
+    if (staticList) staticList.hidden = false;
+  }
+
   function render() {
     markTagButtons();
     var q = input.value.trim();
     if (!q && !activeTag) {
-      results.hidden = true; status.hidden = true; staticList.hidden = false;
+      showStatic();
       return;
     }
     if (!data) { status.hidden = false; status.textContent = "読み込み中…"; return; }
     var terms = norm(q).split(/\s+/).filter(Boolean);
     var hits = data.filter(function (p) {
       if (activeTag && p.tags.indexOf(activeTag) < 0) return false;
+      if (!terms.length) return true;
       var hay = norm(p.title + " " + p.tags.join(" ") + " " + p.text);
       return terms.every(function (w) { return hay.indexOf(w) >= 0; });
-    });
-    staticList.hidden = true; results.hidden = false; status.hidden = false;
+    }).sort(byDateDesc);
+    if (staticList) staticList.hidden = true;
+    results.hidden = false;
+    status.hidden = false;
     var label = [];
     if (activeTag) label.push('タグ ' + tagHtml(activeTag));
     if (q) label.push("「" + esc(q) + "」");
