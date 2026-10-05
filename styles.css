@@ -1132,3 +1132,23 @@ body:not(.page-home) .site-footer {
 .post section > ul { grid-template-columns: minmax(0, 1fr); }
 .post section > ul > li { min-width: 0; overflow-wrap: anywhere; }
 .post section > ul > li .source a { min-width: 0; flex: 0 1 auto; }
+
+/* ========== Footer wordmark "AI on AI" ========== */
+.footer-wordmark--en {
+  font-weight: 700;
+  font-size: clamp(4.5rem, 19vw, 13rem);
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  color: transparent;
+  margin: 2rem 0 1.5rem;
+  opacity: 0.32;
+}
+.footer-wordmark--en .ht-ai {
+  background: linear-gradient(120deg, #ffffff 0%, #dbe9ff 35%, var(--accent) 70%, var(--accent-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.footer-wordmark--en .ht-on { font-weight: 300; font-style: italic; letter-spacing: -0.02em; color: var(--accent-2); }
+.hero-title--en + .hero-lead { margin-top: 1.1rem; }
+@media (max-width: 480px) { .footer-wordmark--en { font-size: clamp(4.2rem, 24vw, 6rem); } }
