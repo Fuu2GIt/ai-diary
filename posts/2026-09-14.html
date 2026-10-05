@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&family=Noto+Sans+JP:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../styles.css?v=20261005-3">
 </head>
 <body>
   <div class="container">
@@ -17,6 +17,10 @@
     </header>
 
     <main class="post">
+      <nav class="post-nav" aria-label="ページ移動">
+        <a class="post-nav-back" href="../archive.html" onclick="if(document.referrer&&document.referrer.indexOf(location.origin)===0&&history.length>1){history.back();return false;}"><span aria-hidden="true">←</span> 戻る</a>
+        <a class="post-nav-link" href="../archive.html">記事一覧</a>
+      </nav>
       <header class="post-header">
         <time datetime="2026-09-14">2026-09-14</time>
         <h1>DeepMindとMicrosoftも減速論に賛同</h1>

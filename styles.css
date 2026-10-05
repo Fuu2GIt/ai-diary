@@ -1013,3 +1013,122 @@ body:not(.page-home) .site-footer {
 .hero-sub + .hero-lead { margin-top: 0.6rem; }
 @media (min-width: 1100px) { .home-layout > .hero .hero-title--en { font-size: clamp(6rem, 9vw, 9rem); } }
 @media (min-width: 760px) and (max-width: 1099.98px) { .home-layout > .hero .hero-title--en { font-size: clamp(4.2rem, 9vw, 6rem); } }
+
+/* ========== Post page: top nav (戻る / 記事一覧) ========== */
+.post-nav {
+  position: sticky;
+  top: 12px;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 1.75rem;
+}
+.post-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1.05rem;
+  border-radius: 999px;
+  background: rgba(10, 13, 30, 0.72);
+  border: 1px solid var(--border);
+  color: var(--text-bright);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.86rem;
+  text-decoration: none;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: border-color .2s, background .2s;
+}
+.post-nav a:hover { border-color: rgba(142, 197, 255, 0.6); background: rgba(142, 197, 255, 0.12); color: #fff; }
+.post-nav-back span { color: var(--accent); transition: transform .2s; }
+.post-nav-back:hover span { transform: translateX(-3px); }
+
+/* ========== Post page: bullet lists -> numbered glass cards ========== */
+.post section > ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0 0;
+  display: grid;
+  gap: 0.85rem;
+  counter-reset: item;
+}
+.post section > ul > li {
+  counter-increment: item;
+  position: relative;
+  margin: 0;
+  padding: 1.1rem 1.25rem 1.05rem 3.6rem;
+  line-height: 1.85;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: inset 3px 0 0 rgba(142, 197, 255, 0.55);
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+.post section > ul > li:hover {
+  border-color: rgba(142, 197, 255, 0.35);
+  box-shadow: inset 3px 0 0 var(--accent), 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+.post section > ul > li::before {
+  content: counter(item, decimal-leading-zero);
+  position: absolute;
+  left: 1.15rem;
+  top: 1.1rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.post section > ul > li .tag { display: inline-block; margin: 0 0.3rem 0.35rem 0; }
+
+/* 出典: hide the raw "（出典: … ／ …）" punctuation, show links as small pills */
+.post section > ul > li .source {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.7rem;
+  font-size: 0;
+  word-break: normal;
+}
+.post section > ul > li .source::before {
+  content: "SOURCE";
+  font-family: var(--font-display);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  margin-right: 0.15rem;
+}
+.post section > ul > li .source a {
+  display: inline-block;
+  max-width: min(100%, 22rem);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0.15rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(142, 197, 255, 0.08);
+  border: 1px solid rgba(142, 197, 255, 0.25);
+  color: var(--accent);
+  font-size: 0.74rem;
+  line-height: 1.6;
+  text-decoration: none;
+}
+.post section > ul > li .source a::after { content: " ↗"; opacity: 0.7; }
+.post section > ul > li .source a:hover { background: rgba(142, 197, 255, 0.18); border-color: rgba(142, 197, 255, 0.6); color: #fff; }
+
+@media (max-width: 480px) {
+  .post section > ul > li { padding: 0.95rem 1rem 0.95rem 2.9rem; }
+  .post section > ul > li::before { left: 0.9rem; top: 0.95rem; font-size: 0.82rem; }
+  .post section > ul > li .source a { max-width: 100%; }
+}
+.post section > ul { grid-template-columns: minmax(0, 1fr); }
+.post section > ul > li { min-width: 0; overflow-wrap: anywhere; }
+.post section > ul > li .source a { min-width: 0; flex: 0 1 auto; }
