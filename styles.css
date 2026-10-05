@@ -958,3 +958,23 @@ body:not(.page-home) .site-footer {
 }
 .rail-more a.rail-more-btn:hover span { transform: translateX(3px); }
 #headlines { scroll-margin-top: 1.5rem; }
+
+/* ========== Hero buttons side by side ========== */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 2rem;
+}
+.hero-actions .hero-cta { margin-top: 0; align-items: center; gap: 0.45rem; }
+.hero-cta--ghost {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(142, 197, 255, 0.35);
+  box-shadow: none;
+}
+.hero-cta--ghost span { color: var(--accent); transition: transform .2s; }
+.hero-cta--ghost:hover { background: rgba(142, 197, 255, 0.12); border-color: rgba(142, 197, 255, 0.7); }
+.hero-cta--ghost:hover span { transform: translateX(3px); }
+@media (min-width: 760px) { .home-layout > .hero .hero-actions { justify-content: flex-start; } }
+@media (max-width: 480px) { .hero-actions .hero-cta { padding: 0.85rem 1.3rem; font-size: 0.95rem; } }
