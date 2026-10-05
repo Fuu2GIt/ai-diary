@@ -978,3 +978,38 @@ body:not(.page-home) .site-footer {
 .hero-cta--ghost:hover span { transform: translateX(3px); }
 @media (min-width: 760px) { .home-layout > .hero .hero-actions { justify-content: flex-start; } }
 @media (max-width: 480px) { .hero-actions .hero-cta { padding: 0.85rem 1.3rem; font-size: 0.95rem; } }
+
+/* ========== English hero title "AI on AI" ========== */
+.hero-title--en,
+.home-layout > .hero .hero-title--en {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(4.2rem, 13vw, 8.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  margin: 0;
+}
+.hero-title--en .ht-ai {
+  background: linear-gradient(120deg, #ffffff 0%, #dbe9ff 35%, var(--accent) 70%, var(--accent-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.hero-title--en .ht-on {
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  color: var(--accent-2);
+  opacity: 0.9;
+}
+.hero-sub {
+  margin: 1rem 0 0;
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--text-bright);
+  opacity: 0.85;
+}
+.hero-sub + .hero-lead { margin-top: 0.6rem; }
+@media (min-width: 1100px) { .home-layout > .hero .hero-title--en { font-size: clamp(6rem, 9vw, 9rem); } }
+@media (min-width: 760px) and (max-width: 1099.98px) { .home-layout > .hero .hero-title--en { font-size: clamp(4.2rem, 9vw, 6rem); } }
