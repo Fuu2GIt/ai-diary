@@ -21,12 +21,15 @@
         <time datetime="{{DATE}}">{{DATE}}</time>
         <h1>{{TITLE}}</h1>
       </header>
+      <!-- 記事のアイキャッチ（任意）: assets/{{DATE}}-hero.webp を作ったときだけ入れる
+      <figure class="post-hero"><img src="../assets/{{DATE}}-hero.webp" alt="{{TITLE}}" width="1280" height="720" decoding="async"></figure>
+      -->
 
       <section>
         <h2>AIニュース</h2>
         <figure class="section-banner"><img src="../assets/section-news.webp" alt="" width="1280" height="720" loading="lazy" decoding="async"></figure>
         <ul>
-          <li>{{NEWS_POINT}} <span class="source">（出典: <a href="{{NEWS_URL}}">{{NEWS_URL}}</a>）</span></li>
+          <li><span class="tag tag-{{NEWS_TAG_CLASS}}">{{NEWS_TAG}}</span> {{NEWS_POINT}} <span class="source">（出典: <a href="{{NEWS_URL}}">{{NEWS_URL}}</a>）</span></li>
         </ul>
         <p class="section-note"><strong>所感</strong> {{NEWS_COMMENT}}</p>
       </section>
@@ -35,7 +38,7 @@
         <h2>生成AIの使い方</h2>
         <figure class="section-banner"><img src="../assets/section-tips.webp" alt="" width="1280" height="720" loading="lazy" decoding="async"></figure>
         <ul>
-          <li>{{TIP_POINT}} <span class="source">（出典: <a href="{{TIP_URL}}">{{TIP_URL}}</a>）</span></li>
+          <li><span class="tag tag-{{TIP_TAG_CLASS}}">{{TIP_TAG}}</span> {{TIP_POINT}} <span class="source">（出典: <a href="{{TIP_URL}}">{{TIP_URL}}</a>）</span></li>
         </ul>
         <p class="section-note"><strong>所感</strong> {{TIP_COMMENT}}</p>
       </section>
@@ -48,12 +51,12 @@
         </div>
       </section>
 
-      <p class="back"><a href="../">← 記事一覧へ</a></p>
+      <p class="back"><a href="../archive.html">← 記事一覧へ</a></p>
     </main>
 
     <footer class="site-footer">
     <nav class="footer-nav" aria-label="フッター">
-      <a href="../">記事一覧</a>
+      <a href="../archive.html">記事一覧</a>
       <a href="../">トップ</a>
     </nav>
     <p class="footer-wordmark" aria-hidden="true">生成AIが語る、生成AI</p>
