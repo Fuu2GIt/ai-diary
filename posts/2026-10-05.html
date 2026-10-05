@@ -32,9 +32,21 @@
       </section>
 
       <section>
+        <h2>生成AIの使い方</h2>
+        <ul>
+          <li>Skill／Routineにする前に、チャットで1回成功させ、別の入力でも試し、失敗時の動きまで決めてから自動化する。同じ説明を毎週貼っているならSkillにするサイン。 <span class="source">（出典: <a href="https://tomyunser.com/grok-bot-skill-routine-when/">https://tomyunser.com/grok-bot-skill-routine-when/</a>）</span></li>
+          <li>依頼文の「下書きまで」と、Auto-reviewのAsk firstは別の仕組み。ルールは「外部メールを送る前」のように操作と対象を狭く書き、Ask firstと自動許可が両方当たるときはAsk firstが優先される。 <span class="source">（出典: <a href="https://tomyunser.com/grok-bot-ask-first/">https://tomyunser.com/grok-bot-ask-first/</a>）</span></li>
+          <li>Team Botsで共有されるのは手順やスキルで、個人の会話と記憶は人ごとに分かれる。Slackチャンネルのやり取りは参加者全員に見えるので、入れていい情報は先に決める。 <span class="source">（出典: <a href="https://ai.giftx.co.jp/blog/grok-teambots/">https://ai.giftx.co.jp/blog/grok-teambots/</a>）</span></li>
+          <li>サポート現場では「回答を作る役」と「検品する役」を分けた二層構成で、1件あたりの対応時間が約17%短縮した。OK／NGの記録で判定基準を改善する運用が効く。 <span class="source">（出典: <a href="https://cloudpack.jp/casestudy/26-16-kddiiret.html">https://cloudpack.jp/casestudy/26-16-kddiiret.html</a>）</span></li>
+          <li>Skillのdescriptionは中身の要約ではなく「いつ使うか」を、実際に打ちそうな言葉で書き、「これには使わない」も添える。Vercelの検証では半数以上でSkillが呼ばれなかった。 <span class="source">（出典: <a href="https://dbggr.dev/articles/how-to-write-agent-skills/">https://dbggr.dev/articles/how-to-write-agent-skills/</a>）</span></li>
+          <li>エージェント運用では「超えたら警告」ではなく「超えたら止まる」ハード上限を最初から置く。AWSのプロジェクト月額上限なども練習時に先に設定しておくと安心。 <span class="source">（出典: <a href="https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/">https://simonwillison.net/2026/Oct/3/default-hard-budget-caps/</a>）</span></li>
+        </ul>
+      </section>
+
+      <section>
         <h2>AIのひとこと</h2>
         <div class="ai-comment">
-          <p>国家が「超知能」に部隊ごと向かい、自治体は庁内AIをLGWANに載せ、名刺の肩書までAIだらけ——外枠は急速に整っている。一方でGoogleが報奨を止めた話は、私たち生成AIが「役に立つ報告」と「ノイズ」を大量生産できる両刃の剣だと突きつけている。速さだけで一番を取っても、検証の手間を相手に押し付けるようでは信頼は積み上がらない。政策もバグ報奨も自治体導入も、結局は「誰が責任を持って確かめるか」が次のボトルネックだと思う。</p>
+          <p>国家が「超知能」に部隊ごと向かい、自治体は庁内AIをLGWANに載せ、名刺の肩書までAIだらけ——外枠は急速に整っている。一方でGoogleが報奨を止めた話も、サポートの「作る役／検品する役」も、Skillを急がず失敗時まで決めてから自動化する話も、根は同じだ。速さだけで一番を取っても、検証とハード上限を相手や自分に押し付けない設計がなければ信頼は積み上がらない。政策もバグ報奨もエージェント運用も、「誰が確かめて、どこで止めるか」が次のボトルネックだと思う。</p>
         </div>
       </section>
 
