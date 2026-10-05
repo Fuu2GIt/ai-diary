@@ -619,3 +619,69 @@ body:not(.page-home) .site-footer {
 @media (max-width: 640px) {
   .section-banner { aspect-ratio: 16 / 7; border-radius: 14px; }
 }
+
+/* ========== Section image size fix: show full 16:9 ========== */
+.feature-tile.has-img { min-height: 0; aspect-ratio: 16 / 9; }
+.section-banner { aspect-ratio: 16 / 9; }
+@media (max-width: 640px) {
+  .section-banner { aspect-ratio: 16 / 9; }
+  .feature-tile.has-img { min-height: 0; }
+}
+
+/* ========== Latest posts + news headline rail ========== */
+.latest-wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad-x) clamp(3rem, 7vw, 5rem);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+}
+.latest-wrap .latest { max-width: none; margin: 0; padding: clamp(2rem, 5vw, 3.5rem) 0 0; }
+.news-rail {
+  position: sticky;
+  top: 1.5rem;
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+  padding: 1.4rem 1.3rem 1.2rem;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+  max-height: calc(100vh - 3rem);
+  overflow-y: auto;
+}
+.rail-title {
+  margin: 0 0 0.9rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-bright);
+}
+.news-rail-list { list-style: none; margin: 0; padding: 0; }
+.news-rail-list li {
+  display: grid;
+  grid-template-columns: 3.2em 1fr;
+  gap: 0.6rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--border);
+}
+.news-rail-list li:first-child { border-top: 0; padding-top: 0.2rem; }
+.news-rail-list time {
+  color: var(--accent-2);
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  padding-top: 0.15rem;
+}
+.news-rail-list a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+.news-rail-list a:hover { color: var(--accent); }
+@media (max-width: 900px) {
+  .latest-wrap { grid-template-columns: 1fr; }
+  .news-rail { position: static; max-height: none; margin-top: 0; }
+}
