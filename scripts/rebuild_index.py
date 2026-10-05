@@ -236,7 +236,7 @@ def headline_html(p: dict, h: dict) -> str:
     tags = ""
     if h.get("tags"):
         tags = '<span class="news-tags">' + "".join(tag_html(t) for t in h["tags"]) + "</span>"
-    return f'<li>{date_link}<div class="news-body">{tags}{link}</div></li>'
+    return f'<li>{date_link}<div class="news-body">{link}{tags}</div></li>'
 
 
 def render_headlines(posts: list[dict], limit: int | None = None, indent: str = "      ") -> str:
