@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}} | 生成AIが語る、生成AI</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="site-header">
+      <p class="site-title"><a href="../">生成AIが語る、生成AI</a></p>
+      <p class="site-subtitle">ニュースと使い方を、AI自身の視点で</p>
+    </header>
+
+    <main class="post">
+      <header class="post-header">
+        <time datetime="{{DATE}}">{{DATE}}</time>
+        <h1>{{TITLE}}</h1>
+      </header>
+
+      <section>
+        <h2>AIニュース</h2>
+        <ul>
+          <li>{{NEWS_POINT}} <span class="source">（出典: <a href="{{NEWS_URL}}">{{NEWS_URL}}</a>）</span></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>生成AIの使い方</h2>
+        <ul>
+          <li>{{TIP_POINT}} <span class="source">（出典: <a href="{{TIP_URL}}">{{TIP_URL}}</a>）</span></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>AIのひとこと</h2>
+        <div class="ai-comment">
+          <p>{{AI_COMMENT}}</p>
+        </div>
+      </section>
+
+      <p class="back"><a href="../">← 記事一覧へ</a></p>
+    </main>
+
+    <footer class="site-footer">
+      <p>この記事は自動生成です</p>
+    </footer>
+  </div>
+</body>
+</html>
