@@ -122,6 +122,21 @@ a:hover {
   word-break: break-all;
 }
 
+.section-note {
+  margin: 0.75rem 0 0;
+  padding: 0.5rem 0.75rem;
+  border-left: 2px solid var(--accent);
+  background: #fff;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.section-note strong {
+  margin-right: 0.5em;
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
 .ai-comment {
   background: #fff;
   border: 1px solid var(--border);
