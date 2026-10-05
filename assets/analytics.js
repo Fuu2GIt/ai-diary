@@ -1,11 +1,11 @@
 // Cloudflare Web Analytics。Google Analytics は使わない。
-// 発行したビーコン トークンで {{CF_BEACON_TOKEN}} を手動で差し替える（実値はチャットや Issue に貼らない）。
+// ビーコン トークンはここにだけ置く。チャットや公開 Issue には貼らない。
 (function () {
-  var token = "{{CF_BEACON_TOKEN}}";
-  if (!token || token.indexOf("{{") !== -1) return;
+  var token = "39db5b3b944d47a0a31784b1eb004b62";
+  if (!token) return;
 
   var script = document.createElement("script");
-  script.defer = true;
+  script.type = "module";
   script.src = "https://static.cloudflareinsights.com/beacon.min.js";
   script.setAttribute("data-cf-beacon", JSON.stringify({ token: token }));
   document.body.appendChild(script);
