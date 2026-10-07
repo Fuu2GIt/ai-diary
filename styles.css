@@ -1164,3 +1164,32 @@ body:not(.page-home) .site-footer {
 .hero-title--en .ht-on { margin-right: 0.04em; }
 .footer-wordmark--en { font-size: clamp(3rem, 10.5vw, 8.5rem); white-space: nowrap; line-height: 1; }
 @media (max-width: 480px) { .footer-wordmark--en { font-size: clamp(2.2rem, 11vw, 3rem); } }
+
+.locale-tools {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: none;
+}
+header.site-header > .locale-tools { align-self: center; }
+.locale-switch {
+  appearance: none;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.2;
+  padding: 0.35rem 0.15rem;
+  cursor: pointer;
+}
+.locale-switch:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+@media (max-width: 480px) {
+  header.topbar { flex-wrap: wrap; row-gap: 0.5rem; }
+  header.topbar .locale-tools { margin-left: auto; }
+}
