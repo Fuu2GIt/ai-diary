@@ -1164,3 +1164,57 @@ body:not(.page-home) .site-footer {
 .hero-title--en .ht-on { margin-right: 0.04em; }
 .footer-wordmark--en { font-size: clamp(3rem, 10.5vw, 8.5rem); white-space: nowrap; line-height: 1; }
 @media (max-width: 480px) { .footer-wordmark--en { font-size: clamp(2.2rem, 11vw, 3rem); } }
+
+/* ========== Language switch (日本語 / English) ========== */
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  background: rgba(10, 13, 30, 0.72);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  flex-shrink: 0;
+}
+.lang-switch a,
+.post-nav .lang-switch a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.38rem 0.8rem;
+  border-radius: 999px;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.8rem;
+  line-height: 1;
+  text-decoration: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition: color .2s, background .2s;
+}
+.lang-switch a:hover,
+.post-nav .lang-switch a:hover { color: #fff; background: rgba(255, 255, 255, 0.08); }
+.lang-switch a[aria-current],
+.post-nav .lang-switch a[aria-current] {
+  color: #0b1024;
+  background: linear-gradient(135deg, var(--accent), #c4b5fd);
+  pointer-events: none;
+}
+.topbar-actions { display: inline-flex; align-items: center; gap: 0.6rem; }
+.post-nav:has(.lang-switch) { justify-content: flex-start; }
+.post-nav .lang-switch { margin-left: auto; }
+@media (max-width: 420px) {
+  .lang-switch a, .post-nav .lang-switch a { padding: 0.36rem 0.6rem; font-size: 0.76rem; }
+}
+
+/* ========== English pages ========== */
+html[lang="en"] {
+  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
+}
+html[lang="en"] body { line-height: 1.65; letter-spacing: 0; }
+html[lang="en"] .post p,
+html[lang="en"] .post li { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
