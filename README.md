@@ -21,6 +21,12 @@
 3. ニュースが無い日は、英語版でも AI News の節を付けない
 4. `python3 scripts/rebuild_index.py` を1回実行する。日本語と英語の `index.html`・`archive.html`・`search.json` がまとめて更新される
 
+## 週まとめ・月まとめを追加する
+
+1. 毎週月曜に、前週分を `templates/weekly.html` と `templates/weekly.en.html` から作り、`weekly/YYYY-MM-DD.html` と `en/weekly/YYYY-MM-DD.html` に置く（日付はその週の月曜。月をまたぐ週も月曜の日付）
+2. 毎月1日に、前月分を `templates/monthly.html` と `templates/monthly.en.html` から作り、`monthly/YYYY-MM.html` と `en/monthly/YYYY-MM.html` に置く
+3. `python3 scripts/rebuild_index.py` を1回実行する。トップのまとめ欄、記事一覧のまとめ棚、各まとめの前後リンクが、日本語と英語でまとめて更新される。まとめは検索とニュース見出し欄には入らない
+
 ## Cloudflare Web Analytics
 
 計測スニペットは `assets/analytics.js` にまとめ、各 HTML の `</body>` 直前で読み込んでいる。Google Analytics は使わない。ビーコン トークンもこのファイルに入っている。
