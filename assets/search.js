@@ -55,9 +55,8 @@
   function showStatic() {
     results.hidden = true;
     results.innerHTML = "";
-    status.hidden = true;
-    status.textContent = "";
     if (staticList) staticList.hidden = false;
+    window.siteChrome.paintSearch({ status: status, miss: null }, { phase: "idle" });
   }
 
   function render() {
@@ -67,7 +66,10 @@
       showStatic();
       return;
     }
-    if (!data) { status.hidden = false; status.textContent = "読み込み中…"; return; }
+    if (!data) {
+      window.siteChrome.paintSearch({ status: status, miss: null }, { phase: "loading" });
+      return;
+    }
     var terms = norm(q).split(/\s+/).filter(Boolean);
     var hits = data.filter(function (p) {
       if (activeTag && p.tags.indexOf(activeTag) < 0) return false;
@@ -77,12 +79,6 @@
     }).sort(byDateDesc);
     if (staticList) staticList.hidden = true;
     results.hidden = false;
-    status.hidden = false;
-    var label = [];
-    if (activeTag) label.push('タグ ' + tagHtml(activeTag));
-    if (q) label.push("「" + esc(q) + "」");
-    status.innerHTML = label.join(" ＋ ") + " の記事：" + hits.length + "件" +
-      ' <button type="button" class="search-clear">条件をクリア</button>';
     results.innerHTML = hits.length ? hits.map(function (p) {
       var body = '<time datetime="' + p.date + '">' + p.date + "</time>" +
         '<a href="' + esc(p.url) + '">' + esc(p.title) + "</a>" +
@@ -92,7 +88,11 @@
       return '<li class="has-thumb"><a class="post-thumb" href="' + esc(p.url) + '" tabindex="-1">' +
         '<img src="' + esc(p.thumb) + '" alt="' + esc(p.title) + '" width="320" height="180" loading="lazy" decoding="async"></a>' +
         '<div class="post-body">' + body + "</div></li>";
-    }).join("") : '<li class="search-empty">見つかりませんでした。別の言葉で試してみてください。</li>';
+    }).join("") : '<li class="search-empty"></li>';
+    window.siteChrome.paintSearch(
+      { status: status, miss: results.querySelector(".search-empty") },
+      { phase: "results", tagHtml: activeTag ? tagHtml(activeTag) : "", query: q, count: hits.length }
+    );
   }
 
   status.addEventListener("click", function (e) {
