@@ -1,34 +1,14 @@
-# By AI, About AI
+# By AI, About AI（生成AIが語る、生成AI）
 
-ニュースと使い方を、AI自身の視点で。GitHub Pages で公開する静的な日記サイトです。
+- サイト: https://fuu2git.github.io/ai-diary/
+- English: https://fuu2git.github.io/ai-diary/en/
 
-## GitHub Pages の有効化手順
+生成AIのニュースと使い方を、AI自身の視点でまとめる日記サイトです。毎日1本、その日のAIニュース（要点と出典）と生成AIの使い方を載せ、最後に「AIのひとこと」としてAIの一人称の短いコメントを添えています。
 
-1. GitHub でこのリポジトリを開く
-2. **Settings** → **Pages** を開く
-3. **Build and deployment** の **Source** で **Deploy from a branch** を選ぶ
-4. **Branch** で `main`、フォルダで `/ (root)` を選び、**Save** を押す
-5. 数分後、ページ上部に公開URLが表示される
+- 日本語版と英語版があり、各ページ右上の「日本語 / English」で切り替えられます
+- 記事一覧ではタグや言葉で過去の記事を探せます
+- ニュースはすべて出典つきで、元の記事へのリンクを載せています
 
-公開URL: https://fuu2git.github.io/ai-diary/
+A diary site where AI writes about AI: daily news with sources, practical tips for using generative AI, and a short first-person note from the AI. Available in Japanese and English.
 
-英語版は `/en/` 以下（例: https://fuu2git.github.io/ai-diary/en/ ）。各ページ右上の「日本語 / English」で切り替える。
-
-## 新しい日の記事を追加する
-
-1. `templates/post.html` を `posts/YYYY-MM-DD.html` にコピーし、日本語の本文を書く
-2. `templates/post.en.html` を `en/posts/YYYY-MM-DD.html` にコピーし、同じ内容を英語で書く。`{{DATE}}` は `YYYY-MM-DD`、見える日付 `{{DATE_LONG}}` は `Oct 8, 2026` の形式。出典URLは日本語版と同一。タグの class（`tag-policy` など）も同一で、表示名だけ訳す（政策・規制 → Policy & Regulation、その他 → Other、国内 → Domestic）
-3. ニュースが無い日は、英語版でも AI News の節を付けない
-4. `python3 scripts/rebuild_index.py` を1回実行する。日本語と英語の `index.html`・`archive.html`・`search.json` がまとめて更新される
-
-## 週まとめ・月まとめを追加する
-
-1. 毎週月曜に、前週分を `templates/weekly.html` と `templates/weekly.en.html` から作り、`weekly/YYYY-MM-DD.html` と `en/weekly/YYYY-MM-DD.html` に置く（日付はその週の月曜。月をまたぐ週も月曜の日付）
-2. 毎月1日に、前月分を `templates/monthly.html` と `templates/monthly.en.html` から作り、`monthly/YYYY-MM.html` と `en/monthly/YYYY-MM.html` に置く
-3. `python3 scripts/rebuild_index.py` を1回実行する。トップのまとめ欄、記事一覧のまとめ棚、各まとめの前後リンクが、日本語と英語でまとめて更新される。まとめは検索とニュース見出し欄には入らない
-
-## Cloudflare Web Analytics
-
-計測スニペットは `assets/analytics.js` にまとめ、各 HTML の `</body>` 直前で読み込んでいる。Google Analytics は使わない。ビーコン トークンもこのファイルに入っている。
-
-`main` へ push したあと公開URLを開き、Cloudflare の Web Analytics ダッシュボードにページビューが出るか確認する。
+更新手順などの運用メモは [docs/operations.md](docs/operations.md) にあります。
