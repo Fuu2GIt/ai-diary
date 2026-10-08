@@ -2,13 +2,17 @@
 """posts/YYYY-MM-DD.html をすべて読み、index.html・archive.html・search.json を作り直す。
 
 同じ実行で en/posts/ も読み、en/index.html・en/archive.html・en/search.json を作り直す。
+同じ実行で weekly/ monthly/ en/weekly/ en/monthly/ も読み、トップの recap-strip、
+記事一覧の #recaps 棚、各まとめページの recap-pager を日英とも更新する。
+まとめは search.json とニュース見出し欄（news-rail）には入れない。
 
 引数なしで `python3 scripts/rebuild_index.py` と実行すればよい。
 
 - index.html（サイトトップ）: 最新の記事（POSTS、最大 TOP_MAX_POSTS 件・タグなし）と
-  ニュース見出し（NEWS、最大 TOP_MAX_HEADLINES 件）。
+  ニュース見出し（NEWS、最大 TOP_MAX_HEADLINES 件）。まとめがあれば、features の直後に
+  最新の週まとめ1件と月まとめ1件（RECAPS）。無い種類のカードは出さない。両方無ければ欄ごと出さない。
 - archive.html（記事一覧）: 全記事（POSTS、タグ付き）、タグ一覧（TAGS）、
-  ニュース見出し（NEWS、全件）。
+  ニュース見出し（NEWS、全件）。見出しの直後に週まとめ・月まとめの棚（RECAPS、新しい順・全件）。
 - ニュース見出しは各記事の「AIニュース」欄の要点の一文目。見出しは出典記事へ
   （新しいタブ）、日付はその日の記事へリンクする。出典が無い要点は記事へリンク。
 - 記事ごとのサムネイル: assets/YYYY-MM-DD-hero.webp があれば archive.html の一覧に
@@ -17,11 +21,19 @@
 - ページにマーカーが無ければ、その部分は何もしない（ファイルが無ければ飛ばす）。
 
 タグは記事内の <span class="tag tag-xxx">表示名</span> から拾う。
+
+週まとめ・月まとめの追加手順:
+毎週月曜に前週分を templates/weekly.html と templates/weekly.en.html から作り、
+weekly/YYYY-MM-DD.html と en/weekly/YYYY-MM-DD.html に置く（日付はその週の月曜）。
+毎月1日に前月分を templates/monthly.html と templates/monthly.en.html から作り、
+monthly/YYYY-MM.html と en/monthly/YYYY-MM.html に置く。
+そのあとこのスクリプトを1回実行する。入口（recap-strip と #recaps）と前後の pager が日英とも更新される。
 """
 
 import html
 import json
 import re
+from datetime import date, timedelta
 from pathlib import Path
 from urllib.parse import quote
 
@@ -34,6 +46,10 @@ EN_POSTS_DIR = ROOT / "en" / "posts"
 EN_INDEX = ROOT / "en" / "index.html"
 EN_ARCHIVE = ROOT / "en" / "archive.html"
 EN_SEARCH_JSON = ROOT / "en" / "search.json"
+WEEKLY_DIR = ROOT / "weekly"
+MONTHLY_DIR = ROOT / "monthly"
+EN_WEEKLY_DIR = ROOT / "en" / "weekly"
+EN_MONTHLY_DIR = ROOT / "en" / "monthly"
 ASSETS_DIR = ROOT / "assets"
 SITE_SUFFIX = " | By AI, About AI"
 HEADLINE_LEN = 60
@@ -43,6 +59,8 @@ TOP_MAX_POSTS = 20
 TOP_MAX_HEADLINES = 30
 
 POST_NAME = re.compile(r"^(\d{4}-\d{2}-\d{2})\.html$")
+WEEKLY_NAME = re.compile(r"^(\d{4}-\d{2}-\d{2})\.html$")
+MONTHLY_NAME = re.compile(r"^(\d{4}-\d{2})\.html$")
 TITLE_TAG = re.compile(r"<title[^>]*>(.*?)</title>", re.S | re.I)
 H1_TAG = re.compile(r"<h1[^>]*>(.*?)</h1>", re.S | re.I)
 TAGS = re.compile(r"<[^>]+>")
@@ -62,7 +80,14 @@ MARKERS = {
     "POSTS": re.compile(r"(<!-- POSTS:START -->)(.*?)(\n[ \t]*<!-- POSTS:END -->)", re.S),
     "NEWS": re.compile(r"(<!-- NEWS:START -->)(.*?)(\n[ \t]*<!-- NEWS:END -->)", re.S),
     "TAGS": re.compile(r"(<!-- TAGS:START -->)(.*?)(\n[ \t]*<!-- TAGS:END -->)", re.S),
+    "RECAPS": re.compile(r"(<!-- RECAPS:START -->)(.*?)(\n[ \t]*<!-- RECAPS:END -->)", re.S),
+    "RECAP_PAGER": re.compile(r"(<!-- RECAP_PAGER:START -->)(.*?)(\n[ \t]*<!-- RECAP_PAGER:END -->)", re.S),
 }
+
+MONTHS_EN_FULL = (
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December",
+)
 
 # 表示名 → 色のクラス。ここにない名前は tag-other の色になる。
 TAG_CLASS = {
@@ -392,6 +417,269 @@ EN_PAGES = {
 }
 
 
+def extract_h1(source: str, fallback: str) -> str:
+    match = H1_TAG.search(source)
+    if not match:
+        return fallback
+    text = clean(match.group(1))
+    return text or fallback
+
+
+def week_bounds(monday_iso: str) -> tuple[date, date]:
+    start = date.fromisoformat(monday_iso)
+    return start, start + timedelta(days=6)
+
+
+def period_spaced(start: date, end: date) -> str:
+    """Sep 07 – 13、月をまたぐときは Sep 28 – Oct 04。区切りは en dash。"""
+    left = f"{MONTHS_EN[start.month - 1]} {start.day:02d}"
+    if start.month == end.month:
+        right = f"{end.day:02d}"
+    else:
+        right = f"{MONTHS_EN[end.month - 1]} {end.day:02d}"
+    return f"{left} – {right}"
+
+
+def period_archive(start: date, end: date, lang: str) -> str:
+    """一覧の time 表示。日本語は 09/07–13 または 09/28–10/04。英語は Sep 07–13 または Sep 28–Oct 04。"""
+    if lang == "en":
+        left = f"{MONTHS_EN[start.month - 1]} {start.day:02d}"
+        if start.month == end.month:
+            right = f"{end.day:02d}"
+        else:
+            right = f"{MONTHS_EN[end.month - 1]} {end.day:02d}"
+        return f"{left}–{right}"
+    left = f"{start.month:02d}/{start.day:02d}"
+    if start.month == end.month:
+        right = f"{end.day:02d}"
+    else:
+        right = f"{end.month:02d}/{end.day:02d}"
+    return f"{left}–{right}"
+
+
+def month_full(iso: str) -> str:
+    year, month = iso.split("-")
+    return f"{MONTHS_EN_FULL[int(month) - 1]} {year}"
+
+
+def month_archive_en(iso: str) -> str:
+    year, month = iso.split("-")
+    return f"{MONTHS_EN[int(month) - 1]} {year}"
+
+
+def collect_recaps(directory: Path, kind: str) -> list[dict]:
+    """古い順。kind は weekly または monthly。題名は h1。"""
+    pattern = WEEKLY_NAME if kind == "weekly" else MONTHLY_NAME
+    items = []
+    if not directory.is_dir():
+        return items
+    for path in directory.glob("*.html"):
+        match = pattern.match(path.name)
+        if not match:
+            continue
+        source = path.read_text(encoding="utf-8")
+        stamp = match.group(1)
+        items.append({
+            "id": stamp,
+            "title": extract_h1(source, stamp),
+            "path": path,
+            "kind": kind,
+        })
+    items.sort(key=lambda item: item["id"])
+    return items
+
+
+def weekly_period(item: dict) -> tuple[date, date]:
+    return week_bounds(item["id"])
+
+
+def render_weekly_card(item: dict, lang: str) -> str:
+    start, end = weekly_period(item)
+    period = period_spaced(start, end)
+    title = html.escape(item["title"])
+    more = "Read →" if lang == "en" else "読む →"
+    if lang == "en":
+        badge = '<span class="recap-badge">Weekly Recap</span>'
+    else:
+        badge = '<span class="recap-badge">Weekly Recap <span>週まとめ</span></span>'
+    return (
+        f'<a class="recap-card" href="weekly/{item["id"]}.html">{badge}'
+        f'<span class="recap-period">{period}</span>'
+        f'<span class="recap-card-title">{title}</span>'
+        f'<span class="recap-card-more">{more}</span></a>'
+    )
+
+
+def render_monthly_card(item: dict, lang: str) -> str:
+    period = month_full(item["id"])
+    title = html.escape(item["title"])
+    more = "Read →" if lang == "en" else "読む →"
+    if lang == "en":
+        badge = '<span class="recap-badge recap-badge--monthly">Monthly Recap</span>'
+    else:
+        badge = '<span class="recap-badge recap-badge--monthly">Monthly Recap <span>月まとめ</span></span>'
+    return (
+        f'<a class="recap-card recap-card--monthly" href="monthly/{item["id"]}.html">{badge}'
+        f'<span class="recap-period">{period}</span>'
+        f'<span class="recap-card-title">{title}</span>'
+        f'<span class="recap-card-more">{more}</span></a>'
+    )
+
+
+def render_strip(weekly: list[dict], monthly: list[dict], lang: str) -> str:
+    latest_w = weekly[-1] if weekly else None
+    latest_m = monthly[-1] if monthly else None
+    if not latest_w and not latest_m:
+        return ""
+    indent = "  "
+    inner = "    "
+    label = "Recaps" if lang == "en" else "まとめ"
+    more = "All recaps →" if lang == "en" else "すべてのまとめ →"
+    cards = []
+    if latest_w:
+        cards.append(f"{inner}  {render_weekly_card(latest_w, lang)}")
+    if latest_m:
+        cards.append(f"{inner}  {render_monthly_card(latest_m, lang)}")
+    lines = [
+        f'{indent}<section class="recap-strip" aria-label="{label}">',
+        f'{inner}<p class="latest-kicker">Recap</p>',
+        f'{inner}<h2 class="latest-title">{label}</h2>',
+        f'{inner}<div class="recap-cards">',
+        *cards,
+        f"{inner}</div>",
+        f'{inner}<p class="latest-more"><a href="archive.html#recaps">{more}</a></p>',
+        f"{indent}</section>",
+    ]
+    return "\n" + "\n".join(lines)
+
+
+def render_shelf_weekly(items: list[dict], lang: str) -> list[str]:
+    indent = "      "
+    if lang == "en":
+        heading = '<h2><span class="recap-badge">Weekly</span>Recaps</h2>'
+    else:
+        heading = '<h2><span class="recap-badge">Weekly</span>週まとめ</h2>'
+    lines = [f"{indent}<section>", f"{indent}  {heading}", f"{indent}  <ul>"]
+    for item in reversed(items):
+        start, end = weekly_period(item)
+        shown = period_archive(start, end, lang)
+        title = html.escape(item["title"])
+        lines.append(
+            f'{indent}    <li><a href="weekly/{item["id"]}.html">'
+            f'<time datetime="{item["id"]}">{shown}</time>{title}</a></li>'
+        )
+    lines.append(f"{indent}  </ul>")
+    lines.append(f"{indent}</section>")
+    return lines
+
+
+def render_shelf_monthly(items: list[dict], lang: str) -> list[str]:
+    indent = "      "
+    if lang == "en":
+        heading = '<h2><span class="recap-badge recap-badge--monthly">Monthly</span>Recaps</h2>'
+    else:
+        heading = '<h2><span class="recap-badge recap-badge--monthly">Monthly</span>月まとめ</h2>'
+    lines = [f"{indent}<section>", f"{indent}  {heading}", f"{indent}  <ul>"]
+    for item in reversed(items):
+        shown = month_archive_en(item["id"]) if lang == "en" else item["id"]
+        title = html.escape(item["title"])
+        lines.append(
+            f'{indent}    <li><a href="monthly/{item["id"]}.html">'
+            f'<time datetime="{item["id"]}">{shown}</time>{title}</a></li>'
+        )
+    lines.append(f"{indent}  </ul>")
+    lines.append(f"{indent}</section>")
+    return lines
+
+
+def render_shelf(weekly: list[dict], monthly: list[dict], lang: str) -> str:
+    if not weekly and not monthly:
+        return ""
+    indent = "    "
+    lines = [f'{indent}<div class="recap-shelf" id="recaps">']
+    if weekly:
+        lines.extend(render_shelf_weekly(weekly, lang))
+    if monthly:
+        lines.extend(render_shelf_monthly(monthly, lang))
+    lines.append(f"{indent}</div>")
+    return "\n" + "\n".join(lines)
+
+
+def pager_visible(item: dict, lang: str) -> str:
+    if item["kind"] == "weekly":
+        start, end = weekly_period(item)
+        return period_spaced(start, end)
+    return month_full(item["id"])
+
+
+def render_pager(items: list[dict], index: int, lang: str) -> str:
+    prev_item = items[index - 1] if index > 0 else None
+    next_item = items[index + 1] if index + 1 < len(items) else None
+    if not prev_item and not next_item:
+        return ""
+    kind = items[index]["kind"]
+    if kind == "weekly":
+        aria = "Weekly recaps" if lang == "en" else "週まとめの移動"
+        prev_small = "← Previous week" if lang == "en" else "← 前の週"
+        next_small = "Next week →" if lang == "en" else "次の週 →"
+    else:
+        aria = "Monthly recaps" if lang == "en" else "月まとめの移動"
+        prev_small = "← Previous month" if lang == "en" else "← 前の月"
+        next_small = "Next month →" if lang == "en" else "次の月 →"
+    indent = "      "
+    lines = [f'{indent}<nav class="recap-pager" aria-label="{aria}">']
+    if prev_item:
+        lines.append(
+            f'{indent}  <a class="prev" href="{prev_item["id"]}.html">'
+            f"<small>{prev_small}</small>{pager_visible(prev_item, lang)}</a>"
+        )
+    if next_item:
+        lines.append(
+            f'{indent}  <a class="next" href="{next_item["id"]}.html">'
+            f"<small>{next_small}</small>{pager_visible(next_item, lang)}</a>"
+        )
+    lines.append(f"{indent}</nav>")
+    return "\n" + "\n".join(lines)
+
+
+def fill_marker(path: Path, key: str, body: str) -> bool:
+    """マーカーを埋める。マーカーが無ければ False。中身が同じなら書き戻さない。"""
+    if not path.exists():
+        return False
+    source = path.read_text(encoding="utf-8")
+    pattern = MARKERS[key]
+    if not pattern.search(source):
+        return False
+    updated = pattern.sub(lambda m: m.group(1) + body + m.group(3), source, count=1)
+    if updated != source:
+        path.write_text(updated, encoding="utf-8", newline="\n")
+    return True
+
+
+def update_recaps(lang: str) -> str:
+    if lang == "en":
+        weekly = collect_recaps(EN_WEEKLY_DIR, "weekly")
+        monthly = collect_recaps(EN_MONTHLY_DIR, "monthly")
+        index, archive = EN_INDEX, EN_ARCHIVE
+    else:
+        weekly = collect_recaps(WEEKLY_DIR, "weekly")
+        monthly = collect_recaps(MONTHLY_DIR, "monthly")
+        index, archive = INDEX, ARCHIVE
+    fill_marker(index, "RECAPS", render_strip(weekly, monthly, lang))
+    fill_marker(archive, "RECAPS", render_shelf(weekly, monthly, lang))
+    missing = []
+    for index_in_list, item in enumerate(weekly):
+        if not fill_marker(item["path"], "RECAP_PAGER", render_pager(weekly, index_in_list, lang)):
+            missing.append(item["path"].relative_to(ROOT).as_posix())
+    for index_in_list, item in enumerate(monthly):
+        if not fill_marker(item["path"], "RECAP_PAGER", render_pager(monthly, index_in_list, lang)):
+            missing.append(item["path"].relative_to(ROOT).as_posix())
+    note = f"weekly {len(weekly)} / monthly {len(monthly)}"
+    if missing:
+        note += "（pager マーカーなし: " + ", ".join(missing) + "）"
+    return note
+
+
 def fill_page(path: Path, renderers: dict, posts: list[dict]) -> list[str]:
     """path のマーカーを埋め直し、埋めたマーカー名を返す。"""
     if not path.exists():
@@ -462,6 +750,9 @@ def main() -> None:
         f"（{len(en_posts)} 件、ニュース見出し {len(en_headlines)} 件"
         f"［出典リンク {en_with_url} / 記事リンク {len(en_headlines) - en_with_url}］、タグ {en_tag_count} 種類）"
     )
+
+    print(f"まとめ: {update_recaps('ja')}")
+    print(f"まとめ(en): {update_recaps('en')}")
 
 
 if __name__ == "__main__":
