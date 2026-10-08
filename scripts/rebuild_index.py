@@ -37,6 +37,7 @@ EN_SEARCH_JSON = ROOT / "en" / "search.json"
 ASSETS_DIR = ROOT / "assets"
 SITE_SUFFIX = " | By AI, About AI"
 HEADLINE_LEN = 60
+HEADLINE_LEN_EN = 110
 MONTHS_EN = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 TOP_MAX_POSTS = 20
 TOP_MAX_HEADLINES = 30
@@ -154,11 +155,25 @@ def first_sentence_en(text: str) -> str:
     return text.strip()
 
 
+def clip_headline_en(text: str) -> str:
+    """110字を超える英語見出しは、制限より前の最後の空白で切り、末尾の読点を落として … を付ける。"""
+    if len(text) <= HEADLINE_LEN_EN:
+        return text
+    cut = text[:HEADLINE_LEN_EN]
+    space = cut.rfind(" ")
+    if space > 0:
+        cut = cut[:space]
+    else:
+        cut = cut[: HEADLINE_LEN_EN - 1]
+    cut = cut.rstrip(" ,;:.!?\"'”’")
+    return cut + "…"
+
+
 def to_headline(fragment: str, lang: str = "ja") -> str:
     text = clean(TAG_SPAN.sub("", SOURCE_SPAN.sub("", fragment)))
     if lang == "en":
-        text = first_sentence_en(text)
-    elif "。" in text:
+        return clip_headline_en(first_sentence_en(text))
+    if "。" in text:
         text = text.split("。", 1)[0].strip()
     if len(text) > HEADLINE_LEN:
         text = text[: HEADLINE_LEN - 1].rstrip() + "…"
