@@ -826,6 +826,7 @@ body:not(.page-home) .site-footer {
 }
 .home-layout > .hero,
 .home-layout > .features,
+.home-layout > .recap-strip,
 .home-layout > .latest {
   max-width: none;
   margin: 0;
@@ -875,10 +876,11 @@ body:not(.page-home) .site-footer {
   }
   .home-layout > .hero,
   .home-layout > .features,
+  .home-layout > .recap-strip,
   .home-layout > .latest { grid-column: 1; }
   .home-rail {
     grid-column: 2;
-    grid-row: 1 / span 3;
+    grid-row: 1 / span 4;
     align-self: start;
     position: sticky;
     top: 24px;
@@ -1218,3 +1220,193 @@ html[lang="en"] {
 html[lang="en"] body { line-height: 1.65; letter-spacing: 0; }
 html[lang="en"] .post p,
 html[lang="en"] .post li { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+
+/* ========== Recaps (週まとめ / 月まとめ) ========== */
+.recap-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.32rem 0.8rem;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0b1024;
+  background: linear-gradient(135deg, var(--accent), #c4b5fd);
+  box-shadow: 0 0 24px rgba(142, 197, 255, 0.25);
+}
+.recap-badge--monthly { background: linear-gradient(135deg, #c4b5fd, #f0abfc); box-shadow: 0 0 24px rgba(196, 181, 253, 0.3); }
+.recap-badge span { font-family: var(--font-body); letter-spacing: 0.04em; text-transform: none; opacity: 0.8; }
+
+/* recap page header: big period instead of a hero image */
+.recap-header {
+  position: relative;
+  margin: 0 0 2.2rem;
+  padding: clamp(1.6rem, 4vw, 2.4rem) clamp(1.3rem, 3vw, 2rem);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-strong);
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(142, 197, 255, 0.18), transparent 55%),
+    radial-gradient(120% 140% at 100% 100%, rgba(196, 181, 253, 0.18), transparent 55%),
+    var(--glass);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  overflow: hidden;
+}
+.recap--monthly .recap-header {
+  background:
+    radial-gradient(120% 140% at 0% 0%, rgba(196, 181, 253, 0.22), transparent 55%),
+    radial-gradient(120% 140% at 100% 100%, rgba(240, 171, 252, 0.14), transparent 55%),
+    var(--glass);
+}
+.recap-period {
+  display: block;
+  margin: 1rem 0 0.2rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.4rem, 7vw, 3.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  background: linear-gradient(120deg, #e8f2ff 0%, var(--accent) 45%, #c4b5fd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.recap-year { display: block; font-family: var(--font-display); font-size: 0.85rem; color: var(--accent-2); letter-spacing: 0.08em; }
+.recap-header h1 {
+  margin: 1rem 0 0;
+  font-size: clamp(1.3rem, 2.8vw, 1.7rem);
+  line-height: 1.45;
+  font-weight: 600;
+  font-family: var(--font-display);
+  color: var(--text-bright);
+}
+.recap-meta { margin: 0.6rem 0 0; font-size: 0.85rem; color: var(--muted); }
+
+/* "その日の記事" link shown next to SOURCE */
+.recap-from {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  margin: 0.7rem 0 0;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(196, 181, 253, 0.4);
+  background: rgba(196, 181, 253, 0.1);
+  color: #ddd6fe !important;
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+.recap-from:hover { background: rgba(196, 181, 253, 0.2); }
+
+/* monthly themes */
+.recap-themes { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; counter-reset: theme; }
+.recap-theme {
+  counter-increment: theme;
+  position: relative;
+  padding: 1.3rem 1.4rem 1.2rem 3.6rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.recap-theme::before {
+  content: counter(theme, decimal-leading-zero);
+  position: absolute;
+  left: 1.3rem;
+  top: 1.3rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #c4b5fd;
+}
+.post .recap-theme { margin: 0; }
+.recap-theme h3 { margin: 0 0 0.45rem; font-size: 1.05rem; font-family: var(--font-display); color: var(--text-bright); line-height: 1.5; }
+.recap-theme p { margin: 0; color: var(--text); font-size: 0.95rem; line-height: 1.8; }
+.recap-links { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.85rem; }
+.recap-links a {
+  padding: 0.24rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  text-decoration: none;
+}
+.recap-links a.is-week { border-color: rgba(142, 197, 255, 0.45); }
+.recap-links a:hover { background: rgba(142, 197, 255, 0.12); }
+
+/* prev / next */
+.recap-pager { display: flex; justify-content: space-between; gap: 0.75rem; margin-top: 2.6rem; }
+.recap-pager a {
+  flex: 1 1 0;
+  max-width: 48%;
+  padding: 0.85rem 1.1rem;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--glass);
+  text-decoration: none;
+  color: var(--text-bright);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+.recap-pager a small { display: block; color: var(--accent-2); font-family: var(--font-display); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.recap-pager .next { margin-left: auto; text-align: right; }
+.recap-pager a:hover { border-color: var(--border-strong); }
+
+/* entry points: top page strip + archive shelf */
+.recap-strip { max-width: var(--max); margin: 0 auto; padding: clamp(1rem, 3vw, 2rem) var(--pad-x) 0; }
+.recap-strip .latest-more { margin-top: 1rem; }
+.recap-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.recap-card {
+  display: block;
+  padding: 1.4rem 1.5rem 1.3rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-strong);
+  background:
+    radial-gradient(120% 160% at 0% 0%, rgba(142, 197, 255, 0.14), transparent 60%),
+    var(--glass);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  text-decoration: none;
+  color: var(--text-bright);
+  transition: transform .25s, border-color .25s;
+}
+.recap-card--monthly { background: radial-gradient(120% 160% at 0% 0%, rgba(196, 181, 253, 0.18), transparent 60%), var(--glass); }
+.recap-card:hover { transform: translateY(-2px); border-color: rgba(142, 197, 255, 0.55); }
+.recap-card .recap-period { font-size: clamp(1.7rem, 3.4vw, 2.3rem); margin: 0.85rem 0 0.35rem; }
+.recap-card-title { display: block; font-weight: 600; font-size: 1rem; line-height: 1.55; }
+.recap-card-more { display: inline-block; margin-top: 0.8rem; font-family: var(--font-display); font-size: 0.82rem; color: var(--accent); }
+
+.recap-shelf {
+  margin: 0 0 1.6rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.recap-shelf section {
+  padding: 1.1rem 1.2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.recap-shelf h2 { margin: 0 0 0.7rem; display: flex; align-items: center; gap: 0.6rem; font-size: 1rem; font-family: var(--font-display); color: var(--text-bright); }
+.recap-shelf ul { list-style: none; margin: 0; padding: 0; }
+.recap-shelf li { border-top: 1px solid var(--border); }
+.recap-shelf li:first-child { border-top: 0; }
+.recap-shelf li a { display: grid; grid-template-columns: 6.2em 1fr; gap: 0.6rem; padding: 0.55rem 0; text-decoration: none; color: var(--text); font-size: 0.9rem; line-height: 1.5; }
+.recap-shelf li a:hover { color: var(--accent); }
+.recap-shelf time { font-family: var(--font-display); font-size: 0.78rem; color: var(--accent-2); padding-top: 0.12rem; }
+@media (max-width: 760px) {
+  .recap-cards, .recap-shelf { grid-template-columns: 1fr; }
+  .recap-pager { flex-direction: column; }
+  .recap-pager a { max-width: none; }
+}
