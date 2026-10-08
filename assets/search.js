@@ -14,8 +14,17 @@
     openai: "openai", chatgpt: "openai", xai: "xai", grok: "xai", "grok bot": "xai",
     anthropic: "anthropic", claude: "anthropic", nvidia: "nvidia",
     google: "google", gemini: "google", deepmind: "google", meta: "meta", llama: "meta",
-    "政策": "policy", "政策・規制": "policy", "規制": "policy", policy: "policy"
+    "政策": "policy", "政策・規制": "policy", "規制": "policy", policy: "policy",
+    "policy & regulation": "policy"
   };
+  var en = document.documentElement.lang === "en";
+  var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  function displayDate(iso) {
+    if (!en) return iso;
+    var p = String(iso).split("-");
+    if (p.length !== 3) return iso;
+    return MONTHS[parseInt(p[1], 10) - 1] + " " + parseInt(p[2], 10) + ", " + p[0];
+  }
 
   function esc(s) {
     return String(s).replace(/[&<>"']/g, function (c) {
@@ -67,7 +76,7 @@
       showStatic();
       return;
     }
-    if (!data) { status.hidden = false; status.textContent = "読み込み中…"; return; }
+    if (!data) { status.hidden = false; status.textContent = en ? "Loading…" : "読み込み中…"; return; }
     var terms = norm(q).split(/\s+/).filter(Boolean);
     var hits = data.filter(function (p) {
       if (activeTag && p.tags.indexOf(activeTag) < 0) return false;
@@ -79,12 +88,19 @@
     results.hidden = false;
     status.hidden = false;
     var label = [];
-    if (activeTag) label.push('タグ ' + tagHtml(activeTag));
-    if (q) label.push("「" + esc(q) + "」");
-    status.innerHTML = label.join(" ＋ ") + " の記事：" + hits.length + "件" +
-      ' <button type="button" class="search-clear">条件をクリア</button>';
+    if (en) {
+      if (activeTag) label.push("Tag " + tagHtml(activeTag));
+      if (q) label.push("\u201c" + esc(q) + "\u201d");
+      status.innerHTML = label.join(" + ") + ": " + hits.length + (hits.length === 1 ? " post" : " posts") +
+        ' <button type="button" class="search-clear">Clear</button>';
+    } else {
+      if (activeTag) label.push('タグ ' + tagHtml(activeTag));
+      if (q) label.push("「" + esc(q) + "」");
+      status.innerHTML = label.join(" ＋ ") + " の記事：" + hits.length + "件" +
+        ' <button type="button" class="search-clear">条件をクリア</button>';
+    }
     results.innerHTML = hits.length ? hits.map(function (p) {
-      var body = '<time datetime="' + p.date + '">' + p.date + "</time>" +
+      var body = '<time datetime="' + p.date + '">' + displayDate(p.date) + "</time>" +
         '<a href="' + esc(p.url) + '">' + esc(p.title) + "</a>" +
         (q ? '<p class="search-snippet">' + snippet(p.text, terms) + "</p>" : "") +
         (p.tags.length ? '<span class="post-tags">' + p.tags.map(tagHtml).join("") + "</span>" : "");
@@ -92,7 +108,9 @@
       return '<li class="has-thumb"><a class="post-thumb" href="' + esc(p.url) + '" tabindex="-1">' +
         '<img src="' + esc(p.thumb) + '" alt="' + esc(p.title) + '" width="320" height="180" loading="lazy" decoding="async"></a>' +
         '<div class="post-body">' + body + "</div></li>";
-    }).join("") : '<li class="search-empty">見つかりませんでした。別の言葉で試してみてください。</li>';
+    }).join("") : (en
+      ? '<li class="search-empty">No matches. Try different words.</li>'
+      : '<li class="search-empty">見つかりませんでした。別の言葉で試してみてください。</li>');
   }
 
   status.addEventListener("click", function (e) {

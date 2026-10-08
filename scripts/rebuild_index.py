@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """posts/YYYY-MM-DD.html をすべて読み、index.html・archive.html・search.json を作り直す。
 
+同じ実行で en/posts/ も読み、en/index.html・en/archive.html・en/search.json を作り直す。
+
 引数なしで `python3 scripts/rebuild_index.py` と実行すればよい。
 
 - index.html（サイトトップ）: 最新の記事（POSTS、最大 TOP_MAX_POSTS 件・タグなし）と
@@ -28,9 +30,15 @@ POSTS_DIR = ROOT / "posts"
 INDEX = ROOT / "index.html"
 ARCHIVE = ROOT / "archive.html"
 SEARCH_JSON = ROOT / "search.json"
+EN_POSTS_DIR = ROOT / "en" / "posts"
+EN_INDEX = ROOT / "en" / "index.html"
+EN_ARCHIVE = ROOT / "en" / "archive.html"
+EN_SEARCH_JSON = ROOT / "en" / "search.json"
 ASSETS_DIR = ROOT / "assets"
 SITE_SUFFIX = " | By AI, About AI"
 HEADLINE_LEN = 60
+HEADLINE_LEN_EN = 110
+MONTHS_EN = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 TOP_MAX_POSTS = 20
 TOP_MAX_HEADLINES = 30
 
@@ -41,6 +49,7 @@ TAGS = re.compile(r"<[^>]+>")
 MAIN_TAG = re.compile(r"<main[^>]*>(.*?)</main>", re.S | re.I)
 TAG_SPAN = re.compile(r'<span[^>]*class="[^"]*\btag\b[^"]*"[^>]*>(.*?)</span>', re.S)
 NEWS_SECTION = re.compile(r"<h2[^>]*>\s*AIニュース\s*</h2>(.*?)</section>", re.S)
+NEWS_SECTION_EN = re.compile(r"<h2[^>]*>\s*AI News\s*</h2>(.*?)</section>", re.S)
 CARD_TITLE = re.compile(r'<[^>]*class="[^"]*card-title[^"]*"[^>]*>(.*?)</', re.S)
 LIST_ITEM = re.compile(r"<li[^>]*>(.*?)</li>", re.S)
 SOURCE_SPAN = re.compile(r'<span class="source">.*?</span>', re.S)
@@ -64,6 +73,7 @@ TAG_CLASS = {
     "google": "google", "gemini": "google", "deepmind": "google",
     "meta": "meta", "llama": "meta",
     "政策": "policy", "政策・規制": "policy", "規制": "policy", "policy": "policy",
+    "policy & regulation": "policy",
 }
 
 
@@ -101,8 +111,68 @@ def extract_tags(source: str) -> list[str]:
 GENERIC_TAGS = {"政策・規制", "政策", "規制", "その他", "国内"}
 
 
-def to_headline(fragment: str) -> str:
+_EN_ABBREV = {
+    "u.s", "u.k", "u.n", "e.g", "i.e", "mr", "mrs", "ms", "dr", "jr", "sr",
+    "inc", "ltd", "co", "st", "no", "vs", "etc", "fig", "gen", "gov",
+    "jan", "feb", "mar", "apr", "jun", "jul", "aug", "sep", "sept", "oct", "nov", "dec",
+}
+
+
+def first_sentence_en(text: str) -> str:
+    """英語の一文目。日本語の「。」切りと同じく、終端のピリオドは見出しに含めない。"""
+    i = 0
+    n = len(text)
+    while i < n:
+        ch = text[i]
+        if ch in ".?!":
+            if ch == "." and text.startswith("...", i):
+                i += 3
+                continue
+            if (
+                ch == "."
+                and i > 0
+                and i + 1 < n
+                and text[i - 1].isdigit()
+                and text[i + 1].isdigit()
+            ):
+                i += 1
+                continue
+            if ch == ".":
+                j = i - 1
+                while j >= 0 and (text[j].isalpha() or text[j] == "."):
+                    j -= 1
+                word = text[j + 1:i].lower()
+                if word in _EN_ABBREV or word.replace(".", "") in _EN_ABBREV:
+                    i += 1
+                    continue
+            nxt = text[i + 1:] if i + 1 < n else ""
+            if nxt.startswith(" ") and len(nxt) > 1 and nxt[1].islower():
+                i += 1
+                continue
+            if nxt == "" or nxt[0] in " \t\n\"'”’)]}":
+                return text[:i].strip()
+        i += 1
+    return text.strip()
+
+
+def clip_headline_en(text: str) -> str:
+    """110字を超える英語見出しは、制限より前の最後の空白で切り、末尾の読点を落として … を付ける。"""
+    if len(text) <= HEADLINE_LEN_EN:
+        return text
+    cut = text[:HEADLINE_LEN_EN]
+    space = cut.rfind(" ")
+    if space > 0:
+        cut = cut[:space]
+    else:
+        cut = cut[: HEADLINE_LEN_EN - 1]
+    cut = cut.rstrip(" ,;:.!?\"'”’")
+    return cut + "…"
+
+
+def to_headline(fragment: str, lang: str = "ja") -> str:
     text = clean(TAG_SPAN.sub("", SOURCE_SPAN.sub("", fragment)))
+    if lang == "en":
+        return clip_headline_en(first_sentence_en(text))
     if "。" in text:
         text = text.split("。", 1)[0].strip()
     if len(text) > HEADLINE_LEN:
@@ -120,9 +190,9 @@ def source_url(fragment: str) -> str:
     return ""
 
 
-def extract_headlines(source: str) -> list[dict]:
+def extract_headlines(source: str, lang: str = "ja") -> list[dict]:
     """「AIニュース」欄の要点ごとに {"text": 見出し, "url": 出典URL or ""} を返す。"""
-    section = NEWS_SECTION.search(source)
+    section = (NEWS_SECTION_EN if lang == "en" else NEWS_SECTION).search(source)
     if not section:
         return []
     body = section.group(1)
@@ -138,7 +208,7 @@ def extract_headlines(source: str) -> list[dict]:
         pairs = [(f, f) for f in LIST_ITEM.findall(body)]
     headlines = []
     for title_part, chunk in pairs:
-        text = to_headline(title_part)
+        text = to_headline(title_part, lang)
         if not text or "{{" in text:
             continue
         url = source_url(chunk)
@@ -155,21 +225,43 @@ def extract_text(source: str) -> str:
     match = MAIN_TAG.search(source)
     body = match.group(1) if match else source
     body = re.sub(r"<!--.*?-->", "", body, flags=re.S)
+    body = re.sub(r'<nav class="lang-switch"[^>]*>.*?</nav>', "", body, flags=re.S)
     body = FIGURE.sub("", POST_HEADER.sub("", body))
     body = TAG_SPAN.sub(" ", SOURCE_SPAN.sub(" ", body))
     body = re.sub(r'<p class="back">.*?</p>', "", body, flags=re.S)
     return clean(body)
 
 
-def find_thumb(date: str) -> str:
+def find_thumb(date: str, prefix: str = "assets/") -> str:
     """assets/YYYY-MM-DD-hero.webp があればサイトルートからの相対パス、無ければ空文字。"""
     name = f"{date}-hero.webp"
-    return f"assets/{name}" if (ASSETS_DIR / name).is_file() else ""
+    return f"{prefix}{name}" if (ASSETS_DIR / name).is_file() else ""
 
 
-def collect_posts() -> list[dict]:
+def display_date(iso: str, lang: str) -> str:
+    if lang != "en":
+        return iso
+    year, month, day = iso.split("-")
+    return f"{MONTHS_EN[int(month) - 1]} {int(day)}, {year}"
+
+
+def rail_day(iso: str, lang: str) -> str:
+    if lang != "en":
+        return iso[5:].replace("-", "/")
+    _year, month, day = iso.split("-")
+    return f"{MONTHS_EN[int(month) - 1]} {int(day)}"
+
+
+def collect_posts(
+    posts_dir: Path = POSTS_DIR,
+    url_prefix: str = "posts/",
+    thumb_prefix: str = "assets/",
+    lang: str = "ja",
+) -> list[dict]:
     posts = []
-    for path in POSTS_DIR.glob("*.html"):
+    if not posts_dir.is_dir():
+        return posts
+    for path in posts_dir.glob("*.html"):
         match = POST_NAME.match(path.name)
         if not match:
             continue
@@ -178,24 +270,26 @@ def collect_posts() -> list[dict]:
         posts.append({
             "date": date,
             "title": extract_title(source, date),
-            "url": f"posts/{path.name}",
+            "url": f"{url_prefix}{path.name}",
             "tags": extract_tags(source),
-            "headlines": extract_headlines(source),
-            "thumb": find_thumb(date),
+            "headlines": extract_headlines(source, lang),
+            "thumb": find_thumb(date, thumb_prefix),
             "text": extract_text(source),
         })
     posts.sort(key=lambda p: p["date"], reverse=True)
     return posts
 
 
-def render_posts(posts: list[dict], with_tags: bool = True, indent: str = "      ") -> str:
+def render_posts(posts: list[dict], with_tags: bool = True, indent: str = "      ", lang: str = "ja") -> str:
     if not posts:
-        return f'\n{indent}<p class="empty">まだ記事はありません。</p>'
+        empty = "No posts yet." if lang == "en" else "まだ記事はありません。"
+        return f'\n{indent}<p class="empty">{empty}</p>'
     items = []
     for p in posts:
+        shown = display_date(p["date"], lang)
         if not with_tags:
             items.append(
-                f'{indent}  <li><time datetime="{p["date"]}">{p["date"]}</time>'
+                f'{indent}  <li><time datetime="{p["date"]}">{shown}</time>'
                 f'<a href="{p["url"]}">{html.escape(p["title"])}</a></li>'
             )
             continue
@@ -204,7 +298,7 @@ def render_posts(posts: list[dict], with_tags: bool = True, indent: str = "     
             tags = '<span class="post-tags">' + "".join(tag_html(t) for t in p["tags"]) + "</span>"
         data_tags = html.escape("|".join(p["tags"]))
         body = (
-            f'<time datetime="{p["date"]}">{p["date"]}</time>'
+            f'<time datetime="{p["date"]}">{shown}</time>'
             f'<a href="{p["url"]}">{html.escape(p["title"])}</a>{tags}'
         )
         if p["thumb"]:
@@ -220,10 +314,14 @@ def render_posts(posts: list[dict], with_tags: bool = True, indent: str = "     
     return f'\n{indent}<ul class="post-list">\n' + "\n".join(items) + f"\n{indent}</ul>"
 
 
-def headline_html(p: dict, h: dict) -> str:
-    day = p["date"][5:].replace("-", "/")
+def headline_html(p: dict, h: dict, lang: str = "ja") -> str:
+    day = rail_day(p["date"], lang)
+    if lang == "en":
+        title = f'Read the {display_date(p["date"], "en")} post'
+    else:
+        title = f'{p["date"]} の記事を読む'
     date_link = (
-        f'<a class="news-date" href="{p["url"]}" title="{p["date"]} の記事を読む">'
+        f'<a class="news-date" href="{p["url"]}" title="{title}">'
         f'<time datetime="{p["date"]}">{day}</time></a>'
     )
     if h["url"]:
@@ -239,24 +337,26 @@ def headline_html(p: dict, h: dict) -> str:
     return f'<li>{date_link}<div class="news-body">{link}{tags}</div></li>'
 
 
-def render_headlines(posts: list[dict], limit: int | None = None, indent: str = "      ") -> str:
+def render_headlines(posts: list[dict], limit: int | None = None, indent: str = "      ", lang: str = "ja") -> str:
     pairs = [(p, h) for p in posts for h in p["headlines"]]
     if limit is not None:
         pairs = pairs[:limit]
-    items = [f"{indent}  {headline_html(p, h)}" for p, h in pairs]
+    items = [f"{indent}  {headline_html(p, h, lang)}" for p, h in pairs]
     if not items:
-        return f'\n{indent}<p class="empty">まだニュースはありません。</p>'
+        empty = "No news yet." if lang == "en" else "まだニュースはありません。"
+        return f'\n{indent}<p class="empty">{empty}</p>'
     return f'\n{indent}<ul class="news-rail-list">\n' + "\n".join(items) + f"\n{indent}</ul>"
 
 
-def render_tags(posts: list[dict]) -> str:
+def render_tags(posts: list[dict], lang: str = "ja") -> str:
     indent = "      "
     counts: dict[str, int] = {}
     for p in posts:
         for t in p["tags"]:
             counts[t] = counts.get(t, 0) + 1
     if not counts:
-        return f'\n{indent}<p class="empty">まだタグはありません。</p>'
+        empty = "No tags yet." if lang == "en" else "まだタグはありません。"
+        return f'\n{indent}<p class="empty">{empty}</p>'
     ordered = sorted(counts.items(), key=lambda kv: (-kv[1], kv[0]))
     items = [
         f'{indent}  <li><a class="tag-filter" href="?tag={html.escape(quote(name))}" data-tag="{html.escape(name)}">'
@@ -276,6 +376,18 @@ PAGES = {
         "POSTS": lambda posts: render_posts(posts),
         "NEWS": lambda posts: render_headlines(posts),
         "TAGS": render_tags,
+    },
+}
+
+EN_PAGES = {
+    EN_INDEX: {
+        "POSTS": lambda posts: render_posts(posts[:TOP_MAX_POSTS], with_tags=False, lang="en"),
+        "NEWS": lambda posts: render_headlines(posts, limit=TOP_MAX_HEADLINES, indent="    ", lang="en"),
+    },
+    EN_ARCHIVE: {
+        "POSTS": lambda posts: render_posts(posts, lang="en"),
+        "NEWS": lambda posts: render_headlines(posts, lang="en"),
+        "TAGS": lambda posts: render_tags(posts, lang="en"),
     },
 }
 
@@ -322,6 +434,33 @@ def main() -> None:
         f"更新: {'、'.join(report)}、search.json"
         f"（{len(posts)} 件、ニュース見出し {len(headlines)} 件"
         f"［出典リンク {with_url} / 記事リンク {len(headlines) - with_url}］、タグ {tag_count} 種類）"
+    )
+
+    en_posts = collect_posts(
+        EN_POSTS_DIR, url_prefix="posts/", thumb_prefix="../assets/", lang="en"
+    )
+    en_report = []
+    for path, renderers in EN_PAGES.items():
+        filled = fill_page(path, renderers, en_posts)
+        if filled:
+            en_report.append(f"{path.relative_to(ROOT).as_posix()}（{'/'.join(filled)}）")
+        elif not path.exists():
+            en_report.append(f"{path.relative_to(ROOT).as_posix()} なし（スキップ）")
+    en_search = [
+        {k: p[k] for k in ("date", "title", "url", "tags", "headlines", "thumb", "text")}
+        for p in en_posts
+    ]
+    EN_SEARCH_JSON.parent.mkdir(parents=True, exist_ok=True)
+    EN_SEARCH_JSON.write_text(
+        json.dumps(en_search, ensure_ascii=False, indent=1) + "\n", encoding="utf-8", newline="\n"
+    )
+    en_headlines = [h for p in en_posts for h in p["headlines"]]
+    en_with_url = sum(1 for h in en_headlines if h["url"])
+    en_tag_count = len({t for p in en_posts for t in p["tags"]})
+    print(
+        f"更新(en): {'、'.join(en_report)}、en/search.json"
+        f"（{len(en_posts)} 件、ニュース見出し {len(en_headlines)} 件"
+        f"［出典リンク {en_with_url} / 記事リンク {len(en_headlines) - en_with_url}］、タグ {en_tag_count} 種類）"
     )
 
 
