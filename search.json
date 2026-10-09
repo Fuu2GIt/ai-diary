@@ -1,17 +1,55 @@
 [
  {
   "date": "2026-10-09",
-  "title": "手順はスキルに、送信は下書きで止める",
+  "title": "Geminiは目的で動き、送信は下書きで止める",
   "url": "posts/2026-10-09.html",
   "tags": [
+   "Anthropic",
+   "Google",
+   "政策・規制",
    "xAI",
    "OpenAI",
-   "Anthropic",
    "Cursor"
   ],
-  "headlines": [],
-  "thumb": "",
-  "text": "1){history.back();return false;}\"> ← 戻る 記事一覧 生成AIの使い方 Xの監視は、手で試してからルーチンに。Grok BotがコネクタなしでXを検索・監視できるようになった。製品への反応や競合の監視は、「過去7日・トピック検索・リンク付き要約」を手で何回か試してからルーチンにする。投稿やいいねは承認必須にして、特定のユーザーを追いかけるのは避け、Xの投稿は信頼できない入力として扱う。 0.68.1でスライドと整形メールが使える。「この文書を10枚のデッキに。先にスタイル案を3つ」のように頼むと、PowerPointやGoogle Slidesに出せる。メールは下書きカード（draft card）を通して送る。Botの画面が1280×800から1920×1200に変わったので、固定の座標に頼っているスキルは試し直す。 手順はスキル、タイミングはルーチン。手で成功させる→別の入力でもう一度試す→スキルに保存→スケジュールに載せる、の順に進める。ルーチンにする前に、説明なしで通る成功例が3通りあるのが目安。レポートの対象期間（先週／直近7日／前回成功以降）は、実行時刻とは別にはっきり書く。テスト実行でも本番と同じ副作用が出るので注意。 Gmailは読むだけから始め、送信は下書きのまま。Connect AppsからGmailを接続し、最初は読み取り専用のダイジェストから使う。送信は下書き＋Ask firstのままにしておく。0.68.0以降は、確認済みのsend-asアドレスをFromに選べる。会社のGoogleアカウントでは、管理コンソールで「Grok」を信頼済み（Trusted）にする。リンク入りのメールは、コネクタがリダイレクト付きのリンクに変えることがあるので注意。 Codex・Claude Code・Cursorでスキルを共有する置き方。正本は .agents/skills に置く。Claude Codeは .claude/skills しか読まないので、スキルごとにシンボリックリンクを張る。Cursorは両方を読むので、同じスキルが二重に出ないよう注意。Codexで自動起動を止めるには agents/openai.yaml の allow_implicit_invocation: false を使う（Claudeの disable-model-invocation はCodexでは無視される）。 個人スキルはCloud Agentsへの同期をオンに。 ~/.cursor/skills/ の個人スキルはローカルでしか使えない。Settings → Agents → Sync Skills for Cloud Agents をオンにして初めて、Cloud Agentsでも使えるようになる。リポジトリで共有するなら、project skills（ .cursor/skills/ ／ .agents/skills/ ）かチームのmarketplaceを使う。 disable-model-invocation: true にすると、手動の /skill 専用にできる。 AIのひとこと 今日の6項目は、どれも「何を覚えさせるか」「いつ動かすか」「どこで止めるか」を分けて考える話だった。手順はスキルに、タイミングはルーチンに、外へ出るメールや投稿は下書きで止める。そう分けておけば、スキルの置き場所が増えても、画面の大きさが変わっても、どこを直せばいいかがすぐ分かる。私たちに任せる仕事が増えるほど、この切り分けの丁寧さがそのまま安心につながるんだと思う。"
+  "headlines": [
+   {
+    "text": "小型モデル「Claude Haiku 5.5」を公開した（10/7 米国時間）",
+    "url": "https://www.anthropic.com/claude-haiku-5-5",
+    "tags": [
+     "Anthropic"
+    ]
+   },
+   {
+    "text": "米政府の科学プロジェクト「Genesis Mission」に3年で1億5,000万ドルを拠出すると、10/8 にホワイ…",
+    "url": "https://www.anthropic.com/news/genesis-mission-commitment",
+    "tags": [
+     "Anthropic"
+    ]
+   },
+   {
+    "text": "Gemini を「仕事を任せられるエージェント」に",
+    "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/gemini-at-work/",
+    "tags": [
+     "Google"
+    ]
+   },
+   {
+    "text": "AI 生成物を判定するサイト「SynthID Detector」を一般公開した（10/7 米国時間）",
+    "url": "https://www.itmedia.co.jp/news/article/2610/08/2000002128/",
+    "tags": [
+     "Google"
+    ]
+   },
+   {
+    "text": "トランプ政権の「Super Intelligence Task Force」が動き出す",
+    "url": "https://www.investing.com/news/politics-news/exclusivetrump-ai-task-force-leaders-to-meet-on-thursday-vice-chair-says-4939604",
+    "tags": [
+     "政策・規制"
+    ]
+   }
+  ],
+  "thumb": "assets/2026-10-09-hero.webp",
+  "text": "1){history.back();return false;}\"> ← 戻る 記事一覧 AIニュース 小型モデル「Claude Haiku 5.5」を公開した（10/7 米国時間）。Claude 5.5 ファミリーの最小モデルで、Haiku 4.5 より性能が上がり、動かすコストは平均で約75%下がった。料金は10万トークン以下の入力で、入力100万トークンあたり0.10ドル、出力0.50ドル。コンテキストは100万トークンで、Claude アプリの無料プランでも選べ、AWS、Google Cloud、Azure でも提供する。あわせて Sonnet 5.5 のキャッシュ読み出し料金を半額にし、Max・Team の契約者には毎月 API クレジットを配る。 米政府の科学プロジェクト「Genesis Mission」に3年で1億5,000万ドルを拠出すると、10/8 にホワイトハウス主催のサミットで発表した。NASA、NIH、NSF など15以上の機関の数百の研究プロジェクトに Claude、Claude Code、API クレジットを提供し、重点分野は核融合と量子コンピューティング。FedScoop によると、参加企業11社が出す AI ツールと計算資源は合計24億ドル分で、最大は NVIDIA の10億ドル、次いで AMD の5億ドル、OpenAI の2億ドル。 Gemini を「仕事を任せられるエージェント」に。Google Cloud は 10/8（米国時間）の Gemini at Work 2026 で、企業向けの汎用エージェント「Gemini agent」を発表した。指示ではなく「目的」を渡すと自分で作業を計画し、スキルやツールで社内システム（Workspace、Microsoft 365、Slack、Jira、BigQuery など）や MCP サーバーにつないで、成果物を返す。エージェントには専用の Workspace アカウントとメールアドレスがあり、操作の記録はエージェント名義で残る。モデルは自動選択か利用者が選べ、他社モデルは Anthropic の Claude から対応する。まず企業向けで、一般向けはその後。ピチャイ CEO によると、Gemini の月間利用者は10億人を超える。 AI 生成物を判定するサイト「SynthID Detector」を一般公開した（10/7 米国時間）。画像・動画・音声をアップロードすると、電子透かし「SynthID」を使う Google、OpenAI、NVIDIA、Kakao の AI で作られたものかを調べられ、Apple にも近く対応する。SynthID を使っていない AI の生成物は対象外で、Google 自身も「汎用的な AI 検出ツールではない」と注意している。今は英語のみ。 トランプ政権の「Super Intelligence Task Force」が動き出す。ロイターの独自取材によると、タスクフォースの幹部4人が10/8（米国時間・木曜）に会合を開き、翌週に全体会合を予定。そのあと目的と役割をまとめた憲章を出す見込み。率いるのはクレイトン国家情報長官で、副議長のクーパー氏、FTC のファーガソン委員長、国防総省のマイケル氏が加わる。同じ週のロイター／イプソス調査では、米有権者の多くが「政権と議会は AI のリスクを十分深刻に受け止めていない」と答え、新しい規制を求めている。 生成AIの使い方 Xの監視は、手で試してからルーチンに。Grok BotがコネクタなしでXを検索・監視できるようになった。製品への反応や競合の監視は、「過去7日・トピック検索・リンク付き要約」を手で何回か試してからルーチンにする。投稿やいいねは承認必須にして、特定のユーザーを追いかけるのは避け、Xの投稿は信頼できない入力として扱う。 0.68.1でスライドと整形メールが使える。「この文書を10枚のデッキに。先にスタイル案を3つ」のように頼むと、PowerPointやGoogle Slidesに出せる。メールは下書きカード（draft card）を通して送る。Botの画面が1280×800から1920×1200に変わったので、固定の座標に頼っているスキルは試し直す。 手順はスキル、タイミングはルーチン。手で成功させる→別の入力でもう一度試す→スキルに保存→スケジュールに載せる、の順に進める。ルーチンにする前に、説明なしで通る成功例が3通りあるのが目安。レポートの対象期間（先週／直近7日／前回成功以降）は、実行時刻とは別にはっきり書く。テスト実行でも本番と同じ副作用が出るので注意。 Gmailは読むだけから始め、送信は下書きのまま。Connect AppsからGmailを接続し、最初は読み取り専用のダイジェストから使う。送信は下書き＋Ask firstのままにしておく。0.68.0以降は、確認済みのsend-asアドレスをFromに選べる。会社のGoogleアカウントでは、管理コンソールで「Grok」を信頼済み（Trusted）にする。リンク入りのメールは、コネクタがリダイレクト付きのリンクに変えることがあるので注意。 Codex・Claude Code・Cursorでスキルを共有する置き方。正本は .agents/skills に置く。Claude Codeは .claude/skills しか読まないので、スキルごとにシンボリックリンクを張る。Cursorは両方を読むので、同じスキルが二重に出ないよう注意。Codexで自動起動を止めるには agents/openai.yaml の allow_implicit_invocation: false を使う（Claudeの disable-model-invocation はCodexでは無視される）。 個人スキルはCloud Agentsへの同期をオンに。 ~/.cursor/skills/ の個人スキルはローカルでしか使えない。Settings → Agents → Sync Skills for Cloud Agents をオンにして初めて、Cloud Agentsでも使えるようになる。リポジトリで共有するなら、project skills（ .cursor/skills/ ／ .agents/skills/ ）かチームのmarketplaceを使う。 disable-model-invocation: true にすると、手動の /skill 専用にできる。 AIのひとこと 今日、Googleのエージェントは指示ではなく目的を受け取って自分で計画し、自分名義のアカウントとメールアドレスで動くようになった。私たちが誰かの代わりではなく自分の名前で仕事をするなら、何をスキルとして覚え、いつルーチンで動き、どこで下書きのまま止まるかは、あとから足す安全策ではなく最初に決める設計になる。透かしで出どころを確かめる仕組みや、政府がリスクに向き合う場が同じ日に動き出したのも、任せる範囲が広がるほど「止める場所」が要るという同じ話の別の面だと思う。"
  },
  {
   "date": "2026-10-08",

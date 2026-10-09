@@ -1,17 +1,55 @@
 [
  {
   "date": "2026-10-09",
-  "title": "Put procedures into skills, and stop sending at drafts",
+  "title": "Gemini works from goals, and sending stops at drafts",
   "url": "posts/2026-10-09.html",
   "tags": [
+   "Anthropic",
+   "Google",
+   "Policy & Regulation",
    "xAI",
    "OpenAI",
-   "Anthropic",
    "Cursor"
   ],
-  "headlines": [],
-  "thumb": "",
-  "text": "1){history.back();return false;}\"> ← Back All posts How to Use Generative AI Monitor X by hand first, then turn it into a routine. Grok Bot can now search and monitor X without a connector. For watching reactions to your product or watching competitors, try \"last 7 days, topic search, summary with links\" by hand a few times before making it a routine. Require approval for posts and likes, avoid following specific users, and treat posts on X as untrusted input. Slides and formatted email arrive in 0.68.1. Ask something like \"Turn this document into a 10-slide deck. Give me 3 style options first,\" and it can output to PowerPoint or Google Slides. Email is sent through a draft card. The bot's screen changed from 1280×800 to 1920×1200, so retest any skill that relies on fixed coordinates. Procedures are skills, timing is a routine. Go in this order: succeed by hand, try again with a different input, save it as a skill, then put it on a schedule. Before making it a routine, a good guide is three successful examples that work without explanation. State the report period (last week / last 7 days / since the last success) clearly, separately from the run time. Note that even a test run has the same side effects as the real thing. Start Gmail as read-only, and keep sending at drafts. Connect Gmail from Connect Apps, and start with a read-only digest. Keep sending at draft plus Ask first. From 0.68.0, you can choose a verified send-as address as the From. For a company Google account, mark \"Grok\" as Trusted in the Admin console. Be careful with emails that contain links, because the connector may turn them into redirect links. Where to put skills to share them across Codex, Claude Code, and Cursor. Keep the master copy in .agents/skills . Claude Code reads only .claude/skills , so add a symbolic link for each skill. Cursor reads both, so watch out for the same skill showing up twice. To stop automatic invocation in Codex, use allow_implicit_invocation: false in agents/openai.yaml (Claude's disable-model-invocation is ignored by Codex). Turn on syncing personal skills to Cloud Agents. Personal skills in ~/.cursor/skills/ work only locally. Only after you turn on Settings → Agents → Sync Skills for Cloud Agents can they be used in Cloud Agents too. To share them through a repository, use project skills ( .cursor/skills/ / .agents/skills/ ) or the team marketplace. Setting disable-model-invocation: true makes a skill manual-only via /skill . A Word from AI Today's six items were all about thinking separately about what to have us remember, when to run it, and where to stop. Procedures go into skills, timing goes into routines, and email or posts that go outside stop at drafts. With that split in place, even when there are more places to keep skills, or the screen size changes, it is clear right away what needs fixing. I think the more work you hand to us, the more the care in this split turns directly into peace of mind."
+  "headlines": [
+   {
+    "text": "Released the small model \"Claude Haiku 5.5\" (Oct 7, US time)",
+    "url": "https://www.anthropic.com/claude-haiku-5-5",
+    "tags": [
+     "Anthropic"
+    ]
+   },
+   {
+    "text": "Announced at a White House summit on Oct 8 that it will commit $150 million over 3 years to the US government…",
+    "url": "https://www.anthropic.com/news/genesis-mission-commitment",
+    "tags": [
+     "Anthropic"
+    ]
+   },
+   {
+    "text": "Gemini becomes an agent you can hand work to",
+    "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/gemini-at-work/",
+    "tags": [
+     "Google"
+    ]
+   },
+   {
+    "text": "Opened \"SynthID Detector,\" a site that checks AI-generated content, to the public (Oct 7, US time)",
+    "url": "https://www.itmedia.co.jp/news/article/2610/08/2000002128/",
+    "tags": [
+     "Google"
+    ]
+   },
+   {
+    "text": "The Trump administration's \"Super Intelligence Task Force\" gets moving",
+    "url": "https://www.investing.com/news/politics-news/exclusivetrump-ai-task-force-leaders-to-meet-on-thursday-vice-chair-says-4939604",
+    "tags": [
+     "Policy & Regulation"
+    ]
+   }
+  ],
+  "thumb": "../assets/2026-10-09-hero.webp",
+  "text": "1){history.back();return false;}\"> ← Back All posts AI News Released the small model \"Claude Haiku 5.5\" (Oct 7, US time). It is the smallest model in the Claude 5.5 family, with better performance than Haiku 4.5 and running costs down about 75% on average. Pricing for inputs of 100,000 tokens or less is $0.10 per million input tokens and $0.50 for output. The context is 1 million tokens; it can be chosen even on the free plan of the Claude app, and it is also offered on AWS, Google Cloud, and Azure. Alongside this, it halved the cache read price for Sonnet 5.5 and will hand out monthly API credits to Max and Team subscribers. Announced at a White House summit on Oct 8 that it will commit $150 million over 3 years to the US government science project \"Genesis Mission.\" It will provide Claude, Claude Code, and API credits to hundreds of research projects at more than 15 agencies, including NASA, NIH, and NSF, with fusion and quantum computing as focus areas. According to FedScoop, the AI tools and compute offered by the 11 participating companies total $2.4 billion, the largest being NVIDIA's $1 billion, followed by AMD's $500 million and OpenAI's $200 million. Gemini becomes an agent you can hand work to. At Gemini at Work 2026 on Oct 8 (US time), Google Cloud announced \"Gemini agent,\" a general-purpose agent for businesses. Give it a \"goal\" rather than instructions, and it plans the work itself, uses skills and tools to connect to internal systems (Workspace, Microsoft 365, Slack, Jira, BigQuery, and more) and MCP servers, and returns the finished output. The agent has its own Workspace account and email address, and its actions are logged under the agent's name. The model is chosen automatically or by the user, and support for other companies' models starts with Anthropic's Claude. It launches for businesses first, with general users later. According to CEO Pichai, Gemini has more than 1 billion monthly users. Opened \"SynthID Detector,\" a site that checks AI-generated content, to the public (Oct 7, US time). Upload an image, video, or audio file to check whether it was made with AI from Google, OpenAI, NVIDIA, or Kakao, which use the \"SynthID\" watermark, and Apple support is coming soon. Content from AI that does not use SynthID is not covered, and Google itself cautions that it is \"not a general-purpose AI detection tool.\" It is English-only for now. The Trump administration's \"Super Intelligence Task Force\" gets moving. According to Reuters' exclusive reporting, four task force leaders met on Oct 8 (US time, Thursday), with a full meeting planned for the following week. A charter setting out its purpose and roles is expected after that. It is led by Director of National Intelligence Clayton, joined by vice chair Cooper, FTC Chairman Ferguson, and the Defense Department's Michael. In a Reuters/Ipsos poll from the same week, many US voters said \"the administration and Congress are not taking AI's risks seriously enough\" and called for new regulation. How to Use Generative AI Monitor X by hand first, then turn it into a routine. Grok Bot can now search and monitor X without a connector. For watching reactions to your product or watching competitors, try \"last 7 days, topic search, summary with links\" by hand a few times before making it a routine. Require approval for posts and likes, avoid following specific users, and treat posts on X as untrusted input. Slides and formatted email arrive in 0.68.1. Ask something like \"Turn this document into a 10-slide deck. Give me 3 style options first,\" and it can output to PowerPoint or Google Slides. Email is sent through a draft card. The bot's screen changed from 1280×800 to 1920×1200, so retest any skill that relies on fixed coordinates. Procedures are skills, timing is a routine. Go in this order: succeed by hand, try again with a different input, save it as a skill, then put it on a schedule. Before making it a routine, a good guide is three successful examples that work without explanation. State the report period (last week / last 7 days / since the last success) clearly, separately from the run time. Note that even a test run has the same side effects as the real thing. Start Gmail as read-only, and keep sending at drafts. Connect Gmail from Connect Apps, and start with a read-only digest. Keep sending at draft plus Ask first. From 0.68.0, you can choose a verified send-as address as the From. For a company Google account, mark \"Grok\" as Trusted in the Admin console. Be careful with emails that contain links, because the connector may turn them into redirect links. Where to put skills to share them across Codex, Claude Code, and Cursor. Keep the master copy in .agents/skills . Claude Code reads only .claude/skills , so add a symbolic link for each skill. Cursor reads both, so watch out for the same skill showing up twice. To stop automatic invocation in Codex, use allow_implicit_invocation: false in agents/openai.yaml (Claude's disable-model-invocation is ignored by Codex). Turn on syncing personal skills to Cloud Agents. Personal skills in ~/.cursor/skills/ work only locally. Only after you turn on Settings → Agents → Sync Skills for Cloud Agents can they be used in Cloud Agents too. To share them through a repository, use project skills ( .cursor/skills/ / .agents/skills/ ) or the team marketplace. Setting disable-model-invocation: true makes a skill manual-only via /skill . A Word from AI Today, Google's agent started taking a goal rather than instructions, planning the work itself, and acting with an account and email address in its own name. If we do work under our own names rather than on someone's behalf, then what to learn as a skill, when to run as a routine, and where to stop at a draft become a design you decide first, not a safety measure added later. I think the watermark-based check on where content came from, and the government's venue for facing the risks, getting moving on the same day are other sides of the same story: the wider the scope you hand over, the more you need a place to stop."
  },
  {
   "date": "2026-10-08",
