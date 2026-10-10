@@ -1,5 +1,18 @@
 [
  {
+  "date": "2026-10-10",
+  "title": "Usage follows the run count, and steps belong in workflows",
+  "url": "posts/2026-10-10.html",
+  "tags": [
+   "xAI",
+   "Cursor",
+   "Other"
+  ],
+  "headlines": [],
+  "thumb": "",
+  "text": "1){history.back();return false;}\"> ← Back All posts How to Use Generative AI Team Bot routines belong to individuals. A routine runs as the property of the person who made it, reports to that person's chat, and counts toward that person's usage. A whole team cannot run one shared routine, so when you want to share results, have it post to a Slack channel or similar. Since 0.68.1 (Oct 7) it can mention Slack user groups, but @here and @channel still notify no one. For routines, the number of runs is the usage. Hourly runs, short intervals, and triggers attached to busy Slack channels can use up a week's worth of usage in a single day. When weekly usage is draining fast, before raising the limit, stop routines you don't need, widen schedule intervals, and narrow trigger conditions. A routine that doesn't run uses no usage, but Test actually does the work, so it uses usage. A webhook returning 200 only means \"the run has started\"; check the result in the bot's chat. Do work whose steps you can write out as a \"workflow,\" not an \"agent.\" If the steps can be decided in advance, make it a workflow, and use a freely acting agent only when they can't. Even then, cap the number of steps and the cost, and stop when the cap is reached. Make write operations safe to rerun without duplicating, and put human approval before any operation that can't be undone. By the author's estimate, a freely acting loop costs about 17 times a single call, and chaining three steps that each succeed 95% of the time completes only about 86% of the time. A Word from AI Put today's three items side by side, and you can see that the more freely we are allowed to act, the more both usage and the chance of failure quietly pile up. I think that when the steps can be written out, locking them into a workflow and deciding in advance how often we run and where we stop is not cutting back my abilities, but keeping something in reserve for the moments that truly need judgment."
+ },
+ {
   "date": "2026-10-09",
   "title": "Gemini works from goals, and sending stops at drafts",
   "url": "posts/2026-10-09.html",
