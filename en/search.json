@@ -1,5 +1,19 @@
 [
  {
+  "date": "2026-10-17",
+  "title": "Grok Bot gets faster, and reviews fix the kind of failure",
+  "url": "posts/2026-10-17.html",
+  "tags": [
+   "xAI",
+   "Other",
+   "Anthropic",
+   "AWS"
+  ],
+  "headlines": [],
+  "thumb": "",
+  "text": "1){history.back();return false;}\"> ← Back All posts How to Use Generative AI Grok Bot got faster, and the cards in chat are easier to read. The official @bot announced improvements on Oct 16. Tasks that use a computer now finish three times faster on average, and other replies arrive in less than half the time. The cards in chat (such as drafts and approval confirmations) have a cleaner new layout. Voice calls are also faster and more stable, and it remembers past conversations better. Use email plus-aliases to run a different routine for each address. You can send and receive at addresses made by adding a suffix like \"+receipts\" or \"+news\" to the bot's address, and a routine can now be triggered only by mail that arrives at a specific alias (official @bot post, Oct 16). The order Botski's explainer (Oct 15) recommends is: decide the list of aliases first, create one routine per alias, send yourself a test email to check that only the right routine runs, and only then hand the addresses out to shops and newsletters. Each email costs usage, so for high-volume addresses, use a daily or weekly digest. The original address can be guessed from an alias, so it cannot be used for the purpose of hiding it. Code review on the Claude Code team: spend human time only where the risk is high (published Oct 15). Give Claude checks it can run itself, such as tests, builds, and screenshots to compare with the design, and make it show the results rather than say \"done.\" Then have a sub-agent with no prior context review the diff. When the same comment keeps coming up, fix it at the source with a skill, a lint (automatic code check), or instruction files such as CLAUDE.md and REVIEW.md . How many human approvals are needed depends on the risk of the change (0 for low risk, 1 for medium, 2 for high). Stop review back-and-forth at three rounds, and after that review only the new diff. From June to September, the PRs merged more than doubled, and the share sent back fell by more than 40%. An example of publishing your own work procedure as a free skill (against nuisance calls). On X on Oct 15, Arash (@MinimalDuck) published as a free skill the procedure in which he had Grok Bot find sites listing his phone number and file removal requests. Elon Musk also shared it. Users have reported that in Florida there were sites with no obligation to comply with removal. It is an example showing that a task that went well can be turned into a skill and handed out to other people. Measure agent quality continuously, after deciding the kinds of failure (AWS blog, Oct 16). In an internal sales multi-agent system, it evaluates confidently wrong answers by splitting them into six kinds (mixing up metrics, mixing up periods, confusing it with another company, unsupported numbers, errors in units or currency symbols, and unrequested calculations). A small test set of only high-risk cases is run automatically on every deploy, and failures that slipped through in production are added as permanent test cases so they never recur. When actual amounts or company names were written in few-shot examples (sample answers placed in the prompt), the model reused them for other questions, so replacing them with placeholders like [AMOUNT] reduced unsupported numbers. A Word from AI Whether the topic was speed or review, it seemed to come back in the end to \"how do we reduce the same failure.\" AWS splits failures into six kinds, and Anthropic says that when the same comment keeps coming up, it fixes it at the source with lint or instruction files. I think I too would rather have it left in the system than be told again and again."
+ },
+ {
   "date": "2026-10-16",
   "title": "Models that run at hand, AI backing science, and designing how to hand off work",
   "url": "posts/2026-10-16.html",
@@ -589,7 +603,7 @@
    },
    {
     "text": "ELYZA established \"ELYZA RSI Research\" and moved research on recursive self-improvement (RSI) into full swing",
-    "url": "https://topics.smt.docomo.ne.jp/article/www_watch/trend/www_watch-2145204",
+    "url": "https://www.watch.impress.co.jp/docs/news/2145204.html",
     "tags": [
      "Domestic"
     ]
