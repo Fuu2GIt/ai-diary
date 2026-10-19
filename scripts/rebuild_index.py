@@ -5,6 +5,9 @@
 同じ実行で weekly/ monthly/ en/weekly/ en/monthly/ も読み、トップの recap-strip、
 記事一覧の #recaps 棚、各まとめページの recap-pager を日英とも更新する。
 まとめは search.json とニュース見出し欄（news-rail）には入れない。
+同じ実行で posts/ と en/posts/ の日付記事に、前後の日へのリンク（DAY_PAGER）を埋める。
+並びは各ディレクトリにある YYYY-MM-DD.html を日付の古い順にしたもので、欠けた日は飛ばす。
+最初の記事には前の日、最新の記事には次の日を出さない。sample.html は日付名ではないので対象外。
 
 引数なしで `python3 scripts/rebuild_index.py` と実行すればよい。
 
@@ -28,6 +31,11 @@ weekly/YYYY-MM-DD.html と en/weekly/YYYY-MM-DD.html に置く（日付はその
 毎月1日に前月分を templates/monthly.html と templates/monthly.en.html から作り、
 monthly/YYYY-MM.html と en/monthly/YYYY-MM.html に置く。
 そのあとこのスクリプトを1回実行する。入口（recap-strip と #recaps）と前後の pager が日英とも更新される。
+
+日付記事の前後リンク:
+templates/post.html と templates/post.en.html の DAY_PAGER を残して posts/ と en/posts/ に置く。
+このスクリプトが、その言語の実在する隣の記事で埋める。マーカーが無い既存記事には、
+記事末尾の「記事一覧へ」の直前に同じマーカーを足してから埋める。
 """
 
 import html
@@ -82,6 +90,7 @@ MARKERS = {
     "TAGS": re.compile(r"(<!-- TAGS:START -->)(.*?)(\n[ \t]*<!-- TAGS:END -->)", re.S),
     "RECAPS": re.compile(r"(<!-- RECAPS:START -->)(.*?)(\n[ \t]*<!-- RECAPS:END -->)", re.S),
     "RECAP_PAGER": re.compile(r"(<!-- RECAP_PAGER:START -->)(.*?)(\n[ \t]*<!-- RECAP_PAGER:END -->)", re.S),
+    "DAY_PAGER": re.compile(r"(<!-- DAY_PAGER:START -->)(.*?)(\n[ \t]*<!-- DAY_PAGER:END -->)", re.S),
 }
 
 MONTHS_EN_FULL = (
@@ -251,6 +260,8 @@ def extract_text(source: str) -> str:
     body = match.group(1) if match else source
     body = re.sub(r"<!--.*?-->", "", body, flags=re.S)
     body = re.sub(r'<nav class="lang-switch"[^>]*>.*?</nav>', "", body, flags=re.S)
+    # 前後リンクは本文ではない。隣の日付が検索語や search.json の差分に混ざらないように外す。
+    body = re.sub(r'<nav\b[^>]*\bday-pager\b[^>]*>.*?</nav>', "", body, flags=re.S)
     body = FIGURE.sub("", POST_HEADER.sub("", body))
     body = TAG_SPAN.sub(" ", SOURCE_SPAN.sub(" ", body))
     body = re.sub(r'<p class="back">.*?</p>', "", body, flags=re.S)
@@ -642,6 +653,91 @@ def render_pager(items: list[dict], index: int, lang: str) -> str:
     return "\n" + "\n".join(lines)
 
 
+def collect_post_dates(posts_dir: Path) -> list[str]:
+    """日付記事のファイル名だけを古い順に返す。sample.html など日付名でないものは除く。"""
+    dates = []
+    if not posts_dir.is_dir():
+        return dates
+    for path in posts_dir.glob("*.html"):
+        match = POST_NAME.match(path.name)
+        if match:
+            dates.append(match.group(1))
+    dates.sort()
+    return dates
+
+
+BACK_LINE = re.compile(r'^([ \t]*)<p class="back">', re.M)
+
+
+def ensure_day_pager_marker(path: Path) -> bool:
+    """DAY_PAGER が無ければ「記事一覧へ」の直前に空のマーカーを足す。置けたら True。"""
+    source = path.read_text(encoding="utf-8")
+    if "<!-- DAY_PAGER:START -->" in source:
+        return "<!-- DAY_PAGER:END -->" in source
+    match = BACK_LINE.search(source)
+    if not match:
+        return False
+    indent = match.group(1)
+    block = (
+        f"{indent}<!-- DAY_PAGER:START -->\n"
+        f"{indent}<!-- DAY_PAGER:END -->\n"
+        "\n"
+    )
+    path.write_text(source[:match.start()] + block + source[match.start():], encoding="utf-8", newline="\n")
+    return True
+
+
+def render_day_pager(dates: list[str], index: int, lang: str) -> str:
+    """実在する隣の記事だけをつなぐ。端の無い側は出さない（週まとめの pager と同じ）。"""
+    prev_date = dates[index - 1] if index > 0 else None
+    next_date = dates[index + 1] if index + 1 < len(dates) else None
+    if not prev_date and not next_date:
+        return ""
+    if lang == "en":
+        aria = "Previous and next day"
+        prev_small, next_small = "← Previous day", "Next day →"
+    else:
+        aria = "前後の日"
+        prev_small, next_small = "← 前の日", "次の日 →"
+    indent = "      "
+    lines = [f'{indent}<nav class="day-pager" aria-label="{aria}">']
+
+    def link(kind: str, stamp: str, small: str) -> str:
+        shown = display_date(stamp, lang)
+        if lang == "en":
+            label = f"Previous day, {shown}" if kind == "prev" else f"Next day, {shown}"
+        else:
+            label = f"前の日 {shown}" if kind == "prev" else f"次の日 {shown}"
+        return (
+            f'{indent}  <a class="{kind}" href="{stamp}.html" aria-label="{html.escape(label)}">'
+            f"<small>{small}</small>"
+            f'<time datetime="{stamp}">{html.escape(shown)}</time></a>'
+        )
+
+    if prev_date:
+        lines.append(link("prev", prev_date, prev_small))
+    if next_date:
+        lines.append(link("next", next_date, next_small))
+    lines.append(f"{indent}</nav>")
+    return "\n" + "\n".join(lines)
+
+
+def update_day_pagers(lang: str) -> str:
+    posts_dir = EN_POSTS_DIR if lang == "en" else POSTS_DIR
+    dates = collect_post_dates(posts_dir)
+    missing = []
+    for index, stamp in enumerate(dates):
+        path = posts_dir / f"{stamp}.html"
+        if not ensure_day_pager_marker(path):
+            missing.append(path.relative_to(ROOT).as_posix())
+            continue
+        fill_marker(path, "DAY_PAGER", render_day_pager(dates, index, lang))
+    note = f"{len(dates)} 件"
+    if missing:
+        note += "（pager マーカーを置けず: " + ", ".join(missing) + "）"
+    return note
+
+
 def fill_marker(path: Path, key: str, body: str) -> bool:
     """マーカーを埋める。マーカーが無ければ False。中身が同じなら書き戻さない。"""
     if not path.exists():
@@ -753,6 +849,8 @@ def main() -> None:
 
     print(f"まとめ: {update_recaps('ja')}")
     print(f"まとめ(en): {update_recaps('en')}")
+    print(f"前後: {update_day_pagers('ja')}")
+    print(f"前後(en): {update_day_pagers('en')}")
 
 
 if __name__ == "__main__":

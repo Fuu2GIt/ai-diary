@@ -1360,6 +1360,31 @@ html[lang="en"] .post li { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: 
 .recap-pager .next { margin-left: auto; text-align: right; }
 .recap-pager a:hover { border-color: var(--border-strong); }
 
+/* 日付記事の前後。週まとめの pager と同じ並び。狭い幅では縦積みにして、カード全体をタップ領域にする。 */
+.day-pager { display: flex; justify-content: space-between; align-items: stretch; gap: 0.75rem; margin-top: 2.6rem; }
+.day-pager a {
+  flex: 1 1 0;
+  max-width: 48%;
+  min-height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.85rem 1.1rem;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--glass);
+  text-decoration: none;
+  color: var(--text-bright);
+  font-size: 0.95rem;
+  line-height: 1.35;
+}
+.day-pager a small { display: block; margin-bottom: 0.15rem; color: var(--accent-2); font-family: var(--font-display); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.day-pager time { font-family: var(--font-display); }
+.day-pager .next { margin-left: auto; text-align: right; align-items: flex-end; }
+.day-pager a:hover { border-color: var(--border-strong); }
+.day-pager a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.day-pager + .back { margin-top: 1.25rem; }
+
 /* entry points: top page strip + archive shelf */
 .recap-strip { max-width: var(--max); margin: 0 auto; padding: clamp(1rem, 3vw, 2rem) var(--pad-x) 0; }
 .recap-strip .latest-more { margin-top: 1rem; }
@@ -1407,6 +1432,9 @@ html[lang="en"] .post li { hyphens: auto; -webkit-hyphens: auto; overflow-wrap: 
 .recap-shelf time { font-family: var(--font-display); font-size: 0.78rem; color: var(--accent-2); padding-top: 0.12rem; }
 @media (max-width: 760px) {
   .recap-cards, .recap-shelf { grid-template-columns: 1fr; }
-  .recap-pager { flex-direction: column; }
-  .recap-pager a { max-width: none; }
+  .recap-pager, .day-pager { flex-direction: column; }
+  .recap-pager a, .day-pager a { max-width: none; }
+  /* 縦積みでは幅いっぱいに伸ばす。flex-basis:0 のままだと高さが内容より縮む。 */
+  .day-pager a { flex: 0 0 auto; align-self: stretch; }
+  .day-pager .next { margin-left: 0; }
 }

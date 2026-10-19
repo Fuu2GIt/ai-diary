@@ -19,7 +19,7 @@
 1. `templates/post.html` を `posts/YYYY-MM-DD.html` にコピーし、日本語の本文を書く
 2. `templates/post.en.html` を `en/posts/YYYY-MM-DD.html` にコピーし、同じ内容を英語で書く。`{{DATE}}` は `YYYY-MM-DD`、見える日付 `{{DATE_LONG}}` は `Oct 8, 2026` の形式。出典URLは日本語版と同一。タグの class（`tag-policy` など）も同一で、表示名だけ訳す（政策・規制 → Policy & Regulation、その他 → Other、国内 → Domestic）
 3. ニュースが無い日は、英語版でも AI News の節を付けない
-4. `python3 scripts/rebuild_index.py` を1回実行する。日本語と英語の `index.html`・`archive.html`・`search.json` がまとめて更新される
+4. `python3 scripts/rebuild_index.py` を1回実行する。日本語と英語の `index.html`・`archive.html`・`search.json` がまとめて更新される。各日付記事の前後の日へのリンクも、その言語で実在する隣の記事で埋まる（無い日は飛ばす。最初の記事に「前の日」、最新の記事に「次の日」は出さない）
 
 ## 週まとめ・月まとめを追加する
 
