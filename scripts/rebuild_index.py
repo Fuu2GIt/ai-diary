@@ -5,6 +5,9 @@
 同じ実行で weekly/ monthly/ en/weekly/ en/monthly/ も読み、トップの recap-strip、
 記事一覧の #recaps 棚、各まとめページの recap-pager を日英とも更新する。
 まとめは search.json とニュース見出し欄（news-rail）には入れない。
+同じ実行で posts/ と en/posts/ の日付記事に、前後の日へのリンク（DAY_PAGER）を埋める。
+並びは各ディレクトリにある YYYY-MM-DD.html を日付の古い順にしたもので、欠けた日は飛ばす。
+最初の記事には前の日、最新の記事には次の日を出さない。sample.html は日付名ではないので対象外。
 
 引数なしで `python3 scripts/rebuild_index.py` と実行すればよい。
 
@@ -13,7 +16,9 @@
   最新の週まとめ1件と月まとめ1件（RECAPS）。無い種類のカードは出さない。両方無ければ欄ごと出さない。
 - archive.html（記事一覧）: 全記事（POSTS、タグ付き）、タグ一覧（TAGS）、
   ニュース見出し（NEWS、全件）。見出しの直後に週まとめ・月まとめの棚（RECAPS、新しい順・全件）。
-- ニュース見出しは各記事の「AIニュース」欄の要点の一文目。見出しは出典記事へ
+- ニュース見出しは各記事の「AIニュース」欄の要点の一文目。文末は括弧の外の句点
+  （英語はピリオドなど）まで取る。括弧の内側では切らない。句点が無く字数を超えるときだけ、
+  括弧の外の区切りで切り、末尾に … を付ける。見出しは出典記事へ
   （新しいタブ）、日付はその日の記事へリンクする。出典が無い要点は記事へリンク。
 - 記事ごとのサムネイル: assets/YYYY-MM-DD-hero.webp があれば archive.html の一覧に
   小さく表示し、search.json の thumb にも入れる（無ければ何も出さない）。
@@ -34,6 +39,11 @@ weekly/YYYY-MM-DD.html と en/weekly/YYYY-MM-DD.html に置く（日付はその
 毎月1日に前月分を templates/monthly.html と templates/monthly.en.html から作り、
 monthly/YYYY-MM.html と en/monthly/YYYY-MM.html に置く。
 そのあとこのスクリプトを1回実行する。入口（recap-strip と #recaps）と前後の pager が日英とも更新される。
+
+日付記事の前後リンク:
+templates/post.html と templates/post.en.html の DAY_PAGER を残して posts/ と en/posts/ に置く。
+このスクリプトが、その言語の実在する隣の記事で埋める。マーカーが無い既存記事には、
+記事末尾の「記事一覧へ」の直前に同じマーカーを足してから埋める。
 """
 
 import html
@@ -91,6 +101,7 @@ MARKERS = {
     "TAGS": re.compile(r"(<!-- TAGS:START -->)(.*?)(\n[ \t]*<!-- TAGS:END -->)", re.S),
     "RECAPS": re.compile(r"(<!-- RECAPS:START -->)(.*?)(\n[ \t]*<!-- RECAPS:END -->)", re.S),
     "RECAP_PAGER": re.compile(r"(<!-- RECAP_PAGER:START -->)(.*?)(\n[ \t]*<!-- RECAP_PAGER:END -->)", re.S),
+    "DAY_PAGER": re.compile(r"(<!-- DAY_PAGER:START -->)(.*?)(\n[ \t]*<!-- DAY_PAGER:END -->)", re.S),
 }
 
 MONTHS_EN_FULL = (
@@ -152,13 +163,105 @@ _EN_ABBREV = {
 }
 
 
-def first_sentence_en(text: str) -> str:
-    """英語の一文目。日本語の「。」切りと同じく、終端のピリオドは見出しに含めない。"""
+# 見出しを切ってよい括弧。内側の句点・ピリオドでは文を終わらせない。
+_OPEN_BRACKETS = {
+    "（": "）",
+    "(": ")",
+    "「": "」",
+    "『": "』",
+    "【": "】",
+    "[": "]",
+    "［": "］",
+    "〈": "〉",
+    "《": "》",
+    "“": "”",
+    "‘": "’",
+}
+_CLOSE_BRACKETS = {close: open_ for open_, close in _OPEN_BRACKETS.items()}
+_CLIP_PUNCT = " ,;:.!?、"
+
+
+def _bracket_stack(text: str) -> list[tuple[str, int]]:
+    stack: list[tuple[str, int]] = []
+    for i, ch in enumerate(text):
+        if ch in _OPEN_BRACKETS:
+            stack.append((ch, i))
+        elif ch in _CLOSE_BRACKETS and stack and stack[-1][0] == _CLOSE_BRACKETS[ch]:
+            stack.pop()
+    return stack
+
+
+def _trim_to_balanced(text: str) -> str:
+    """閉じていない括弧や引用符は、その開きの直前まで戻して外す。"""
+    while True:
+        stack = _bracket_stack(text)
+        cut = stack[0][1] if stack else None
+        if text.count('"') % 2 == 1:
+            quote_at = text.rfind('"')
+            cut = quote_at if cut is None else min(cut, quote_at)
+        if cut is None:
+            return text.rstrip(_CLIP_PUNCT)
+        text = text[:cut].rstrip(_CLIP_PUNCT)
+        if not text:
+            return ""
+
+
+def _with_trailing_closers(text: str, terminator_at: int) -> str:
+    """文末記号の直後に続く閉じ括弧・閉じ引用符は、文の一部として残す。"""
+    head = text[:terminator_at].rstrip()
+    rest = text[terminator_at + 1:]
+    while True:
+        stack = _bracket_stack(head)
+        quote_open = head.count('"') % 2 == 1
+        k = 0
+        while k < len(rest) and rest[k] in " \t":
+            k += 1
+        if k >= len(rest):
+            break
+        ch = rest[k]
+        if stack and ch in _CLOSE_BRACKETS and stack[-1][0] == _CLOSE_BRACKETS[ch]:
+            head += ch
+            rest = rest[k + 1:]
+            continue
+        if quote_open and ch == '"':
+            head += ch
+            rest = rest[k + 1:]
+            continue
+        break
+    return head.strip()
+
+
+def _first_sentence_ja(text: str) -> tuple[str, bool]:
+    """括弧の外にある最初の「。」まで。終端の句点は見出しに含めない。"""
+    stack: list[str] = []
+    for i, ch in enumerate(text):
+        if ch in _OPEN_BRACKETS:
+            stack.append(ch)
+            continue
+        if ch in _CLOSE_BRACKETS and stack and stack[-1] == _CLOSE_BRACKETS[ch]:
+            stack.pop()
+            continue
+        if ch == "。" and not stack:
+            return _with_trailing_closers(text, i), True
+    return text.strip(), False
+
+
+def _first_sentence_en(text: str) -> tuple[str, bool]:
+    """英語の一文目。終端のピリオドは見出しに含めない。括弧の中では終わらせない。"""
+    stack: list[str] = []
     i = 0
     n = len(text)
     while i < n:
         ch = text[i]
-        if ch in ".?!":
+        if ch in _OPEN_BRACKETS:
+            stack.append(ch)
+            i += 1
+            continue
+        if ch in _CLOSE_BRACKETS and stack and stack[-1] == _CLOSE_BRACKETS[ch]:
+            stack.pop()
+            i += 1
+            continue
+        if ch in ".?!" and not stack:
             if ch == "." and text.startswith("...", i):
                 i += 3
                 continue
@@ -184,34 +287,71 @@ def first_sentence_en(text: str) -> str:
                 i += 1
                 continue
             if nxt == "" or nxt[0] in " \t\n\"'”’)]}":
-                return text[:i].strip()
+                return _with_trailing_closers(text, i), True
         i += 1
-    return text.strip()
+    return text.strip(), False
+
+
+def first_sentence_en(text: str) -> str:
+    sentence, _ended = _first_sentence_en(text)
+    return sentence
+
+
+def _boundary_before(text: str, limit: int, lang: str) -> int:
+    """limit より前で、括弧の外にある最後の区切り位置。見つからなければ 0。"""
+    hi = min(limit, len(text))
+    stack: list[str] = []
+    last = 0
+    for i, ch in enumerate(text):
+        if i >= hi:
+            break
+        if ch in _OPEN_BRACKETS:
+            stack.append(ch)
+        elif ch in _CLOSE_BRACKETS and stack and stack[-1] == _CLOSE_BRACKETS[ch]:
+            stack.pop()
+        elif not stack and ((lang == "en" and ch == " ") or (lang != "en" and ch in "、 ")):
+            last = i
+    return last
+
+
+def _clip_outside_brackets(text: str, limit: int, lang: str) -> str:
+    """文末が無い長文だけを切る。括弧の途中では切らず、切ったときだけ … を付ける。"""
+    if len(text) <= limit and not _bracket_stack(text):
+        return text
+    boundary = _boundary_before(text, limit, lang)
+    if boundary > 0:
+        cut = text[:boundary]
+    else:
+        # 区切りが無いときは上限の直前。括弧の中なら開き括弧の前まで戻す。
+        cut = text[: max(0, min(len(text), limit - 1))]
+    cut = _trim_to_balanced(cut)
+    if not cut:
+        return "…"
+    if cut == text.strip():
+        return cut
+    return cut + "…"
 
 
 def clip_headline_en(text: str) -> str:
-    """110字を超える英語見出しは、制限より前の最後の空白で切り、末尾の読点を落として … を付ける。"""
-    if len(text) <= HEADLINE_LEN_EN:
-        return text
-    cut = text[:HEADLINE_LEN_EN]
-    space = cut.rfind(" ")
-    if space > 0:
-        cut = cut[:space]
-    else:
-        cut = cut[: HEADLINE_LEN_EN - 1]
-    cut = cut.rstrip(" ,;:.!?\"'”’")
-    return cut + "…"
+    """文末の無い英語見出しが 110 字を超えるとき、括弧の外の単語境界で切って … を付ける。"""
+    return _clip_outside_brackets(text, HEADLINE_LEN_EN, "en")
 
 
 def to_headline(fragment: str, lang: str = "ja") -> str:
     text = clean(TAG_SPAN.sub("", SOURCE_SPAN.sub("", fragment)))
     if lang == "en":
-        return clip_headline_en(first_sentence_en(text))
-    if "。" in text:
-        text = text.split("。", 1)[0].strip()
-    if len(text) > HEADLINE_LEN:
-        text = text[: HEADLINE_LEN - 1].rstrip() + "…"
-    return text
+        sentence, ended = _first_sentence_en(text)
+        limit = HEADLINE_LEN_EN
+    else:
+        sentence, ended = _first_sentence_ja(text)
+        limit = HEADLINE_LEN
+    # 括弧の外に文末があるときは、字数で途中を切らない。切ると括弧が閉じず意味が落ちる。
+    if ended or len(sentence) <= limit:
+        trimmed = _trim_to_balanced(sentence)
+        if trimmed != sentence.rstrip(_CLIP_PUNCT) and trimmed:
+            return trimmed + "…"
+        return trimmed or sentence
+    return _clip_outside_brackets(sentence, limit, lang)
 
 
 def source_url(fragment: str) -> str:
@@ -260,6 +400,8 @@ def extract_text(source: str) -> str:
     body = match.group(1) if match else source
     body = re.sub(r"<!--.*?-->", "", body, flags=re.S)
     body = re.sub(r'<nav class="lang-switch"[^>]*>.*?</nav>', "", body, flags=re.S)
+    # 前後リンクは本文ではない。隣の日付が検索語や search.json の差分に混ざらないように外す。
+    body = re.sub(r'<nav\b[^>]*\bday-pager\b[^>]*>.*?</nav>', "", body, flags=re.S)
     body = FIGURE.sub("", POST_HEADER.sub("", body))
     body = TAG_SPAN.sub(" ", SOURCE_SPAN.sub(" ", body))
     body = re.sub(r'<p class="back">.*?</p>', "", body, flags=re.S)
@@ -651,6 +793,91 @@ def render_pager(items: list[dict], index: int, lang: str) -> str:
     return "\n" + "\n".join(lines)
 
 
+def collect_post_dates(posts_dir: Path) -> list[str]:
+    """日付記事のファイル名だけを古い順に返す。sample.html など日付名でないものは除く。"""
+    dates = []
+    if not posts_dir.is_dir():
+        return dates
+    for path in posts_dir.glob("*.html"):
+        match = POST_NAME.match(path.name)
+        if match:
+            dates.append(match.group(1))
+    dates.sort()
+    return dates
+
+
+BACK_LINE = re.compile(r'^([ \t]*)<p class="back">', re.M)
+
+
+def ensure_day_pager_marker(path: Path) -> bool:
+    """DAY_PAGER が無ければ「記事一覧へ」の直前に空のマーカーを足す。置けたら True。"""
+    source = path.read_text(encoding="utf-8")
+    if "<!-- DAY_PAGER:START -->" in source:
+        return "<!-- DAY_PAGER:END -->" in source
+    match = BACK_LINE.search(source)
+    if not match:
+        return False
+    indent = match.group(1)
+    block = (
+        f"{indent}<!-- DAY_PAGER:START -->\n"
+        f"{indent}<!-- DAY_PAGER:END -->\n"
+        "\n"
+    )
+    path.write_text(source[:match.start()] + block + source[match.start():], encoding="utf-8", newline="\n")
+    return True
+
+
+def render_day_pager(dates: list[str], index: int, lang: str) -> str:
+    """実在する隣の記事だけをつなぐ。端の無い側は出さない（週まとめの pager と同じ）。"""
+    prev_date = dates[index - 1] if index > 0 else None
+    next_date = dates[index + 1] if index + 1 < len(dates) else None
+    if not prev_date and not next_date:
+        return ""
+    if lang == "en":
+        aria = "Previous and next day"
+        prev_small, next_small = "← Previous day", "Next day →"
+    else:
+        aria = "前後の日"
+        prev_small, next_small = "← 前の日", "次の日 →"
+    indent = "      "
+    lines = [f'{indent}<nav class="day-pager" aria-label="{aria}">']
+
+    def link(kind: str, stamp: str, small: str) -> str:
+        shown = display_date(stamp, lang)
+        if lang == "en":
+            label = f"Previous day, {shown}" if kind == "prev" else f"Next day, {shown}"
+        else:
+            label = f"前の日 {shown}" if kind == "prev" else f"次の日 {shown}"
+        return (
+            f'{indent}  <a class="{kind}" href="{stamp}.html" aria-label="{html.escape(label)}">'
+            f"<small>{small}</small>"
+            f'<time datetime="{stamp}">{html.escape(shown)}</time></a>'
+        )
+
+    if prev_date:
+        lines.append(link("prev", prev_date, prev_small))
+    if next_date:
+        lines.append(link("next", next_date, next_small))
+    lines.append(f"{indent}</nav>")
+    return "\n" + "\n".join(lines)
+
+
+def update_day_pagers(lang: str) -> str:
+    posts_dir = EN_POSTS_DIR if lang == "en" else POSTS_DIR
+    dates = collect_post_dates(posts_dir)
+    missing = []
+    for index, stamp in enumerate(dates):
+        path = posts_dir / f"{stamp}.html"
+        if not ensure_day_pager_marker(path):
+            missing.append(path.relative_to(ROOT).as_posix())
+            continue
+        fill_marker(path, "DAY_PAGER", render_day_pager(dates, index, lang))
+    note = f"{len(dates)} 件"
+    if missing:
+        note += "（pager マーカーを置けず: " + ", ".join(missing) + "）"
+    return note
+
+
 def fill_marker(path: Path, key: str, body: str) -> bool:
     """マーカーを埋める。マーカーが無ければ False。中身が同じなら書き戻さない。"""
     if not path.exists():
@@ -770,6 +997,8 @@ def main() -> None:
 
     print(f"まとめ: {update_recaps('ja')}")
     print(f"まとめ(en): {update_recaps('en')}")
+    print(f"前後: {update_day_pagers('ja')}")
+    print(f"前後(en): {update_day_pagers('en')}")
     changed = share_meta.refresh_share()
     print(f"共有タグ: {changed} ページを更新" if changed else "共有タグ: 差分なし")
     errors = share_meta.verify_share()
