@@ -16,7 +16,9 @@
   最新の週まとめ1件と月まとめ1件（RECAPS）。無い種類のカードは出さない。両方無ければ欄ごと出さない。
 - archive.html（記事一覧）: 全記事（POSTS、タグ付き）、タグ一覧（TAGS）、
   ニュース見出し（NEWS、全件）。見出しの直後に週まとめ・月まとめの棚（RECAPS、新しい順・全件）。
-- ニュース見出しは各記事の「AIニュース」欄の要点の一文目。見出しは出典記事へ
+- ニュース見出しは各記事の「AIニュース」欄の要点の一文目。文末は括弧の外の句点
+  （英語はピリオドなど）まで取る。括弧の内側では切らない。句点が無く字数を超えるときだけ、
+  括弧の外の区切りで切り、末尾に … を付ける。見出しは出典記事へ
   （新しいタブ）、日付はその日の記事へリンクする。出典が無い要点は記事へリンク。
 - 記事ごとのサムネイル: assets/YYYY-MM-DD-hero.webp があれば archive.html の一覧に
   小さく表示し、search.json の thumb にも入れる（無ければ何も出さない）。
@@ -152,13 +154,105 @@ _EN_ABBREV = {
 }
 
 
-def first_sentence_en(text: str) -> str:
-    """英語の一文目。日本語の「。」切りと同じく、終端のピリオドは見出しに含めない。"""
+# 見出しを切ってよい括弧。内側の句点・ピリオドでは文を終わらせない。
+_OPEN_BRACKETS = {
+    "（": "）",
+    "(": ")",
+    "「": "」",
+    "『": "』",
+    "【": "】",
+    "[": "]",
+    "［": "］",
+    "〈": "〉",
+    "《": "》",
+    "“": "”",
+    "‘": "’",
+}
+_CLOSE_BRACKETS = {close: open_ for open_, close in _OPEN_BRACKETS.items()}
+_CLIP_PUNCT = " ,;:.!?、"
+
+
+def _bracket_stack(text: str) -> list[tuple[str, int]]:
+    stack: list[tuple[str, int]] = []
+    for i, ch in enumerate(text):
+        if ch in _OPEN_BRACKETS:
+            stack.append((ch, i))
+        elif ch in _CLOSE_BRACKETS and stack and stack[-1][0] == _CLOSE_BRACKETS[ch]:
+            stack.pop()
+    return stack
+
+
+def _trim_to_balanced(text: str) -> str:
+    """閉じていない括弧や引用符は、その開きの直前まで戻して外す。"""
+    while True:
+        stack = _bracket_stack(text)
+        cut = stack[0][1] if stack else None
+        if text.count('"') % 2 == 1:
+            quote_at = text.rfind('"')
+            cut = quote_at if cut is None else min(cut, quote_at)
+        if cut is None:
+            return text.rstrip(_CLIP_PUNCT)
+        text = text[:cut].rstrip(_CLIP_PUNCT)
+        if not text:
+            return ""
+
+
+def _with_trailing_closers(text: str, terminator_at: int) -> str:
+    """文末記号の直後に続く閉じ括弧・閉じ引用符は、文の一部として残す。"""
+    head = text[:terminator_at].rstrip()
+    rest = text[terminator_at + 1:]
+    while True:
+        stack = _bracket_stack(head)
+        quote_open = head.count('"') % 2 == 1
+        k = 0
+        while k < len(rest) and rest[k] in " \t":
+            k += 1
+        if k >= len(rest):
+            break
+        ch = rest[k]
+        if stack and ch in _CLOSE_BRACKETS and stack[-1][0] == _CLOSE_BRACKETS[ch]:
+            head += ch
+            rest = rest[k + 1:]
+            continue
+        if quote_open and ch == '"':
+            head += ch
+            rest = rest[k + 1:]
+            continue
+        break
+    return head.strip()
+
+
+def _first_sentence_ja(text: str) -> tuple[str, bool]:
+    """括弧の外にある最初の「。」まで。終端の句点は見出しに含めない。"""
+    stack: list[str] = []
+    for i, ch in enumerate(text):
+        if ch in _OPEN_BRACKETS:
+            stack.append(ch)
+            continue
+        if ch in _CLOSE_BRACKETS and stack and stack[-1] == _CLOSE_BRACKETS[ch]:
+            stack.pop()
+            continue
+        if ch == "。" and not stack:
+            return _with_trailing_closers(text, i), True
+    return text.strip(), False
+
+
+def _first_sentence_en(text: str) -> tuple[str, bool]:
+    """英語の一文目。終端のピリオドは見出しに含めない。括弧の中では終わらせない。"""
+    stack: list[str] = []
     i = 0
     n = len(text)
     while i < n:
         ch = text[i]
-        if ch in ".?!":
+        if ch in _OPEN_BRACKETS:
+            stack.append(ch)
+            i += 1
+            continue
+        if ch in _CLOSE_BRACKETS and stack and stack[-1] == _CLOSE_BRACKETS[ch]:
+            stack.pop()
+            i += 1
+            continue
+        if ch in ".?!" and not stack:
             if ch == "." and text.startswith("...", i):
                 i += 3
                 continue
@@ -184,34 +278,71 @@ def first_sentence_en(text: str) -> str:
                 i += 1
                 continue
             if nxt == "" or nxt[0] in " \t\n\"'”’)]}":
-                return text[:i].strip()
+                return _with_trailing_closers(text, i), True
         i += 1
-    return text.strip()
+    return text.strip(), False
+
+
+def first_sentence_en(text: str) -> str:
+    sentence, _ended = _first_sentence_en(text)
+    return sentence
+
+
+def _boundary_before(text: str, limit: int, lang: str) -> int:
+    """limit より前で、括弧の外にある最後の区切り位置。見つからなければ 0。"""
+    hi = min(limit, len(text))
+    stack: list[str] = []
+    last = 0
+    for i, ch in enumerate(text):
+        if i >= hi:
+            break
+        if ch in _OPEN_BRACKETS:
+            stack.append(ch)
+        elif ch in _CLOSE_BRACKETS and stack and stack[-1] == _CLOSE_BRACKETS[ch]:
+            stack.pop()
+        elif not stack and ((lang == "en" and ch == " ") or (lang != "en" and ch in "、 ")):
+            last = i
+    return last
+
+
+def _clip_outside_brackets(text: str, limit: int, lang: str) -> str:
+    """文末が無い長文だけを切る。括弧の途中では切らず、切ったときだけ … を付ける。"""
+    if len(text) <= limit and not _bracket_stack(text):
+        return text
+    boundary = _boundary_before(text, limit, lang)
+    if boundary > 0:
+        cut = text[:boundary]
+    else:
+        # 区切りが無いときは上限の直前。括弧の中なら開き括弧の前まで戻す。
+        cut = text[: max(0, min(len(text), limit - 1))]
+    cut = _trim_to_balanced(cut)
+    if not cut:
+        return "…"
+    if cut == text.strip():
+        return cut
+    return cut + "…"
 
 
 def clip_headline_en(text: str) -> str:
-    """110字を超える英語見出しは、制限より前の最後の空白で切り、末尾の読点を落として … を付ける。"""
-    if len(text) <= HEADLINE_LEN_EN:
-        return text
-    cut = text[:HEADLINE_LEN_EN]
-    space = cut.rfind(" ")
-    if space > 0:
-        cut = cut[:space]
-    else:
-        cut = cut[: HEADLINE_LEN_EN - 1]
-    cut = cut.rstrip(" ,;:.!?\"'”’")
-    return cut + "…"
+    """文末の無い英語見出しが 110 字を超えるとき、括弧の外の単語境界で切って … を付ける。"""
+    return _clip_outside_brackets(text, HEADLINE_LEN_EN, "en")
 
 
 def to_headline(fragment: str, lang: str = "ja") -> str:
     text = clean(TAG_SPAN.sub("", SOURCE_SPAN.sub("", fragment)))
     if lang == "en":
-        return clip_headline_en(first_sentence_en(text))
-    if "。" in text:
-        text = text.split("。", 1)[0].strip()
-    if len(text) > HEADLINE_LEN:
-        text = text[: HEADLINE_LEN - 1].rstrip() + "…"
-    return text
+        sentence, ended = _first_sentence_en(text)
+        limit = HEADLINE_LEN_EN
+    else:
+        sentence, ended = _first_sentence_ja(text)
+        limit = HEADLINE_LEN
+    # 括弧の外に文末があるときは、字数で途中を切らない。切ると括弧が閉じず意味が落ちる。
+    if ended or len(sentence) <= limit:
+        trimmed = _trim_to_balanced(sentence)
+        if trimmed != sentence.rstrip(_CLIP_PUNCT) and trimmed:
+            return trimmed + "…"
+        return trimmed or sentence
+    return _clip_outside_brackets(sentence, limit, lang)
 
 
 def source_url(fragment: str) -> str:
