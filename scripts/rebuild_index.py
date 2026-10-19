@@ -23,6 +23,12 @@
 - 記事ごとのサムネイル: assets/YYYY-MM-DD-hero.webp があれば archive.html の一覧に
   小さく表示し、search.json の thumb にも入れる（無ければ何も出さない）。
 - search.json: 全文検索用（日付・題名・URL・タグ・見出しと出典URL・サムネイル・本文）。
+- 同じ実行で、日付記事・週まとめ・月まとめ・トップ・一覧（日英）の head に、
+  そのページの description・OGP・twitter:card・canonical・favicon を入れ直す
+  （scripts/share_meta.py。説明は「AIのひとこと」を文の区切りで約120字。
+  画像は日付記事だけその日のヒーロー、無ければ assets/og.png。
+  posts/sample.html は対象外。2回実行しても head は変わらない。
+  `--check` は書き換えずに確認だけする）。
 - ページにマーカーが無ければ、その部分は何もしない（ファイルが無ければ飛ばす）。
 
 タグは記事内の <span class="tag tag-xxx">表示名</span> から拾う。
@@ -43,9 +49,12 @@ templates/post.html と templates/post.en.html の DAY_PAGER を残して posts/
 import html
 import json
 import re
+import sys
 from datetime import date, timedelta
 from pathlib import Path
 from urllib.parse import quote
+
+import share_meta
 
 ROOT = Path(__file__).resolve().parent.parent
 POSTS_DIR = ROOT / "posts"
@@ -924,6 +933,14 @@ def fill_page(path: Path, renderers: dict, posts: list[dict]) -> list[str]:
 
 
 def main() -> None:
+    if "--check" in sys.argv[1:]:
+        errors = share_meta.verify_share()
+        if errors:
+            print("\n".join(errors))
+            raise SystemExit(f"共有タグの確認に失敗（{len(errors)} 件）")
+        print(f"共有タグの確認: OK（{len(share_meta.share_targets())} ページ）")
+        return
+
     if not MARKERS["POSTS"].search(INDEX.read_text(encoding="utf-8")):
         raise SystemExit("index.html に POSTS:START / POSTS:END マーカーがありません")
     posts = collect_posts()
@@ -982,6 +999,13 @@ def main() -> None:
     print(f"まとめ(en): {update_recaps('en')}")
     print(f"前後: {update_day_pagers('ja')}")
     print(f"前後(en): {update_day_pagers('en')}")
+    changed = share_meta.refresh_share()
+    print(f"共有タグ: {changed} ページを更新" if changed else "共有タグ: 差分なし")
+    errors = share_meta.verify_share()
+    if errors:
+        print("\n".join(errors))
+        raise SystemExit(f"共有タグの確認に失敗（{len(errors)} 件）")
+    print(f"共有タグの確認: OK（{len(share_meta.share_targets())} ページ）")
 
 
 if __name__ == "__main__":
