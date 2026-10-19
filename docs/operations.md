@@ -19,13 +19,13 @@
 1. `templates/post.html` を `posts/YYYY-MM-DD.html` にコピーし、日本語の本文を書く
 2. `templates/post.en.html` を `en/posts/YYYY-MM-DD.html` にコピーし、同じ内容を英語で書く。`{{DATE}}` は `YYYY-MM-DD`、見える日付 `{{DATE_LONG}}` は `Oct 8, 2026` の形式。出典URLは日本語版と同一。タグの class（`tag-policy` など）も同一で、表示名だけ訳す（政策・規制 → Policy & Regulation、その他 → Other、国内 → Domestic）
 3. ニュースが無い日は、英語版でも AI News の節を付けない
-4. `python3 scripts/rebuild_index.py` を1回実行する。日本語と英語の `index.html`・`archive.html`・`search.json` がまとめて更新される
+4. `python3 scripts/rebuild_index.py` を1回実行する。日本語と英語の `index.html`・`archive.html`・`search.json` がまとめて更新される。同じ実行で、各ページの description・OGP・canonical・favicon のリンクも本文から入れ直す（説明は「AIのひとこと」を句点で約120字。画像はその日のヒーロー、無ければ `assets/og.png`）
 
 ## 週まとめ・月まとめを追加する
 
 1. 毎週月曜に、前週分を `templates/weekly.html` と `templates/weekly.en.html` から作り、`weekly/YYYY-MM-DD.html` と `en/weekly/YYYY-MM-DD.html` に置く（日付はその週の月曜。月をまたぐ週も月曜の日付）
 2. 毎月1日に、前月分を `templates/monthly.html` と `templates/monthly.en.html` から作り、`monthly/YYYY-MM.html` と `en/monthly/YYYY-MM.html` に置く
-3. `python3 scripts/rebuild_index.py` を1回実行する。トップのまとめ欄、記事一覧のまとめ棚、各まとめの前後リンクが、日本語と英語でまとめて更新される。まとめは検索とニュース見出し欄には入らない
+3. `python3 scripts/rebuild_index.py` を1回実行する。トップのまとめ欄、記事一覧のまとめ棚、各まとめの前後リンクが、日本語と英語でまとめて更新される。まとめは検索とニュース見出し欄には入らない。まとめページの description と canonical、favicon のリンクもこの実行で入る（画像は `assets/og.png`）
 
 ## Cloudflare Web Analytics
 
