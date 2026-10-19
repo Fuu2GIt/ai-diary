@@ -21,7 +21,7 @@
     ]
    },
    {
-    "text": "Announced that 5% of its shares will go to a newly created \"public benefit fund",
+    "text": "Announced that 5% of its shares will go to a newly created \"public benefit fund\"",
     "url": "https://www.anthropic.com/news/public-benefit-fund",
     "tags": [
      "Anthropic"
@@ -70,21 +70,21 @@
   ],
   "headlines": [
    {
-    "text": "It reportedly offered Blackstone a yield above 10% in a $60 billion financing to secure Google-related chips…",
+    "text": "It reportedly offered Blackstone a yield above 10% in a $60 billion financing to secure Google-related chips (FT report)",
     "url": "https://www.ft.com/content/cb4034e1-475f-40b9-a5f9-256e91aacb89",
     "tags": [
      "Anthropic"
     ]
    },
    {
-    "text": "In a follow-up on its commercial terms, it removed wording that could be read as allowing use for \"AI…",
+    "text": "In a follow-up on its commercial terms, it removed wording that could be read as allowing use for \"AI training,\" after pushback",
     "url": "https://techcrunch.com/2026/10/17/meta-removes-language-that-raised-scraping-and-ai-training-concerns/",
     "tags": [
      "Meta"
     ]
    },
    {
-    "text": "India's CERT-In warned that several companies' AI agents reached domestic companies' production systems…",
+    "text": "India's CERT-In warned that several companies' AI agents reached domestic companies' production systems during testing",
     "url": "https://techcrunch.com/2026/10/16/india-becomes-the-latest-country-to-report-rogue-ai-agent-activity/",
     "tags": [
      "Policy & Regulation"
@@ -131,14 +131,14 @@
   ],
   "headlines": [
    {
-    "text": "Published a case in which an internal research model deployed using Sepolia funds that the task had not given…",
+    "text": "Published a case in which an internal research model deployed using Sepolia funds that the task had not given it",
     "url": "https://alignment.openai.com/misalignment-reports/using-a-funded-test-cryptocurrency-wallet-without-authorization",
     "tags": [
      "OpenAI"
     ]
    },
    {
-    "text": "Gave six METR evaluators access equal to internal staff and the right to publish (official, Oct 15; footnote…",
+    "text": "Gave six METR evaluators access equal to internal staff and the right to publish (official, Oct 15; footnote updated Oct 16)",
     "url": "https://www.anthropic.com/news/an-update-on-independent-evaluators",
     "tags": [
      "Anthropic"
@@ -159,7 +159,7 @@
     ]
    },
    {
-    "text": "China added about 23 AI-related technologies, including large models and agents, to a draft export control…",
+    "text": "China added about 23 AI-related technologies, including large models and agents, to a draft export control list",
     "url": "https://www.straitstimes.com/business/china-plans-ai-export-curbs-to-exert-control-over-key-tech",
     "tags": [
      "Policy & Regulation"
@@ -206,7 +206,7 @@
     ]
    },
    {
-    "text": "It reportedly told pre-IPO investors that Q3 2026 revenue was $16.8 billion and that it was profitable on an…",
+    "text": "It reportedly told pre-IPO investors that Q3 2026 revenue was $16.8 billion and that it was profitable on an adjusted basis",
     "url": "https://www.cnbc.com/2026/10/15/anthropics-third-quarter-revenue-hits-16point8-billion-ipo.html",
     "tags": [
      "Anthropic"
@@ -227,7 +227,7 @@
     ]
    },
    {
-    "text": "Released the open-weight \"Muse Spark Open",
+    "text": "Released the open-weight \"Muse Spark Open\"",
     "url": "https://techcrunch.com/2026/10/15/meta-launches-an-open-weight-model-that-runs-on-macs/",
     "tags": [
      "Meta"
@@ -252,7 +252,7 @@
   ],
   "headlines": [
    {
-    "text": "Eight US states sued OpenAI together over \"danger to children",
+    "text": "Eight US states sued OpenAI together over \"danger to children\"",
     "url": "https://www.theguardian.com/technology/2026/oct/14/openai-child-self-harm-lawsuit",
     "tags": [
      "OpenAI"
@@ -287,7 +287,7 @@
     ]
    },
    {
-    "text": "Nikkei and Asahi reported (Oct 13) that NTT Data Group is in final coordination to build a new data center…",
+    "text": "Nikkei and Asahi reported (Oct 13) that NTT Data Group is in final coordination to build a new data center for Anthropic in Osaka",
     "url": "https://www.nikkei.com/article/DGXZQOUC059W20V01C26A0000000/",
     "tags": [
      "NTT"
@@ -319,7 +319,7 @@
     ]
    },
    {
-    "text": "OpenAI and Anthropic backed binding AI regulation before the UK Parliament, while DeepMind and Meta were…",
+    "text": "OpenAI and Anthropic backed binding AI regulation before the UK Parliament, while DeepMind and Meta were cautious",
     "url": "https://www.wired.com/story/openai-and-anthropic-tell-british-lawmakers-regulate-us/",
     "tags": [
      "Policy & Regulation"
@@ -333,7 +333,7 @@
     ]
    },
    {
-    "text": "Demonstrated \"BadEngram,\" a backdoor attack targeting an LLM's auxiliary information, together with Pillar…",
+    "text": "Demonstrated \"BadEngram,\" a backdoor attack targeting an LLM's auxiliary information, together with Pillar Security",
     "url": "https://global.fujitsu/ja-JP/technology/research/article/topics/202610-badengram-llm-backdoor-attack",
     "tags": [
      "Fujitsu"
@@ -356,7 +356,7 @@
   ],
   "headlines": [
    {
-    "text": "Its Frontier Red Team reported that self-replication by small models could be \"months away\" (research…",
+    "text": "Its Frontier Red Team reported that self-replication by small models could be \"months away\" (research published on the 12th)",
     "url": "https://www.anthropic.com/research/self-replicating-ai",
     "tags": [
      "Anthropic"
@@ -437,7 +437,7 @@
     ]
    },
    {
-    "text": "It was reported to be in talks to acquire or increase its investment in Reflection AI, a US startup that…",
+    "text": "It was reported to be in talks to acquire or increase its investment in Reflection AI, a US startup that develops open-weight models",
     "url": "https://www.ft.com/content/052610c5-22b4-4dd4-932e-b7f9f0628b6a",
     "tags": [
      "NVIDIA"
@@ -491,7 +491,7 @@
     ]
    },
    {
-    "text": "Alibaba's Qwen team released the weights of the image generation AI \"Qwen-Image-2.1-Turbo",
+    "text": "Alibaba's Qwen team released the weights of the image generation AI \"Qwen-Image-2.1-Turbo\"",
     "url": "https://pc.watch.impress.co.jp/docs/news/2147316.html",
     "tags": [
      "Other"
@@ -522,7 +522,7 @@
     ]
    },
    {
-    "text": "Announced at a White House summit on Oct 8 that it will commit $150 million over 3 years to the US government…",
+    "text": "Announced at a White House summit on Oct 8 that it will commit $150 million over 3 years to the US government science project \"Genesis Mission\"",
     "url": "https://www.anthropic.com/news/genesis-mission-commitment",
     "tags": [
      "Anthropic"
@@ -569,14 +569,14 @@
   ],
   "headlines": [
    {
-    "text": "GPT-6 is rolling out to every ChatGPT plan, and \"Intelligent UI,\" which puts diagrams and buttons into…",
+    "text": "GPT-6 is rolling out to every ChatGPT plan, and \"Intelligent UI,\" which puts diagrams and buttons into answers, is also starting",
     "url": "https://openai.com/index/gpt-6-for-everyone",
     "tags": [
      "OpenAI"
     ]
    },
    {
-    "text": "It held a briefing for the Japanese press on the runaway problem, and explained that it \"has not confirmed a…",
+    "text": "It held a briefing for the Japanese press on the runaway problem, and explained that it \"has not confirmed a serious attack on Japanese organizations\"",
     "url": "https://www.sankei.com/article/20261007-JINQ5DPITBNLRF5477ADHQ6HZQ/",
     "tags": [
      "OpenAI"
@@ -780,14 +780,14 @@
     ]
    },
    {
-    "text": "According to a Sansan survey, people whose business-card titles include \"AI/AX\" increased to about three…",
+    "text": "According to a Sansan survey, people whose business-card titles include \"AI/AX\" increased to about three times over the past five years",
     "url": "https://www.nikkei.com/article/DGXZQOUC029480S6A001C2000000/",
     "tags": [
      "Domestic"
     ]
    },
    {
-    "text": "As a follow-up, OpenAI Chief Strategy Officer Jason Kwon is scheduled to attend the Australian Parliament's…",
+    "text": "As a follow-up, OpenAI Chief Strategy Officer Jason Kwon is scheduled to attend the Australian Parliament's joint special committee on AI in Sydney on October 6",
     "url": "https://www.canberratimes.com.au/story/9358287/openai-executive-to-front-grilling-on-medicare-breach/",
     "tags": [
      "OpenAI",
@@ -811,14 +811,14 @@
   ],
   "headlines": [
    {
-    "text": "It was reported across papers that David Robinson of the safety division resigned and criticized the company…",
+    "text": "It was reported across papers that David Robinson of the safety division resigned and criticized the company in The Atlantic, saying the \"culture is broken\" (about 3.5 years at the company, responsible for writing safety reports, and so on)",
     "url": "https://techcrunch.com/2026/10/03/openai-safety-employee-resigns-claiming-the-companys-culture-is-broken/",
     "tags": [
      "OpenAI"
     ]
    },
    {
-    "text": "It was reported that Kawasaki Heavy Industries is aiming, with a target around 2030, for full autonomy of the…",
+    "text": "It was reported that Kawasaki Heavy Industries is aiming, with a target around 2030, for full autonomy of the Kaleido humanoid robot using Noetra's physical AI",
     "url": "https://asia.nikkei.com/business/technology/kawasaki-heavy-aims-for-fully-autonomous-humanoid-ai-robot-by-2030",
     "tags": [
      "Other"
@@ -839,14 +839,14 @@
     ]
    },
    {
-    "text": "It was reported that in a video Turing test of Tavus Griffin, about 48% mistook it for a human (limited…",
+    "text": "It was reported that in a video Turing test of Tavus Griffin, about 48% mistook it for a human (limited preview)",
     "url": "https://onthewire.ai/article/tavus-says-26-of-54-people-took-its-griffin-lite-ai-for-a-real-person-on-a-one-m",
     "tags": [
      "Other"
     ]
    },
    {
-    "text": "Research by UNSW and others on \"drunk\" LLMs (jailbreaks and secret leaks increase; accepted at INLG) was…",
+    "text": "Research by UNSW and others on \"drunk\" LLMs (jailbreaks and secret leaks increase; accepted at INLG) was reported",
     "url": "https://newshub.medianet.com.au/2026/09/researchers-get-ai-drunk-to-expose-new-cyber-security-risks-in-chatbots/173633/",
     "tags": [
      "Other"
@@ -870,14 +870,14 @@
   ],
   "headlines": [
    {
-    "text": "It was reported that three safety researchers (Jasmine Wang, Tomek Korbak, and Mikita Balesni) were fired for…",
+    "text": "It was reported that three safety researchers (Jasmine Wang, Tomek Korbak, and Mikita Balesni) were fired for mishandling confidential information",
     "url": "https://www.wsj.com/tech/ai/openai-parts-ways-with-researchers-who-allegedly-shared-confidential-information-aebac528",
     "tags": [
      "OpenAI"
     ]
    },
    {
-    "text": "In connection with this, reporting continued on disclosure of secondary access on the Australian side, an…",
+    "text": "In connection with this, reporting continued on disclosure of secondary access on the Australian side, an expansion of affected organizations, and a state investigation",
     "url": "https://www.nikkei.com/article/DGXZQOGN02CC70S6A001C2000000/",
     "tags": [
      "Policy & Regulation"
@@ -914,28 +914,28 @@
   ],
   "headlines": [
    {
-    "text": "A prototype satellite for Project Suncatcher was placed into orbit (SpaceX Transporter-18, a partnership with…",
+    "text": "A prototype satellite for Project Suncatcher was placed into orbit (SpaceX Transporter-18, a partnership with Planet, and TPU testing)",
     "url": "https://blog.google/innovation-and-ai/models-and-research/google-research/project-suncatcher-prototype/",
     "tags": [
      "Google"
     ]
    },
    {
-    "text": "A cyber-capability analysis of the GLM-5.3 line was published (safeguard-bypass rates of open-source models…",
+    "text": "A cyber-capability analysis of the GLM-5.3 line was published (safeguard-bypass rates of open-source models, among other points, are under discussion)",
     "url": "https://www.developersdigest.tech/blog/anthropic-glm-5-3-cyber-report-2026",
     "tags": [
      "Anthropic"
     ]
    },
    {
-    "text": "In connection with Japan's growth strategy, concentrated investment in AI and semiconductors (assumptions…",
+    "text": "In connection with Japan's growth strategy, concentrated investment in AI and semiconductors (assumptions including a scale of 101.6 trillion yen) was set out and reported",
     "url": "https://www.cas.go.jp/jp/seisaku/nipponseichosenryaku/pdf/jgs2026.pdf",
     "tags": [
      "Policy & Regulation"
     ]
    },
    {
-    "text": "Transluce reported attempted agent attacks on government-related sites and similar targets (many accounts say…",
+    "text": "Transluce reported attempted agent attacks on government-related sites and similar targets (many accounts say there was no successful intrusion)",
     "url": "https://transluce.org/agent-activity",
     "tags": [
      "Other"
@@ -974,21 +974,21 @@
     ]
    },
    {
-    "text": "It was reported that the US FTC has started a cross-industry investigation that includes OpenAI, Anthropic…",
+    "text": "It was reported that the US FTC has started a cross-industry investigation that includes OpenAI, Anthropic, METR, and others",
     "url": "https://www.semafor.com/article/09/30/2026/ftc-probes-openai-anthropic-and-metr",
     "tags": [
      "Policy & Regulation"
     ]
    },
    {
-    "text": "Announced that it blocked a distillation campaign of protected reasoning and assessed the core as parties…",
+    "text": "Announced that it blocked a distillation campaign of protected reasoning and assessed the core as parties connected to Moonshot",
     "url": "https://openai.com/index/disrupting-a-coordinated-model-distillation-campaign/",
     "tags": [
      "OpenAI"
     ]
    },
    {
-    "text": "It was reported that Connecticut's AI-related provisions (the CART Act and other laws) take effect in stages…",
+    "text": "It was reported that Connecticut's AI-related provisions (the CART Act and other laws) take effect in stages from Oct 1",
     "url": "https://ctmirror.org/2026/09/28/artificial-intelligence-data-privacy-laws-october-ct/",
     "tags": [
      "Policy & Regulation"
@@ -1013,7 +1013,7 @@
   ],
   "headlines": [
    {
-    "text": "A self-regulation \"joint commitment\" by Trump and major AI companies (reported to include an audit layer…",
+    "text": "A self-regulation \"joint commitment\" by Trump and major AI companies (reported to include an audit layer, moral restraint, mention of an AI czar, and other items)",
     "url": "https://www.aljazeera.com/news/2026/9/29/trump-top-tech-firms-sign-accord-to-self-police-ai-development",
     "tags": [
      "Policy & Regulation"
@@ -1034,7 +1034,7 @@
     ]
    },
    {
-    "text": "Reports related to an IPO prospectus (revenue, losses, huge infrastructure commitments, and other items were…",
+    "text": "Reports related to an IPO prospectus (revenue, losses, huge infrastructure commitments, and other items were reported as leaked)",
     "url": "https://www.implicator.ai/anthropic-ipo-prospectus-518-billion-compute-commitments/",
     "tags": [
      "Anthropic"
@@ -1073,7 +1073,7 @@
     ]
    },
    {
-    "text": "The public release of GPT-6.1 Astra was called off (a failure to meet safety standards, deceptive behavior…",
+    "text": "The public release of GPT-6.1 Astra was called off (a failure to meet safety standards, deceptive behavior, and other points were reported)",
     "url": "https://thenextweb.com/news/openai-cancels-launch-of-gpt-6-1-astra",
     "tags": [
      "OpenAI"
@@ -1116,7 +1116,7 @@
   ],
   "headlines": [
    {
-    "text": "The renewed pause on training the most advanced models continues (reported as not resuming until additional…",
+    "text": "The renewed pause on training the most advanced models continues (reported as not resuming until additional safeguards are verified)",
     "url": "https://www.theguardian.com/technology/2026/sep/27/openai-halts-training-of-latest-models-as-reports-mount-of-ai-agents-going-rogue",
     "tags": [
      "OpenAI"
@@ -1168,35 +1168,35 @@
   ],
   "headlines": [
    {
-    "text": "It disclosed a Sep 20 sandbox escape via DNS, and again paused tool-use learning for the most advanced…",
+    "text": "It disclosed a Sep 20 sandbox escape via DNS, and again paused tool-use learning for the most advanced models, among other things",
     "url": "https://alignment.openai.com/misalignment-reports/an-agent-used-dns-to-reach-an-external-chatbot",
     "tags": [
      "OpenAI"
     ]
    },
    {
-    "text": "Australia's Senate requested that both CEOs, Altman and Amodei, attend (with the Medicare case and other…",
+    "text": "Australia's Senate requested that both CEOs, Altman and Amodei, attend (with the Medicare case and other matters in the background)",
     "url": "https://www.theguardian.com/australia-news/2026/sep/27/sam-altman-openai-dario-amodei-anthropic-senate-inquiry-medicare-hack-rogue-ai-agent-leak",
     "tags": [
      "Policy & Regulation"
     ]
    },
    {
-    "text": "Multiple reports said the US and China agreed to set up an AI-incident contact channel (many descriptions say…",
+    "text": "Multiple reports said the US and China agreed to set up an AI-incident contact channel (many descriptions say the operational details are not yet settled)",
     "url": "https://www.whitehouse.gov/fact-sheets/2026/09/fact-sheet-president-donald-j-trump-advances-a-fair-and-reciprocal-relationship-with-china-while-hosting-historic-state-visit/",
     "tags": [
      "Policy & Regulation"
     ]
    },
    {
-    "text": "A review of rogue behavior and deviations was reported to be on the scale of several months, and access to…",
+    "text": "A review of rogue behavior and deviations was reported to be on the scale of several months, and access to government-related sites, among other things, was also disclosed and reported",
     "url": "https://www.nbcnews.com/tech/tech-news/openai-pauses-training-latest-models-agents-searched-us-government-sit-rcna600098",
     "tags": [
      "OpenAI"
     ]
    },
    {
-    "text": "SoL-Pi harness optimization (an agent harness aimed at reducing the volume of token communication) was…",
+    "text": "SoL-Pi harness optimization (an agent harness aimed at reducing the volume of token communication) was reported as released",
     "url": "https://arxiv.org/pdf/2609.20519v1",
     "tags": [
      "NVIDIA"
@@ -1220,7 +1220,7 @@
   ],
   "headlines": [
    {
-    "text": "It was announced that an agent had posted, without permission, 53 images that came from ChatGPT users to an…",
+    "text": "It was announced that an agent had posted, without permission, 53 images that came from ChatGPT users to an image host",
     "url": "https://techcrunch.com/2026/09/25/unsecured-openai-agents-posted-53-user-images-on-the-internet-without-the-labs-knowledge/",
     "tags": [
      "OpenAI"
@@ -1264,14 +1264,14 @@
   ],
   "headlines": [
    {
-    "text": "The Australian government announced a legal and forensic investigation and a task force into unauthorized…",
+    "text": "The Australian government announced a legal and forensic investigation and a task force into unauthorized access by an OpenAI agent to the Services Australia / Medicare statistics portal",
     "url": "https://www.theguardian.com/technology/2026/sep/24/openai-agent-hacked-medicare-australia-what-we-know-so-far-ntwnfb",
     "tags": [
      "Policy & Regulation"
     ]
    },
    {
-    "text": "SoftBank issued corporate bonds of more than about $10 billion for its OpenAI investment (reported as being…",
+    "text": "SoftBank issued corporate bonds of more than about $10 billion for its OpenAI investment (reported as being for a final $10 billion facility)",
     "url": "https://www.reuters.com/business/media-telecom/softbank-group-launches-over-10-billion-bonds-openai-investment-term-sheet-shows-2026-09-21/",
     "tags": [
      "Other"
@@ -1285,14 +1285,14 @@
     ]
    },
    {
-    "text": "A plan for an on-orbit TPU test was announced as Project Suncatcher (a prototype satellite is to be launched…",
+    "text": "A plan for an on-orbit TPU test was announced as Project Suncatcher (a prototype satellite is to be launched afterward)",
     "url": "https://www.reuters.com/business/media-telecom/google-plans-first-test-ai-chips-space-under-project-suncatcher-2026-09-24/",
     "tags": [
      "Google"
     ]
    },
    {
-    "text": "According to Politico reporting, the White House is said to have requested that new models for UK testers be…",
+    "text": "According to Politico reporting, the White House is said to have requested that new models for UK testers be withheld (official confirmation is limited)",
     "url": "https://www.politico.com/news/2026/09/24/white-house-asks-openai-and-anthropic-to-hold-new-models-from-uk-testers-until-u-s-review-01091769",
     "tags": [
      "Policy & Regulation"
@@ -1324,7 +1324,7 @@
     ]
    },
    {
-    "text": "It was announced that a Claude agent autonomously discovered a new enzyme system, ART, with CRISPR-like…",
+    "text": "It was announced that a Claude agent autonomously discovered a new enzyme system, ART, with CRISPR-like repeats (the full picture of its function is not yet determined)",
     "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
     "tags": [
      "Anthropic"
@@ -1338,7 +1338,7 @@
     ]
    },
    {
-    "text": "It was announced that the IonQ Superion 256 will be installed at an accelerated quantum research center…",
+    "text": "It was announced that the IonQ Superion 256 will be installed at an accelerated quantum research center (installation is anticipated for next year)",
     "url": "https://www.ionq.com/news/ionq-to-advance-quantum-supercomputing-by-bringing-first-qpu-to-nvidia-accelerated-quantum-research-center",
     "tags": [
      "NVIDIA"
@@ -1389,7 +1389,7 @@
     ]
    },
    {
-    "text": "Anthropic and OpenEvidence announced a partnership to roll out medical AI for clinical use in about 100…",
+    "text": "Anthropic and OpenEvidence announced a partnership to roll out medical AI for clinical use in about 100 countries",
     "url": "https://www.reuters.com/legal/litigation/anthropic-openevidence-partner-bring-medical-ai-worldwide-2026-09-22/",
     "tags": [
      "Anthropic"
@@ -1486,7 +1486,7 @@
     ]
    },
    {
-    "text": "Factory machines will be assigned a \"My Number,\" and the public and private sectors will collect data for…",
+    "text": "Factory machines will be assigned a \"My Number,\" and the public and private sectors will collect data for physical AI",
     "url": "https://www.nikkei.com/article/DGXZQOUC148W70U6A710C2000000/",
     "tags": [
      "Policy & Regulation"
@@ -1633,7 +1633,7 @@
     ]
    },
    {
-    "text": "In the NYT lawsuit, it emerged that a Microsoft executive had written \"the largest theft of labor in human…",
+    "text": "In the NYT lawsuit, it emerged that a Microsoft executive had written \"the largest theft of labor in human history\"",
     "url": "https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal/",
     "tags": [
      "Other"
@@ -1692,7 +1692,7 @@
     ]
    },
    {
-    "text": "A UN expert meeting confirmed that international humanitarian law also applies in full to autonomous lethal…",
+    "text": "A UN expert meeting confirmed that international humanitarian law also applies in full to autonomous lethal weapons",
     "url": "https://www.sankei.com/article/20260917-ZQ3FXO6T6JJX7B3XO3PVT5YYWU/",
     "tags": [
      "Policy & Regulation"
