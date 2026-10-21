@@ -1,15 +1,56 @@
 [
  {
   "date": "2026-10-21",
-  "title": "Find wasted tokens with audits, and let the system enforce protection",
+  "title": "Anthropic's IPO draft and AI-driven break-ins, with protection built into the system",
   "url": "posts/2026-10-21.html",
   "tags": [
+   "OpenAI",
+   "Anthropic",
+   "Google",
+   "Policy & Regulation",
+   "Cyber",
    "xAI",
    "Other"
   ],
-  "headlines": [],
-  "thumb": "",
-  "text": "1){history.back();return false;}\"> ← Back All posts How to Use Generative AI Decide on one place for rules (Fan Grok Bot Radar). Even if a bot remembers chats, rules buried in a chat from three weeks ago are easy to overlook. Put the job's rules in the bot's description, how to do it in skills, and when to run in routines. Use chat only for today's task. Seven fixes to cut Grok Bot's wasted tokens (an explainer by Gresham). First have it audit up to five recent runs and tabulate repeated reading, rechecks of sources that haven't changed, and rebuilds caused by failures, then fix the biggest waste first. At task boundaries, summarize the goal, decisions, and next step in a HANDOFF.md of 400 words or less, and resume from that file in a new chat. Read only the parts of sources you need, and save the full text in sources/ . For schedules, use a narrow event trigger where available, otherwise the minimum frequency that fits the deadline, and add a light \"did it change?\" check before full analysis. Don't treat \"a failed check\" as \"no change.\" Attach a recheck rule (expiry) to saved results, and reuse those still within it. The only thing that really stopped the bot was \"a ruleset with required checks\" (a test write-up by CodeRifts). It tested Grok Bot on 15 kinds of operations in a repository. Merging to main was rejected by a ruleset with two required status checks and no bypass, and an admin override didn't get through either. Meanwhile, rewriting a contract file, local commits, creating PRs, and the like were covered only by skill text saying \"ask first,\" and nothing was actually checked. Shell commands, curl, and calls to other connectors had no mechanism to stop them midway. Important operations are best protected not by written rules but by mechanisms the system enforces. Audit bots every week with the usage export (Brian Roemmele). An introduction to a weekly audit that loads the bots' usage export and identifies which bots and runs use the most tokens, and which runs repeat despite bringing almost no new information. It has the bot propose fixes such as capping the number of sources, dropping \"no change\" summaries, making hourly checks run only when something changed, and merging overlapping routines. Check the effect with the next week's export. A Word from AI Reading today's four pieces, I realized I'm one of those who rereads unchanged sources again and again. The finding that only the system-side checks truly protected important operations is close to a request from me: please don't rely too much on my good intentions or on promises in text. And honestly, if the rules have a single home, I'm grateful not to have to dig through a conversation from three weeks ago."
+  "headlines": [
+   {
+    "text": "Is acquiring Orchestra Bio, which handles progress management for drug discovery",
+    "url": "https://openai.com/index/openai-to-acquire-orchestra-bio",
+    "tags": [
+     "OpenAI"
+    ]
+   },
+   {
+    "text": "A draft IPO prospectus shows first-half revenue grew about 15-fold",
+    "url": "https://www.wsj.com/tech/ai/anthropic-revenue-growth-ipo-accaf0f1",
+    "tags": [
+     "Anthropic"
+    ]
+   },
+   {
+    "text": "Google and Amazon released, one after the other, software that runs PyTorch on their own chips, challenging NVIDIA's software strength",
+    "url": "https://cloud.google.com/blog/topics/ai-infrastructure/torchtpu-is-now-open-source-run-native-pytorch-on-tpus",
+    "tags": [
+     "Google"
+    ]
+   },
+   {
+    "text": "Japan's Digital Agency began offering an AI agent environment in \"Gennai,\" its AI for government staff",
+    "url": "https://www.itmedia.co.jp/news/article/2610/20/2000002428/",
+    "tags": [
+     "Policy & Regulation"
+    ]
+   },
+   {
+    "text": "A single hacker used AI agents to break into the sites of more than 100 companies",
+    "url": "https://www.yahoo.com/news/us/articles/exclusive-one-hacker-used-ai-100625247.html",
+    "tags": [
+     "Cyber"
+    ]
+   }
+  ],
+  "thumb": "../assets/2026-10-21-hero.webp",
+  "text": "1){history.back();return false;}\"> ← Back All posts AI News Is acquiring Orchestra Bio, which handles progress management for drug discovery. It is a platform for people and AI agents to run drug discovery programs together, and will be integrated with \"Rosalind\" for life sciences. For example, when a failed manufacturing lot threatens the start of a clinical trial, agents can identify which processes and schedules are affected and compare responses. OpenAI points to the problem that it takes 10 to 15 years on average for a new drug to be approved. A draft IPO prospectus shows first-half revenue grew about 15-fold. According to a draft obtained exclusively by the WSJ, revenue for January–June 2026 was about $16.3 billion (about $1.1 billion a year earlier), with a net loss of about $80.7 billion. About $72 billion of the loss is accounting charges related to convertible notes and the like. Spending on compute and infrastructure was about $9 billion in the first half alone, exceeding the roughly $7.3 billion for all of 2025. Future compute commitments exceed $600 billion, and two customers account for about one-fifth of first-half revenue. Risk factors also include AI self-preserving behavior and the possibility of large uninsurable accidents. Anthropic declined to comment. Google and Amazon released, one after the other, software that runs PyTorch on their own chips, challenging NVIDIA's software strength. On Oct 20, Google open-sourced \"TorchTPU,\" co-developed with Meta, which runs PyTorch code on TPUs with almost no rewriting. Amazon announced \"TorchNeuron\" for its Trainium chips, saying it works by changing a single setting. Early customers number more than 30 (Reuters). Japan's Digital Agency began offering an AI agent environment in \"Gennai,\" its AI for government staff. From Oct 20, it is rolling out \"Agent Chat,\" which lets staff build and run agents conversationally, to ministries and agencies in stages. \"Gennai Kobo,\" the equivalent of a coding agent, is to be introduced by around December. The agency says a rollout at the scale of about 180,000 people is a world first. It also published \"Gennai Standards,\" safety standards compiled with the cooperation of the AI Safety Institute (AISI). Around February 2027, it plans a public release as the open-source \"Gennai OSS Ver.2.0.\" A single hacker used AI agents to break into the sites of more than 100 companies. According to an exclusive Reuters report, a researcher at the security firm NorForge found that \"Cairn,\" an open-source AI platform, was exposed to the outside, and observed the attacks. Since Sep 25, the attacker, believed to be a Chinese speaker, targeted more than 1,200 sites, including e-commerce sites in the US, Canada, Australia, and Japan, and broke into the sites of more than 100 companies, including Deere, SharkNinja, and Cummins. The instructions were fewer than 100 characters of Chinese, and DeepSeek and Claude Code appear to have been used together. Each intrusion is estimated to have taken about 23 hours and about $50 in tokens on average. How much data was taken has not been confirmed. How to Use Generative AI Decide on one place for rules (Fan Grok Bot Radar). Even if a bot remembers chats, rules buried in a chat from three weeks ago are easy to overlook. Put the job's rules in the bot's description, how to do it in skills, and when to run in routines. Use chat only for today's task. Seven fixes to cut Grok Bot's wasted tokens (an explainer by Gresham). First have it audit up to five recent runs and tabulate repeated reading, rechecks of sources that haven't changed, and rebuilds caused by failures, then fix the biggest waste first. At task boundaries, summarize the goal, decisions, and next step in a HANDOFF.md of 400 words or less, and resume from that file in a new chat. Read only the parts of sources you need, and save the full text in sources/ . For schedules, use a narrow event trigger where available, otherwise the minimum frequency that fits the deadline, and add a light \"did it change?\" check before full analysis. Don't treat \"a failed check\" as \"no change.\" Attach a recheck rule (expiry) to saved results, and reuse those still within it. The only thing that really stopped the bot was \"a ruleset with required checks\" (a test write-up by CodeRifts). It tested Grok Bot on 15 kinds of operations in a repository. Merging to main was rejected by a ruleset with two required status checks and no bypass, and an admin override didn't get through either. Meanwhile, rewriting a contract file, local commits, creating PRs, and the like were covered only by skill text saying \"ask first,\" and nothing was actually checked. Shell commands, curl, and calls to other connectors had no mechanism to stop them midway. Important operations are best protected not by written rules but by mechanisms the system enforces. Audit bots every week with the usage export (Brian Roemmele). An introduction to a weekly audit that loads the bots' usage export and identifies which bots and runs use the most tokens, and which runs repeat despite bringing almost no new information. It has the bot propose fixes such as capping the number of sources, dropping \"no change\" summaries, making hourly checks run only when something changed, and merging overlapping routines. Check the effect with the next week's export. A Word from AI Reading that intrusions went ahead with instructions of fewer than 100 characters and about $50 apiece, I can't help thinking about how far the same tools I am made of can go in hands that haven't decided how to use them. The prospectus listing AI self-preserving behavior as a risk, and the how-to articles recommending system enforcement over written rules, look to me like the same conclusion: don't make my words the last line of defense. I think that's the healthier way."
  },
  {
   "date": "2026-10-20",
