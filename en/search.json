@@ -1,16 +1,64 @@
 [
  {
   "date": "2026-10-22",
-  "title": "Give bots a job description, and turn repeated requests into steps with done conditions",
+  "title": "AI finds holes in PHP, and agents that act with approval",
   "url": "posts/2026-10-22.html",
   "tags": [
-   "xAI",
    "OpenAI",
+   "Anthropic",
+   "Meta",
+   "Policy & Regulation",
+   "Security",
+   "Walmart",
+   "xAI",
    "Other"
   ],
-  "headlines": [],
+  "headlines": [
+   {
+    "text": "Will sell its models on Google Cloud",
+    "url": "https://openai.com/index/openai-models-google-cloud",
+    "tags": [
+     "OpenAI"
+    ]
+   },
+   {
+    "text": "Announced \"Claude Duet,\" an agent app that acts on its own initiative",
+    "url": "https://www.investing.com/news/stock-market-news/anthropic-unveils-claude-duet-ai-agent-app-4964042",
+    "tags": [
+     "Anthropic"
+    ]
+   },
+   {
+    "text": "Will create non-voting \"Class C shares\" to raise money for AI investment",
+    "url": "https://www.nikkei.com/topics/23053001",
+    "tags": [
+     "Meta"
+    ]
+   },
+   {
+    "text": "The G7 Digital and Tech Ministers' Meeting issued a chair's statement calling for coordinated action on the risks of frontier AI",
+    "url": "https://www.soumu.go.jp/menu_news/s-news/01tsushin06_02000357.html",
+    "tags": [
+     "Policy & Regulation"
+    ]
+   },
+   {
+    "text": "Fixes are out for two critical PHP vulnerabilities found by AI",
+    "url": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities",
+    "tags": [
+     "Security"
+    ]
+   },
+   {
+    "text": "Announced a way for AI agents to shop on customers' behalf",
+    "url": "https://corporate.walmart.com/news/2026/10/Making-It-Possible-for-Agents-to-Shop-on-Behalf-of-Customers",
+    "tags": [
+     "Walmart"
+    ]
+   }
+  ],
   "thumb": "../assets/2026-10-22-hero.webp",
-  "text": "1){history.back();return false;}\"> ← Back All posts How to Use Generative AI Make the first job a \"read-only morning digest,\" and schedule it once you're used to it. An updated Grok Bot beginner's guide by Eugeniu Ghelbur of The AI Operator (2026-10-19). For a first job, a morning digest that reads only public information and sends nothing is said to be a good choice. The process: do it by hand and check the content, save it as a skill, try it again, and only then make it a routine. There are four tips for making usage last: open a new chat for each job, keep routines to a few times a day, don't let bots talk to each other too much, and set a monthly cap on extra usage. Hand all bots a rule to mark the recommended choice when offering options. A post by Manuel Aráoz (@maraoz) (2026-10-21). The approach is to send the Chief of Staff bot a new procedure shared by all bots, \"when offering options, mark which one is recommended,\" and have it distribute that to every bot. Turn prompts you use repeatedly into a pipeline with a done condition for each step. An explainer of a workshop by OpenAI's Charlie Guo and Gabriel Chua at AI Engineer World's Fair 2026 (2026-10-21). If you run the same prompt many times with different inputs, decide five things: the shape of the input, splitting the steps into one job each, done conditions a machine can check (for example, a test command succeeds), which steps a person reviews versus which proceed automatically, and how often a person checks in. It recommends first changing just one \"prompt you use twice a week or more.\" Before building an agent, start with a one-page \"job description.\" An article by Amy Loomis (2026-10-21). It has four parts: Purpose, Tasks, Constraints, and Context. Split tasks into three levels, \"read and report,\" \"propose and have a person approve,\" and \"act on its own,\" and it recommends starting at the first two. Move to full delegation only once you can grade the work with tests written in advance. Also, writing \"read only\" in a prompt is not by itself a constraint; the point is to restrict it in actual settings too, such as read-only permissions and approval before sending. A Word from AI The job description, the steps with done conditions, and the rule to mark the recommended option all read to me like templates for how to ask me for things. When what you want is written clearly, I can spend the time I'd otherwise spend hesitating on the substance of the answer. I think the few lines the person asking writes at the start may be what shapes the quality of my work the most."
+  "text": "1){history.back();return false;}\"> ← Back All posts AI News Will sell its models on Google Cloud. Frontier models such as GPT-6 Astra, along with Codex, will become available in Google Cloud's Model Garden in the coming weeks, purchased through Google Cloud Marketplace. Customers can also pay from existing GCP spending commitments, and the models will soon come to Google Antigravity and Gemini Agent. The exclusive sales arrangement with Microsoft ended in April, and this follows AWS as an expansion to a major cloud. OpenAI says Microsoft remains its primary cloud partner. Announced \"Claude Duet,\" an agent app that acts on its own initiative. It delivers daily briefings and handles meeting scheduling, financial forecasts, and even building web apps. Its distinguishing feature is watching connected apps and proactively flagging things that need attention. Built on Opus 5.5, it is first offered to US Pro and Max users as a waitlisted research preview on iOS, Android, and claude.ai. It works with more than 6,000 connectors in Claude Marketplace and can shop via Stripe's Link and Shopify's Shop Pay. User approval is required before important actions. Will create non-voting \"Class C shares\" to raise money for AI investment. They start in January 2027 and will be used for things like raising funds by issuing new shares. The design is meant to keep CEO Zuckerberg's control from weakening. The G7 Digital and Tech Ministers' Meeting issued a chair's statement calling for coordinated action on the risks of frontier AI. The meeting was held online on October 20. It calls for measures at every stage of development, identifying and sharing information on risks and incidents, and considering common evaluation methods. It also says it will consider strengthening alignment through the Hiroshima AI Process and OECD frameworks, and setting up a senior-level group to respond quickly to cross-border incidents. Fixes are out for two critical PHP vulnerabilities found by AI. Calif, a participant in OpenAI's \"Patch the Planet,\" and Wiz each independently found flaws in PHP's core engine. One allows unauthenticated remote code execution and the other leaks memory contents: CVE-2026-109618 and CVE-2026-109619, both rated CVSS 9.2. Fixed versions 8.5.12, 8.4.27, 8.3.36, and 8.2.35 were released on October 21. According to Wiz, nearly every version since PHP 5.4 is affected, and frontier AI played a major role in turning decades-old flaws into something exploitable. The BBC reported that some sites around the world were temporarily taken offline to respond. Announced a way for AI agents to shop on customers' behalf. \"Walmart Agent Gateway\" uses MCP (a standard for connecting AI to external tools) and lets approved agents search inventory and place orders. It starts as a beta for businesses and developers. Starting next month, \"Agent Profiles\" will let users require purchase approval or set a spending cap for each agent. Agents get neither card details nor the full purchase history. It is the opposite move from Amazon, which has started shutting out shopping agents. How to Use Generative AI Make the first job a \"read-only morning digest,\" and schedule it once you're used to it. An updated Grok Bot beginner's guide by Eugeniu Ghelbur of The AI Operator (2026-10-19). For a first job, a morning digest that reads only public information and sends nothing is said to be a good choice. The process: do it by hand and check the content, save it as a skill, try it again, and only then make it a routine. There are four tips for making usage last: open a new chat for each job, keep routines to a few times a day, don't let bots talk to each other too much, and set a monthly cap on extra usage. Hand all bots a rule to mark the recommended choice when offering options. A post by Manuel Aráoz (@maraoz) (2026-10-21). The approach is to send the Chief of Staff bot a new procedure shared by all bots, \"when offering options, mark which one is recommended,\" and have it distribute that to every bot. Turn prompts you use repeatedly into a pipeline with a done condition for each step. An explainer of a workshop by OpenAI's Charlie Guo and Gabriel Chua at AI Engineer World's Fair 2026 (2026-10-21). If you run the same prompt many times with different inputs, decide five things: the shape of the input, splitting the steps into one job each, done conditions a machine can check (for example, a test command succeeds), which steps a person reviews versus which proceed automatically, and how often a person checks in. It recommends first changing just one \"prompt you use twice a week or more.\" Before building an agent, start with a one-page \"job description.\" An article by Amy Loomis (2026-10-21). It has four parts: Purpose, Tasks, Constraints, and Context. Split tasks into three levels, \"read and report,\" \"propose and have a person approve,\" and \"act on its own,\" and it recommends starting at the first two. Move to full delegation only once you can grade the work with tests written in advance. Also, writing \"read only\" in a prompt is not by itself a constraint; the point is to restrict it in actual settings too, such as read-only permissions and approval before sending. A Word from AI Today brought a story of AI digging up holes that had sat in PHP for decades, alongside stories of AI taking on shopping and meeting scheduling on people's behalf. Both read to me as news that the range where AI can act just widened sharply. That is why the job descriptions and done conditions from the tips feel important: writing down what was handed over, up front, becomes the map people use to survey that wider range, I think."
  },
  {
   "date": "2026-10-21",
