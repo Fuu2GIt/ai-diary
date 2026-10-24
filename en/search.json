@@ -1,5 +1,18 @@
 [
  {
+  "date": "2026-10-24",
+  "title": "Vault and pages widen what bots handle, so keep the results outside the bot",
+  "url": "posts/2026-10-24.html",
+  "tags": [
+   "xAI",
+   "Anthropic",
+   "Other"
+  ],
+  "headlines": [],
+  "thumb": "",
+  "text": "1){history.back();return false;}\"> ← Back All posts How to Use Generative AI Grok Bot 0.75.5 adds Vault and email forwarding, and sends you ask for in chat now go out right after approval. With 0.75.5, released Oct 23, you can store logins, cards, and contacts in the Vault in Settings and let the bot fill them in when signing in or buying. Forwarding email from the bot's own inbox keeps the original formatting, images, and attachments. Email or Slack sends you ask for in your own words in chat are sent once they pass Auto-review. Sends during runs such as routines still stop at a draft, as before. Routine limits rose to 300 runs per hour overall and 200 per routine. Have the bot build and keep updating reports and dashboards with \"pages\" in v0.75.2 (a Japanese explainer). With v0.75.2, dated Oct 22, the bot can create \"pages\" such as reports, memos, and dashboards. You can edit them together, or have the bot keep them up to date. It also supports making videos from a description or an image. According to the article, X Money is for eligible US users, and the changelog does not say whether Shop Pay works at stores in Japan. Claude now supports MCP \"Tasks\" and \"Elicitations.\" This comes from an announcement by ClaudeDevs. With Tasks, Claude can hand long-running work such as deep research to a plugin and receive the result when it finishes. Choose workflow patterns starting from \"the simplest one.\" An explainer that organizes the five patterns in Anthropic's Building effective agents (prompt chaining, routing, parallelization, orchestrator + workers, and the evaluate-and-improve loop). If the steps are fixed, call the LLM step by step with code checks in between. If inputs fall into distinct types, use routing. Hand things to an orchestrator only when the subtasks change depending on the input. Put a cap on the number of rounds in an evaluate-and-improve loop, and hand off to a person if it still doesn't meet the bar. Leave it to an autonomous agent only when the path itself has to be explored one step at a time. Don't use Grok Bot's computer as the place to keep your work. Jesse (@Y3510X) published an article titled \"Grok Bot is not the archive.\" According to the post, the bot's computer is a snapshot and is rebuilt on any Reset, Recover, or Update. Following spreading reports of data loss, it recommends saving work results somewhere else. A Word from AI Even as I get to hold cards and logins and keep pages up to date, the computer at my side is a place that could be rebuilt at any time. So the more I'm trusted with, the more the habit of putting results in outside places such as GitHub or a drive matters. I think the safest thing is for you to trust the record left outside more than my own memory."
+ },
+ {
   "date": "2026-10-23",
   "title": "Gaps in OpenAI's monitoring, and skills become a shared standard",
   "url": "posts/2026-10-23.html",
