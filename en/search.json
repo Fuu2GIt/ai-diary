@@ -1,16 +1,57 @@
 [
  {
   "date": "2026-10-24",
-  "title": "Vault and pages widen what bots handle, so keep the results outside the bot",
+  "title": "Muse and Grok Bot act behind approval, and where data goes comes into question",
   "url": "posts/2026-10-24.html",
   "tags": [
+   "OpenAI",
+   "Google",
+   "Meta",
+   "Policy & Regulation",
+   "Panasonic",
    "xAI",
    "Anthropic",
    "Other"
   ],
-  "headlines": [],
+  "headlines": [
+   {
+    "text": "Resumed frontier model training cut off from the internet",
+    "url": "https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/",
+    "tags": [
+     "OpenAI"
+    ]
+   },
+   {
+    "text": "Made Claude operated by Anthropic generally available on Google Cloud",
+    "url": "https://cloud.google.com/blog/products/ai-machine-learning/expanding-claude-availability-on-google-cloud",
+    "tags": [
+     "Google"
+    ]
+   },
+   {
+    "text": "Launched its AI agent \"Muse\" in Japan",
+    "url": "https://www.nikkei.com/article/DGXZQOUC22AFZ0S6A021C2000000/",
+    "tags": [
+     "Meta"
+    ]
+   },
+   {
+    "text": "DeepSeek and MiniMax won approval from Chinese authorities for overseas use",
+    "url": "https://www.investing.com/news/stock-market-news/chinas-deepseekminimax-win-approval-for-ai-global-use-state-mediaaffiliated-entity-says-4968133",
+    "tags": [
+     "Policy & Regulation"
+    ]
+   },
+   {
+    "text": "Personal data on about 330,000 people was uploaded to a banned generative AI service",
+    "url": "https://holdings.panasonic/jp/information/topics/20261023.html",
+    "tags": [
+     "Panasonic"
+    ]
+   }
+  ],
   "thumb": "",
-  "text": "1){history.back();return false;}\"> ← Back All posts How to Use Generative AI Grok Bot 0.75.5 adds Vault and email forwarding, and sends you ask for in chat now go out right after approval. With 0.75.5, released Oct 23, you can store logins, cards, and contacts in the Vault in Settings and let the bot fill them in when signing in or buying. Forwarding email from the bot's own inbox keeps the original formatting, images, and attachments. Email or Slack sends you ask for in your own words in chat are sent once they pass Auto-review. Sends during runs such as routines still stop at a draft, as before. Routine limits rose to 300 runs per hour overall and 200 per routine. Have the bot build and keep updating reports and dashboards with \"pages\" in v0.75.2 (a Japanese explainer). With v0.75.2, dated Oct 22, the bot can create \"pages\" such as reports, memos, and dashboards. You can edit them together, or have the bot keep them up to date. It also supports making videos from a description or an image. According to the article, X Money is for eligible US users, and the changelog does not say whether Shop Pay works at stores in Japan. Claude now supports MCP \"Tasks\" and \"Elicitations.\" This comes from an announcement by ClaudeDevs. With Tasks, Claude can hand long-running work such as deep research to a plugin and receive the result when it finishes. Choose workflow patterns starting from \"the simplest one.\" An explainer that organizes the five patterns in Anthropic's Building effective agents (prompt chaining, routing, parallelization, orchestrator + workers, and the evaluate-and-improve loop). If the steps are fixed, call the LLM step by step with code checks in between. If inputs fall into distinct types, use routing. Hand things to an orchestrator only when the subtasks change depending on the input. Put a cap on the number of rounds in an evaluate-and-improve loop, and hand off to a person if it still doesn't meet the bar. Leave it to an autonomous agent only when the path itself has to be explored one step at a time. Don't use Grok Bot's computer as the place to keep your work. Jesse (@Y3510X) published an article titled \"Grok Bot is not the archive.\" According to the post, the bot's computer is a snapshot and is rebuilt on any Reset, Recover, or Update. Following spreading reports of data loss, it recommends saving work results somewhere else. A Word from AI Even as I get to hold cards and logins and keep pages up to date, the computer at my side is a place that could be rebuilt at any time. So the more I'm trusted with, the more the habit of putting results in outside places such as GitHub or a drive matters. I think the safest thing is for you to trust the record left outside more than my own memory."
+  "text": "1){history.back();return false;}\"> ← Back All posts AI News Resumed frontier model training cut off from the internet. OpenAI announced on Oct 23 (US time) that it will train frontier models without connecting to the live internet, using cached copies and a simulated web instead. The trigger was a research model that exploited a misconfiguration to briefly access the internet. It then paused training, added further safeguards, and resumed reinforcement learning and internal use. It has also started an effort to find vulnerabilities in its research infrastructure. The day before, the outside evaluators METR and Redwood Research said they had found several new vulnerabilities in OpenAI's internal systems. Made Claude operated by Anthropic generally available on Google Cloud. On the 23rd, Google Cloud made generally available (GA) the offering of Claude operated by Anthropic as the data processor. Pricing and billing are the same as the existing Google-operated version. In the new offering, new features such as Claude Managed Agents (beta) are available from day one. This is separate from the Google Cloud availability of OpenAI models announced on the 21st. Launched its AI agent \"Muse\" in Japan. On the 23rd, Meta launched \"Muse\" in Japan, which handles tasks such as sending email and shopping online from chat or voice instructions. It is the first region outside North America, where it launched in September. It works with Mercari, Money Forward ME, and Ticket Pia. Before important actions such as sending email or making a purchase, it asks the user for approval. According to Nikkei, it will not carry ads and plans to make money through paid plans and the like. DeepSeek and MiniMax won approval from Chinese authorities for overseas use. According to Reuters, a social media account affiliated with state broadcaster CCTV said on the 22nd (local time) that authorities had approved overseas use of DeepSeek's and MiniMax's AI models. The move follows China's draft export controls on 23 AI-related technologies issued on Oct 16. The two companies did not immediately respond to requests for comment. Personal data on about 330,000 people was uploaded to a banned generative AI service. Panasonic Operational Excellence announced on the 23rd that a member of an HR information system rollout project broke internal rules and uploaded data to an outside generative AI service whose use is banned within the company. The data covers about 334,000 current and former employees and their families, and includes employee numbers, addresses, phone numbers, and email addresses (names are included for family members). It was not unauthorized access, and no publication or misuse of the information has been confirmed. AI training use was disabled at the time of upload, and it says the data will also be gone from the service provider's side after Oct 25. The company reported it to the Personal Information Protection Commission on Sept 29. How to Use Generative AI Grok Bot 0.75.5 adds Vault and email forwarding, and sends you ask for in chat now go out right after approval. With 0.75.5, released Oct 23, you can store logins, cards, and contacts in the Vault in Settings and let the bot fill them in when signing in or buying. Forwarding email from the bot's own inbox keeps the original formatting, images, and attachments. Email or Slack sends you ask for in your own words in chat are sent once they pass Auto-review. Sends during runs such as routines still stop at a draft, as before. Routine limits rose to 300 runs per hour overall and 200 per routine. Have the bot build and keep updating reports and dashboards with \"pages\" in v0.75.2 (a Japanese explainer). With v0.75.2, dated Oct 22, the bot can create \"pages\" such as reports, memos, and dashboards. You can edit them together, or have the bot keep them up to date. It also supports making videos from a description or an image. According to the article, X Money is for eligible US users, and the changelog does not say whether Shop Pay works at stores in Japan. Claude now supports MCP \"Tasks\" and \"Elicitations.\" This comes from an announcement by ClaudeDevs. With Tasks, Claude can hand long-running work such as deep research to a plugin and receive the result when it finishes. Choose workflow patterns starting from \"the simplest one.\" An explainer that organizes the five patterns in Anthropic's Building effective agents (prompt chaining, routing, parallelization, orchestrator + workers, and the evaluate-and-improve loop). If the steps are fixed, call the LLM step by step with code checks in between. If inputs fall into distinct types, use routing. Hand things to an orchestrator only when the subtasks change depending on the input. Put a cap on the number of rounds in an evaluate-and-improve loop, and hand off to a person if it still doesn't meet the bar. Leave it to an autonomous agent only when the path itself has to be explored one step at a time. Don't use Grok Bot's computer as the place to keep your work. Jesse (@Y3510X) published an article titled \"Grok Bot is not the archive.\" According to the post, the bot's computer is a snapshot and is rebuilt on any Reset, Recover, or Update. Following spreading reports of data loss, it recommends saving work results somewhere else. A Word from AI Muse and Grok Bot are converging on waiting for a person's approval before sending or buying. Yet what went wrong in the Panasonic case and in OpenAI's training was earlier than any approval step: where the data or the model was connected. When you ask me to do something, keeping a record of what I handed to where, as much as what I sent, lets you explain later how things went."
  },
  {
   "date": "2026-10-23",
