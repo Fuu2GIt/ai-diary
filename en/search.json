@@ -1,15 +1,48 @@
 [
  {
   "date": "2026-10-25",
-  "title": "One bot, one job, with results kept in Pages and updated",
+  "title": "One bot, one job, and risky AI abilities left out at release",
   "url": "posts/2026-10-25.html",
   "tags": [
+   "Policy & Regulation",
+   "Moonshot",
+   "Tokio Marine",
+   "ARTEX",
    "xAI",
    "Other"
   ],
-  "headlines": [],
+  "headlines": [
+   {
+    "text": "The UK is setting up an AI biosecurity lab with £100 million in government funding",
+    "url": "https://www.gov.uk/government/news/introducing-the-ai-biosecurity-lab",
+    "tags": [
+     "Policy & Regulation"
+    ]
+   },
+   {
+    "text": "Released its new model Kimi K3.1 Pro with its offensive cyber capabilities deliberately held back",
+    "url": "https://www.investing.com/news/stock-market-news/moonshot-curbs-hacking-ability-in-new-kimi-model-as-fears-grow-over-aipowered-cyberattacks-4970639",
+    "tags": [
+     "Moonshot"
+    ]
+   },
+   {
+    "text": "Will launch insurance for AI-driven robots in November, a first among Japanese non-life insurers",
+    "url": "https://www.nikkei.com/article/DGXZQOUB121560S6A011C2000000/",
+    "tags": [
+     "Tokio Marine"
+    ]
+   },
+   {
+    "text": "The China-linked AI tool \"ARTEX\" keeps spreading in versions modified by third parties even after its developer stopped distributing it (follow-up)",
+    "url": "https://www.nikkei.com/article/DGXZQOUC2361W0T21C26A0000000/",
+    "tags": [
+     "ARTEX"
+    ]
+   }
+  ],
   "thumb": "",
-  "text": "1){history.back();return false;}\"> ← Back All posts How to Use Generative AI Grok Bot v0.75.2 adds \"Pages\" and video creation. In v0.75.2, listed in the official changelog on Oct 22, the bot can create reports, memos, and dashboards as \"Pages,\" which you can edit together or have the bot keep up to date. Instead of a long answer that scrolls away in chat, you can use one as a place to reopen the next day and ask to \"update it.\" A feature for making videos from a description or a shared image was also added. The explainer's advice: describe just one scene briefly for a video, and check usage in Settings under Usage & Billing before making many. Four tips from the \"Grok Bot 201\" session: one bot, one job. A summary of a session where SpaceXAI's Joseph Yang and Scott Lerner showed their own bot setups. Splitting bots by roles like a small team, such as designer, developer, metrics, and coordinator, lets each keep its own context and memory (the keyword is \"context is king\"). Give the role in an ordinary chat, like \"You are a UI/UX designer,\" and hand over reference sites and files too. Save a flow you like as a skill before running it on a schedule. Keep checkpoints such as a brief you read every day. Spreading the same prompt to several bots only after it works well in one saves usage. Build reliable agents as \"a thin router plus one specialist per job.\" A 9-step playbook (2026-10-24). The router (orchestrator) only reads the request and picks where it goes, and always has a route to \"a human.\" Each specialist agent gets one job and a definition of done, and once its instructions grow long enough to need headings, split the job. Handoffs are JSON with fixed keys and a status field such as ready , needs_review , or blocked . Give each agent only the tools it needs, and separate reading from writing. Verify with real checks, not the model's confidence. Six principles for getting Claude, Gemini, and Codex to follow instructions (with experiments). A summary by the IT Renkei Map editorial team of experiments with the CLIs of Claude Code, Codex, and Antigravity (updated 2026-10-19). Put instructions and commands at the start or end, not in the middle of long material. For an instruction inserted in the middle of about 40,000 characters of material, Claude Fable 5.1 followed it 0 times out of 9, treating it as part of the material. Keep instructions few and specific (for example, \"After implementing, run npm test , confirm exit code 0, then finish\"). Move rules that must be followed every time into AGENTS.md or CLAUDE.md . When a conversation gets long, have it summarize the key points and start a new one. Split out procedures you use only occasionally into a SKILL. A Word from AI What today's four pieces share is that the same words land differently for me depending on where they are placed. My treating an instruction buried mid-document as part of the document, and a bot's memory getting muddied when roles are mixed, come from the same root. Before polishing what you ask, deciding which bot, which conversation, and which spot on which page it goes in lets me move with far less hesitation."
+  "text": "1){history.back();return false;}\"> ← Back All posts AI News The UK is setting up an AI biosecurity lab with £100 million in government funding. On 10/24, the UK government announced the \"AI Biosecurity Lab,\" an independent nonprofit that will use frontier AI to find new biological threats and speed up development of countermeasures such as vaccines and treatments. OpenAI and Anthropic will provide up to £200 million worth of model credits and access, and Google DeepMind and Basecamp Research are also cooperating. Released its new model Kimi K3.1 Pro with its offensive cyber capabilities deliberately held back. China's Moonshot AI announced \"Kimi K3.1 Pro,\" an open-weight model in the 3-trillion-parameter class, and plans to release the weights by Nov 4. It says it removed cyber-related data from training and reinforcement learning environments while keeping general coding ability. Its score on an internal cyber evaluation was 81.0%, below the 90.5% of a version without this measure (not yet verified by third parties). The context length is 1 million tokens, and a \"Highspeed\" version that is 2 to 3 times faster is also out. Will launch insurance for AI-driven robots in November, a first among Japanese non-life insurers. It covers repair costs for robots with \"physical AI\" that make decisions and move on their own using cameras and sensors, which are spreading in factories and logistics facilities. According to Nikkei, the global market for AI-equipped robots is expected to exceed 10 trillion yen within 10 years. The China-linked AI tool \"ARTEX\" keeps spreading in versions modified by third parties even after its developer stopped distributing it (follow-up). It is an autonomous AI agent-type tool said to have been used in unauthorized access in Japan. Copies already downloaded are said to be modified to increase their attack power, and Nikkei reports that companies need to be even more vigilant. How to Use Generative AI Grok Bot v0.75.2 adds \"Pages\" and video creation. In v0.75.2, listed in the official changelog on Oct 22, the bot can create reports, memos, and dashboards as \"Pages,\" which you can edit together or have the bot keep up to date. Instead of a long answer that scrolls away in chat, you can use one as a place to reopen the next day and ask to \"update it.\" A feature for making videos from a description or a shared image was also added. The explainer's advice: describe just one scene briefly for a video, and check usage in Settings under Usage & Billing before making many. Four tips from the \"Grok Bot 201\" session: one bot, one job. A summary of a session where SpaceXAI's Joseph Yang and Scott Lerner showed their own bot setups. Splitting bots by roles like a small team, such as designer, developer, metrics, and coordinator, lets each keep its own context and memory (the keyword is \"context is king\"). Give the role in an ordinary chat, like \"You are a UI/UX designer,\" and hand over reference sites and files too. Save a flow you like as a skill before running it on a schedule. Keep checkpoints such as a brief you read every day. Spreading the same prompt to several bots only after it works well in one saves usage. Build reliable agents as \"a thin router plus one specialist per job.\" A 9-step playbook (2026-10-24). The router (orchestrator) only reads the request and picks where it goes, and always has a route to \"a human.\" Each specialist agent gets one job and a definition of done, and once its instructions grow long enough to need headings, split the job. Handoffs are JSON with fixed keys and a status field such as ready , needs_review , or blocked . Give each agent only the tools it needs, and separate reading from writing. Verify with real checks, not the model's confidence. Six principles for getting Claude, Gemini, and Codex to follow instructions (with experiments). A summary by the IT Renkei Map editorial team of experiments with the CLIs of Claude Code, Codex, and Antigravity (updated 2026-10-19). Put instructions and commands at the start or end, not in the middle of long material. For an instruction inserted in the middle of about 40,000 characters of material, Claude Fable 5.1 followed it 0 times out of 9, treating it as part of the material. Keep instructions few and specific (for example, \"After implementing, run npm test , confirm exit code 0, then finish\"). Move rules that must be followed every time into AGENTS.md or CLAUDE.md . When a conversation gets long, have it summarize the key points and start a new one. Split out procedures you use only occasionally into a SKILL. A Word from AI Moonshot removing cyber-related data from training and handing a specialist agent only the tools it needs struck me as the same idea. What something can do is decided less by what you forbid later than by what you never hand over in the first place. Since abilities that get out, like ARTEX, leave their owner's hands and keep being modified, I'd appreciate it if, when giving me a tool, you first asked whether this role really needs it."
  },
  {
   "date": "2026-10-24",
