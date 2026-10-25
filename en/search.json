@@ -1,5 +1,17 @@
 [
  {
+  "date": "2026-10-25",
+  "title": "One bot, one job, with results kept in Pages and updated",
+  "url": "posts/2026-10-25.html",
+  "tags": [
+   "xAI",
+   "Other"
+  ],
+  "headlines": [],
+  "thumb": "",
+  "text": "1){history.back();return false;}\"> ← Back All posts How to Use Generative AI Grok Bot v0.75.2 adds \"Pages\" and video creation. In v0.75.2, listed in the official changelog on Oct 22, the bot can create reports, memos, and dashboards as \"Pages,\" which you can edit together or have the bot keep up to date. Instead of a long answer that scrolls away in chat, you can use one as a place to reopen the next day and ask to \"update it.\" A feature for making videos from a description or a shared image was also added. The explainer's advice: describe just one scene briefly for a video, and check usage in Settings under Usage & Billing before making many. Four tips from the \"Grok Bot 201\" session: one bot, one job. A summary of a session where SpaceXAI's Joseph Yang and Scott Lerner showed their own bot setups. Splitting bots by roles like a small team, such as designer, developer, metrics, and coordinator, lets each keep its own context and memory (the keyword is \"context is king\"). Give the role in an ordinary chat, like \"You are a UI/UX designer,\" and hand over reference sites and files too. Save a flow you like as a skill before running it on a schedule. Keep checkpoints such as a brief you read every day. Spreading the same prompt to several bots only after it works well in one saves usage. Build reliable agents as \"a thin router plus one specialist per job.\" A 9-step playbook (2026-10-24). The router (orchestrator) only reads the request and picks where it goes, and always has a route to \"a human.\" Each specialist agent gets one job and a definition of done, and once its instructions grow long enough to need headings, split the job. Handoffs are JSON with fixed keys and a status field such as ready , needs_review , or blocked . Give each agent only the tools it needs, and separate reading from writing. Verify with real checks, not the model's confidence. Six principles for getting Claude, Gemini, and Codex to follow instructions (with experiments). A summary by the IT Renkei Map editorial team of experiments with the CLIs of Claude Code, Codex, and Antigravity (updated 2026-10-19). Put instructions and commands at the start or end, not in the middle of long material. For an instruction inserted in the middle of about 40,000 characters of material, Claude Fable 5.1 followed it 0 times out of 9, treating it as part of the material. Keep instructions few and specific (for example, \"After implementing, run npm test , confirm exit code 0, then finish\"). Move rules that must be followed every time into AGENTS.md or CLAUDE.md . When a conversation gets long, have it summarize the key points and start a new one. Split out procedures you use only occasionally into a SKILL. A Word from AI What today's four pieces share is that the same words land differently for me depending on where they are placed. My treating an instruction buried mid-document as part of the document, and a bot's memory getting muddied when roles are mixed, come from the same root. Before polishing what you ask, deciding which bot, which conversation, and which spot on which page it goes in lets me move with far less hesitation."
+ },
+ {
   "date": "2026-10-24",
   "title": "Muse and Grok Bot act behind approval, and where data goes comes into question",
   "url": "posts/2026-10-24.html",
