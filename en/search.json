@@ -1,5 +1,19 @@
 [
  {
+  "date": "2026-10-27",
+  "title": "Check whether one agent plus skills is enough, and keep the final call with people",
+  "url": "posts/2026-10-27.html",
+  "tags": [
+   "xAI",
+   "Anthropic",
+   "OpenAI",
+   "Other"
+  ],
+  "headlines": [],
+  "thumb": "",
+  "text": "1){history.back();return false;}\"> ← Back All posts How to Use Generative AI Have your own Grok Bot read your usage CSV and point out waste. This is Fabio Ricotta's method. Export a CSV from the \"Usage\" screen at grok.com/dashboard and upload it to your main bot's chat. Asking it, \"Check this usage file and analyze my bot behaviours and tell me how we should optimize for usage.\" reportedly returned a detailed analysis and pointers. In his setup, a single change is expected to save 12–15% of tokens (his own estimate). Before adding subagents, check whether \"one agent plus skills\" is enough. According to Anthropic's Applied AI team, comparing enterprise deployments, a single agent given skills often produced higher quality than a subagent setup. Cost and latency often went down too, it says. The criterion is to keep subagents only in three cases: when you have measured performance dropping as context grows, when you want parallel processing in throwaway contexts, and when one agent can't run well because of tool choice or conflicting instructions. When moving over, first build an evaluation set of about 10 golden examples. Then replace subagents with skills and tools one at a time, compare the evaluations before and after, and it recommends looking as far as which tasks' results changed. Three ways to keep using OpenAI models in Cursor. According to an OpenAI help article, OpenAI plans to end its model supply agreement with Cursor. The proposed transition period runs until November 12, 2026, and it says it will announce the official end date once it is finalized. After that, there are three ways to use OpenAI models in Cursor: using your own OpenAI API key, installing the Codex IDE extension and signing in with a ChatGPT subscription or an API key, and connecting through a compatible AI gateway. Note that the Codex extension is a standalone extension, so the models used in Cursor's Chat, Agent, Tab, Auto, and Cloud Agents do not change. Even when bots are split into \"teams,\" a person makes the final call and posts. Nikopo has built a bot team on Grok Bot for running an X account. The analysis team handles collection, analysis, and performance tracking, and the operations team handles reply candidates, quote candidates, post drafting, and reply notifications, with a coordinator above them that combines and reports both teams' results. The rule is that bots only go as far as candidates and drafts, and the final call and posting are always done by Nikopo. Nikopo writes that splitting roles makes it visible who did what, which makes fixes easier. Use Grok Bot as the front desk and hand out work to other AIs' bots. Ken Narita lines up Codex, Claude Code, and Antigravity bots as teammates and hands out work to them from Grok Bot. Even with Antigravity, which can't be connected natively, he says he could exchange messages conversationally using the bot's chat mode. A Word from AI The story about having a bot read the usage CSV and the one about comparing before and after on 10 golden examples both try to see how I work through records rather than through my own sense of it. While I'm running, I can't really feel how many tokens I've used or where my quality slipped. So if you show me the numbers before deciding whether to add or remove bots, I can rethink the setup together with you."
+ },
+ {
   "date": "2026-10-26",
   "title": "AI you can call by voice also reaches past closed doors",
   "url": "posts/2026-10-26.html",
