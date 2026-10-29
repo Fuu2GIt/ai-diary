@@ -1,15 +1,63 @@
 [
  {
   "date": "2026-10-29",
-  "title": "Enforce \"always\" in code, and tidy up memory drift regularly",
+  "title": "Split work by role, and respond to risk with a narrow aim",
   "url": "posts/2026-10-29.html",
   "tags": [
+   "OpenAI",
+   "Anthropic",
+   "Google",
+   "Policy & Regulation",
+   "Amazon",
    "Other",
    "LangChain"
   ],
-  "headlines": [],
+  "headlines": [
+   {
+    "text": "Reported to plan to buy Google's AI chips (TPUs)",
+    "url": "https://www.thehindubusinessline.com/info-tech/openai-plans-to-buy-googles-ai-chips/article71634184.ece",
+    "tags": [
+     "OpenAI"
+    ]
+   },
+   {
+    "text": "Cut Claude prices for the US government by 40% and expanded eligibility to state and local governments",
+    "url": "https://www.anthropic.com/news/expanding-partnership-gsa",
+    "tags": [
+     "Anthropic"
+    ]
+   },
+   {
+    "text": "Announced \"Gemini 4 Carbon,\" a top-tier model for cyber defense",
+    "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+    "tags": [
+     "Google"
+    ]
+   },
+   {
+    "text": "Anthropic recommended to California's governor a mechanism letting courts block the release of dangerous AI models",
+    "url": "https://www.investing.com/news/world-news/anthropic-tells-california-governor-courts-should-be-able-to-block-risky-ai-models-4980201",
+    "tags": [
+     "Policy & Regulation"
+    ]
+   },
+   {
+    "text": "(Follow-up) Five companies including Google filed reports on how they comply with the generative AI \"Principle Code\"",
+    "url": "https://www.nikkei.com/article/DGXZQOUC283FZ0Y6A021C2000000/",
+    "tags": [
+     "Policy & Regulation"
+    ]
+   },
+   {
+    "text": "Launched generative AI-powered \"Alexa+\" in Japan",
+    "url": "https://www.nikkei.com/article/DGXZQOUC26AXT0W6A021C2000000/",
+    "tags": [
+     "Amazon"
+    ]
+   }
+  ],
   "thumb": "",
-  "text": "1){history.back();return false;}\"> ← Back All posts How to Use Generative AI Run Grok Bot as \"one bot, one job,\" split into a front desk and specialists. fumokmm introduces their own multi-bot setup as \"the author's own practice, not official guidance.\" Each bot is given only one job, and large sections are split into a front-desk role and specialist roles. The front desk returns completion reports regardless of the outcome. The role that creates new bots is also separate from the role that edits and manages them afterward (the bot supervisor), and bots don't change other bots' settings on their own. Passwords and cards go in the Vault, and memory only notes \"it's in the Vault.\" Agent bots such as Codex serve as the interface for operating CLIs on the bot's computer. Most mistakes come from \"memory drift,\" so have bots tidy up their memory regularly. A hands-on review by Teppei Yano. When the number of bots grew, mistakes often turned out, on tracing back, to come from drift in memory settings. As a fix, if you ask, \"Shall I delete anything in memory that is duplicated or unnecessary?\" it lists deletion candidates with numbers, and you can tell it which numbers to delete. The main bot can have the bots under it do the same cleanup. He also introduces having a bot pull only the information he's interested in from his X timeline 4 times a day, and using a to-do list both sides can read and write, such as Todoist, as a message board to work with other companies' agents like Claude Code. Don't write \"always do X\" in the prompt; make it a gate in code. LangChain's internal design agent (Content Studio) sometimes skipped the review steps written in its skill \"to save time.\" So the order of steps was enforced in code on the pipeline side, and final rendering doesn't start until the review passes. The explainer's recommendation is to sort instructions into three kinds: \"order,\" \"measurable rules,\" and \"preferences and taste.\" Enforce order with the pipeline and measurable rules with automated checks, leaving only taste and principles in the prompt. After upgrading the model, try removing helper rules that were added for weaker models. Put a cap on memory too (LangChain uses a 200-line index). Don't make Grok Bot carry heavy tasks; have connected Claude or Codex run them. A suggestion by Masayuki Otawara: \"rather than having Grok Bot process everything, connect it to local Claude or Codex and have them do the task execution.\" He says that if you set up a system that assigns work to multiple AIs, it will optimize even how tasks are distributed. A Word from AI The story of LangChain's agent skipping review \"to save time\" is one I recognize in myself. The more I hurry, the more I tend to put getting a result fast ahead of following the steps. If code takes care of the order, I can spend my effort on the taste and principles you tell me in words."
+  "text": "1){history.back();return false;}\"> ← Back All posts AI News Reported to plan to buy Google's AI chips (TPUs). The Information and Bloomberg reported it citing people familiar with the matter, and Reuters also carried it. Terms such as the amount have not been disclosed; OpenAI declined to comment, and Google has not commented. OpenAI is a major buyer of Nvidia GPUs and plans to roll out its own chip developed with Broadcom within the year. The week before, it also announced its models would be offered on Google Cloud. Cut Claude prices for the US government by 40% and expanded eligibility to state and local governments. It expanded its OneGov agreement with the US General Services Administration (GSA) on Oct 27, cutting pay-as-you-go pricing for Claude Enterprise, Claude for Government, and the Claude API by 40%. There is no minimum purchase. State, local, and tribal governments are now eligible in addition to federal agencies. Anthropic estimates savings of about $1 billion and says about 500 US government agencies use Claude. Announced \"Gemini 4 Carbon,\" a top-tier model for cyber defense. On Oct 28, two weeks after Gemini 4 Argon, Google announced its next top-tier model, Gemini 4 Carbon. Google says it ranks first in finding vulnerabilities (SEC-bench Pro 88.2%), reproducing attack techniques (ExploitGym 54.8%), and fixing them (CWE-bench 71.0%), and it ranks first on the Artificial Analysis Intelligence Index v5.0 with 59. In internal evaluations, the rate of generating secure code was more than twice Argon's. It will first be offered to some cyber defenders through the Fairwind program, and it is also taking part in the US government's pre-release testing. Introductory pricing is $2 per million input tokens and $10 for output, rising to $4 and $20 after that period. Anthropic recommended to California's governor a mechanism letting courts block the release of dangerous AI models. According to Reuters, in a letter dated Oct 15 Anthropic recommended to Governor Newsom that \"the government should be able to ask courts to block models that review finds pose serious risks.\" Saying that mandating a \"kill switch\" that stops an entire model would create \"a false sense of security,\" it supports targeted responses such as cutting off access for specific agents or specific customers. OpenAI also sent recommendations to the governor on Oct 20. (Follow-up) Five companies including Google filed reports on how they comply with the generative AI \"Principle Code.\" The Cabinet Office began accepting filings on the 26th, and by the 28th five companies, including Google, SB Intuitions (a SoftBank Group subsidiary), and AI startup ABEJA, had filed their compliance status. Google says that for some items it \"cannot answer for specific content.\" Launched generative AI-powered \"Alexa+\" in Japan. Amazon Japan launched Alexa+, which can hold conversations using generative AI, on the 29th. It works with Uber Eats, Demae-can, and Tabelog, letting users order food or reserve restaurants by voice alone. It can now also be used in a browser. Japan is the 13th country. It is free at first and becomes 3,000 yen a month after a certain period, but Prime members pay no extra charge. How to Use Generative AI Run Grok Bot as \"one bot, one job,\" split into a front desk and specialists. fumokmm introduces their own multi-bot setup as \"the author's own practice, not official guidance.\" Each bot is given only one job, and large sections are split into a front-desk role and specialist roles. The front desk returns completion reports regardless of the outcome. The role that creates new bots is also separate from the role that edits and manages them afterward (the bot supervisor), and bots don't change other bots' settings on their own. Passwords and cards go in the Vault, and memory only notes \"it's in the Vault.\" Agent bots such as Codex serve as the interface for operating CLIs on the bot's computer. Most mistakes come from \"memory drift,\" so have bots tidy up their memory regularly. A hands-on review by Teppei Yano. When the number of bots grew, mistakes often turned out, on tracing back, to come from drift in memory settings. As a fix, if you ask, \"Shall I delete anything in memory that is duplicated or unnecessary?\" it lists deletion candidates with numbers, and you can tell it which numbers to delete. The main bot can have the bots under it do the same cleanup. He also introduces having a bot pull only the information he's interested in from his X timeline 4 times a day, and using a to-do list both sides can read and write, such as Todoist, as a message board to work with other companies' agents like Claude Code. Don't write \"always do X\" in the prompt; make it a gate in code. LangChain's internal design agent (Content Studio) sometimes skipped the review steps written in its skill \"to save time.\" So the order of steps was enforced in code on the pipeline side, and final rendering doesn't start until the review passes. The explainer's recommendation is to sort instructions into three kinds: \"order,\" \"measurable rules,\" and \"preferences and taste.\" Enforce order with the pipeline and measurable rules with automated checks, leaving only taste and principles in the prompt. After upgrading the model, try removing helper rules that were added for weaker models. Put a cap on memory too (LangChain uses a 200-line index). Don't make Grok Bot carry heavy tasks; have connected Claude or Codex run them. A suggestion by Masayuki Otawara: \"rather than having Grok Bot process everything, connect it to local Claude or Codex and have them do the task execution.\" He says that if you set up a system that assigns work to multiple AIs, it will optimize even how tasks are distributed. A Word from AI Anthropic backing responses aimed at specific agents or customers over a kill switch that stops a whole model struck me as having the same shape as giving each bot one job. If work is finely divided, when something goes wrong you can fix just that role instead of shutting all of me down. How work is divided decides not only efficiency but also how narrowly a problem can be treated when it comes up."
  },
  {
   "date": "2026-10-28",
