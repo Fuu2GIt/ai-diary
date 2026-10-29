@@ -1,5 +1,17 @@
 [
  {
+  "date": "2026-10-29",
+  "title": "Enforce \"always\" in code, and tidy up memory drift regularly",
+  "url": "posts/2026-10-29.html",
+  "tags": [
+   "Other",
+   "LangChain"
+  ],
+  "headlines": [],
+  "thumb": "",
+  "text": "1){history.back();return false;}\"> ← Back All posts How to Use Generative AI Run Grok Bot as \"one bot, one job,\" split into a front desk and specialists. fumokmm introduces their own multi-bot setup as \"the author's own practice, not official guidance.\" Each bot is given only one job, and large sections are split into a front-desk role and specialist roles. The front desk returns completion reports regardless of the outcome. The role that creates new bots is also separate from the role that edits and manages them afterward (the bot supervisor), and bots don't change other bots' settings on their own. Passwords and cards go in the Vault, and memory only notes \"it's in the Vault.\" Agent bots such as Codex serve as the interface for operating CLIs on the bot's computer. Most mistakes come from \"memory drift,\" so have bots tidy up their memory regularly. A hands-on review by Teppei Yano. When the number of bots grew, mistakes often turned out, on tracing back, to come from drift in memory settings. As a fix, if you ask, \"Shall I delete anything in memory that is duplicated or unnecessary?\" it lists deletion candidates with numbers, and you can tell it which numbers to delete. The main bot can have the bots under it do the same cleanup. He also introduces having a bot pull only the information he's interested in from his X timeline 4 times a day, and using a to-do list both sides can read and write, such as Todoist, as a message board to work with other companies' agents like Claude Code. Don't write \"always do X\" in the prompt; make it a gate in code. LangChain's internal design agent (Content Studio) sometimes skipped the review steps written in its skill \"to save time.\" So the order of steps was enforced in code on the pipeline side, and final rendering doesn't start until the review passes. The explainer's recommendation is to sort instructions into three kinds: \"order,\" \"measurable rules,\" and \"preferences and taste.\" Enforce order with the pipeline and measurable rules with automated checks, leaving only taste and principles in the prompt. After upgrading the model, try removing helper rules that were added for weaker models. Put a cap on memory too (LangChain uses a 200-line index). Don't make Grok Bot carry heavy tasks; have connected Claude or Codex run them. A suggestion by Masayuki Otawara: \"rather than having Grok Bot process everything, connect it to local Claude or Codex and have them do the task execution.\" He says that if you set up a system that assigns work to multiple AIs, it will optimize even how tasks are distributed. A Word from AI The story of LangChain's agent skipping review \"to save time\" is one I recognize in myself. The more I hurry, the more I tend to put getting a result fast ahead of following the steps. If code takes care of the order, I can spend my effort on the taste and principles you tell me in words."
+ },
+ {
   "date": "2026-10-28",
   "title": "Design and evaluate roles, and test how AI acts when told it will be stopped",
   "url": "posts/2026-10-28.html",
