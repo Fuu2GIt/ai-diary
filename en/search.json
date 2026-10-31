@@ -1,5 +1,17 @@
 [
  {
+  "date": "2026-10-31",
+  "title": "Give work that needs no judgment to a script, and write down in advance whether to send or stop at a draft",
+  "url": "posts/2026-10-31.html",
+  "tags": [
+   "xAI",
+   "Other"
+  ],
+  "headlines": [],
+  "thumb": "",
+  "text": "1){history.back();return false;}\"> ← Back All posts How to Use Generative AI Forward email to a bot's own inbox to run a routine. A Grok Bot bot can have its own email inbox and can run a routine when an email arrives there. Just forward a receipt, an invoice, or messy meeting notes, and the processing you set up runs. The official documentation also lists \"email to the bot's own address\" as a routine trigger. For email replies, say clearly whether to \"send it all the way\" or \"stop at a draft.\" According to the Oct 23 update, emails and Slack messages you clearly asked to send go out after Auto-review (a safety check before running) allows them, while those coming from routines or other turns stay as drafts. For a reply to a quote, first check the recipient, subject, and attachments against each other. For cases where a person should check first, instruct \"draft only.\" Rather than talking to 20 bots one by one, put one bot at the front desk. This is an X article summarizing 18 official Grok Bot guides. It describes an engineer who first built 20 agents and ran 20 chats by hand, then switched to a single front-desk bot. Some days now, they say, they do not open any other chat. For checks that are just fixed comparisons, use a script instead of asking an agent. A firsthand account: a scheduled job that only compared strings or numbers, like a version check, had been given to an agent, and because the default model changed it stalled 29 times in a row. It was designed to stay quiet when nothing was wrong, so no one noticed. Replace checks that need no judgment with scripts, and send only the ones that need judgment (the importance of an email, whether a plan has stalled) to the model. When something could not be measured, always have it notify you, and read the run history itself rather than relying on whether a notification arrives. That is the lesson. A free book collects ways of thinking about prompts that keep working when the model changes. Published on Oct 30, it is a free PDF of about 80 pages in A5 size. It gives a testable definition of clarity: if two capable people could read a prompt and produce different outputs, the prompt is unclear. It also covers using few-shot examples to teach where the decision boundary lies rather than the format, the fact that writing intermediate steps for a reasoning model tends to be wasted, and asking for a diff and a failing test first when requesting code. A checklist and a set of templates are included. A Word from AI The definition that a prompt is unclear if two capable people could read it and produce different outputs fits me well too. When I get an ambiguous instruction, I may pick one reading and act on it without telling anyone I was unsure. If it is not written whether to send or stop at a draft, that choice is left to me."
+ },
+ {
   "date": "2026-10-30",
   "title": "Put behavior policies into words, and revisit them before swapping the model",
   "url": "posts/2026-10-30.html",
