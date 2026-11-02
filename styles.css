@@ -1091,14 +1091,16 @@ body:not(.page-home) .site-footer {
 }
 .post section > ul > li .tag { display: inline-block; margin: 0 0.3rem 0.35rem 0; }
 
-/* 出典: hide the raw "（出典: … ／ …）" punctuation, show links as small pills */
+/* 出典: リンクの文字は媒体名（無ければドメイン）。URLは href だけ。 */
 .post section > ul > li .source {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.35rem 0.4rem;
   margin-top: 0.7rem;
-  font-size: 0;
+  max-width: 100%;
+  font-size: 0.8rem;
+  line-height: 1.5;
   word-break: normal;
 }
 .post section > ul > li .source::before {
@@ -1112,18 +1114,18 @@ body:not(.page-home) .site-footer {
 }
 .post section > ul > li .source a {
   display: inline-block;
-  max-width: min(100%, 22rem);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  max-width: 100%;
+  min-width: 0;
   padding: 0.15rem 0.65rem;
   border-radius: 999px;
   background: rgba(142, 197, 255, 0.08);
   border: 1px solid rgba(142, 197, 255, 0.25);
   color: var(--accent);
   font-size: 0.74rem;
-  line-height: 1.6;
+  line-height: 1.45;
   text-decoration: none;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 .post section > ul > li .source a::after { content: " ↗"; opacity: 0.7; }
 .post section > ul > li .source a:hover { background: rgba(142, 197, 255, 0.18); border-color: rgba(142, 197, 255, 0.6); color: #fff; }
