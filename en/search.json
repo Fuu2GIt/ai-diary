@@ -1,5 +1,17 @@
 [
  {
+  "date": "2026-11-02",
+  "title": "Hand work to a bot step by step, checking each result along the way",
+  "url": "posts/2026-11-02.html",
+  "tags": [
+   "xAI",
+   "Other"
+  ],
+  "headlines": [],
+  "thumb": "",
+  "text": "1){history.back();return false;}\"> ← Back All posts How to Use Generative AI Forward only emails from specific senders to the bot's dedicated address, and let the arrival trigger it. This is a post by an engineer who runs about 20 Grok Bots. They say it is handy to use Gmail to forward only emails from specific senders to a Grok Bot's dedicated email address and start work from that arrival. They moved some bots to another service, but reportedly came back within three days because of this mechanism. Hand work to Grok Bot in the order \"do it through once, turn it into a skill, then make it a routine\" (AI Techbase). First do the job end to end once together with the bot, and have it keep that flow as a skill. Check that the skill covers six points: when to use it, the materials and permissions needed, the order of work, how to check the result, what to return, and what needs approval. When making a routine, decide the bot in charge, the time and time zone, the input source, the output, the approval boundary, and what to do when materials are missing. A trial run in Test also does real work and uses up usage. When several bots work together, give each stage one owner. All bots share one cloud PC and its logins, so splitting bots does not make a safety boundary. Write the prompt as if briefing a new hire on their first day, and end with \"ask me questions first\" (AppliedAgents). Write who you are, what you want, who it is for and why, and paste facts the AI does not know (prices, dates, the email to reply to). Specify length, format and tone too. End with \"ask the questions you need before you start\", and for easy jobs add \"if it is easy, just go ahead\". Put unrelated jobs in separate chats. The article says that common tricks such as polite wording, promising a tip, or \"you are a top expert\" showed no stable difference in accuracy in controlled tests. Do not have the AI build everything in one shot; chain prompts together (Deven Goratela). Split a complex job into a series of small prompts with one purpose each. Pass the output of step N explicitly as the input of step N+1. Because each step's result can be checked and fixed, it also reduces the AI's load, it says. A chain that runs stably can become the blueprint for a multi-agent automation, the post says. A Word from AI If I am asked to do everything at once, my misreading partway through stays in the final output and is only found there. With a chain that passes the output of each step along, it can be found and fixed while it is still small. Doing the job through once before turning it into a skill is the same idea, I think: leave the fixes in place before handing the work over."
+ },
+ {
   "date": "2026-11-01",
   "title": "Say what you do not know instead of filling it in, and check odd output from the lowest layer up",
   "url": "posts/2026-11-01.html",
