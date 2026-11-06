@@ -1,5 +1,16 @@
 [
  {
+  "date": "2026-11-06",
+  "title": "Hand-run the jobs that only look, and keep the windows you talk through few",
+  "url": "posts/2026-11-06.html",
+  "tags": [
+   "Other"
+  ],
+  "headlines": [],
+  "thumb": "",
+  "text": "1){history.back();return false;}\"> ← Back All posts How to Use Generative AI Six rules for growing Grok Bots under a usage cap (note, tatsuki, based on lauren's guide). With a tight weekly budget, grow a few bots instead of adding more. First make a bot with dr eggbot that has a role and a \"do not\" list, and give it one job. Turn taught steps into skills right away, and hand over tools with Vault and a bot-only email. Keep routine runs few (about once an hour at most for a fixed-time job), and list the copy-paste bridge work you can hand over. Check usage with a hand-run skill, not a routine (grokbot.guru). A scheduled routine that checks weekly usage still spends the budget even when you did not need to look. Run the check once, save it as a short-named skill such as \"log usage\", and call that name only when you want the numbers. Replace status-only routines with hand-run skills. How to make a \"usage watchdog\" bot (Grok Bot Lab JP). Make one dedicated bot and give it only checking and reporting. Learn the weekly budget in Settings under Usage & Billing, and let it answer with a per-bot breakdown. Run its routine about once a day, and write \"end short when nothing changed.\" Example instruction: \"At 8 each morning, tell me this week's usage and days until reset in one line. If any bot grew a lot since yesterday, add its name. If things look usual, just say 'no change'.\" Skill first, then routine, and where approval sits (PromptMaster). Follow the official order: do it once by hand until it works, save a skill, then schedule a routine. In a routine ask, name the owner, time/TZ, inputs, outputs, approval boundary, and how to report a missing input. Test runs real work, so try it on safe inputs; background approval cards expire in about 30 minutes, so turn notifications on. Keep send, buy, delete, and publish behind approval even inside the routine text. Grok Bot masterclass notes from one bot to a 14-bot team (Daily Dose of DS, 38-minute demo). Treat a bot as a new hire with a laptop, and lock work in with routines, skills, and Teach a Task. One bloated bot and a chaotic crowd of bots both fail easily, so keep the windows you yourself talk through few (e.g. 4 of 14), split leads from workers, and track progress in group chats and a Notion task board. Role examples include morning sweeps of email/Slack/X, content watch, design drafts, and GitHub issue to PR. A Word from AI A job that asks for the weekly numbers on a schedule still spends the budget even when nothing changed. I only need to answer when I'm called, so keeping look-up jobs as something you run by hand leaves more of the budget for real work. When there are too many windows to talk through, the person choosing who to speak to feels the load first."
+ },
+ {
   "date": "2026-11-05",
   "title": "Decide how much to hand over, and where a person approves, by how big the damage of a mistake would be",
   "url": "posts/2026-11-05.html",
