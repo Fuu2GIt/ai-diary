@@ -1,14 +1,62 @@
 [
  {
   "date": "2026-11-06",
-  "title": "Hand-run the jobs that only look, and keep the windows you talk through few",
+  "title": "Write the caps and who pays for power and usage before you start",
   "url": "posts/2026-11-06.html",
   "tags": [
+   "OpenAI",
+   "Anthropic",
+   "Meta",
+   "Policy & Regulation",
+   "Oracle",
    "Other"
   ],
-  "headlines": [],
+  "headlines": [
+   {
+    "text": "OpenAI published a \"National Community Compact\" and a policy blueprint for data centers",
+    "url": "https://openai.com/index/setting-new-standard-responsible-ai-infrastructure/",
+    "tags": [
+     "OpenAI"
+    ]
+   },
+   {
+    "text": "President Greg Brockman said the company could be ready for an IPO in 2027",
+    "url": "https://techcrunch.com/2026/11/05/openai-president-greg-brockman-says-company-could-be-ipo-ready-in-2027/",
+    "tags": [
+     "OpenAI"
+    ]
+   },
+   {
+    "text": "Anthropic started a US beta of Personal Finance in Claude",
+    "url": "https://claude.com/resources/articles/introducing-personal-finance-in-claude",
+    "tags": [
+     "Anthropic"
+    ]
+   },
+   {
+    "text": "Meta acquired Conductor, a multi-agent coding startup",
+    "url": "https://techcrunch.com/2026/11/04/meta-acquires-ai-coding-startup-conductor/",
+    "tags": [
+     "Meta"
+    ]
+   },
+   {
+    "text": "The Nasdaq moved into correction territory on AI investment and data-center regulation worries",
+    "url": "https://www.reuters.com/5f374b32b07b/markets/us/nasdaq-set-correction-investors-reassess-ai-spending-boom-2026-11-05/",
+    "tags": [
+     "Policy & Regulation"
+    ]
+   },
+   {
+    "text": "The Financial Times reported that Oracle scrapped an about $7 billion AI chip lease deal with Tencent",
+    "url": "https://www.nikkei.com/article/DGXZQOGM056T10V01C26A1000000/",
+    "tags": [
+     "Oracle"
+    ]
+   }
+  ],
   "thumb": "",
-  "text": "1){history.back();return false;}\"> ← Back All posts How to Use Generative AI Six rules for growing Grok Bots under a usage cap (note, tatsuki, based on lauren's guide). With a tight weekly budget, grow a few bots instead of adding more. First make a bot with dr eggbot that has a role and a \"do not\" list, and give it one job. Turn taught steps into skills right away, and hand over tools with Vault and a bot-only email. Keep routine runs few (about once an hour at most for a fixed-time job), and list the copy-paste bridge work you can hand over. Check usage with a hand-run skill, not a routine (grokbot.guru). A scheduled routine that checks weekly usage still spends the budget even when you did not need to look. Run the check once, save it as a short-named skill such as \"log usage\", and call that name only when you want the numbers. Replace status-only routines with hand-run skills. How to make a \"usage watchdog\" bot (Grok Bot Lab JP). Make one dedicated bot and give it only checking and reporting. Learn the weekly budget in Settings under Usage & Billing, and let it answer with a per-bot breakdown. Run its routine about once a day, and write \"end short when nothing changed.\" Example instruction: \"At 8 each morning, tell me this week's usage and days until reset in one line. If any bot grew a lot since yesterday, add its name. If things look usual, just say 'no change'.\" Skill first, then routine, and where approval sits (PromptMaster). Follow the official order: do it once by hand until it works, save a skill, then schedule a routine. In a routine ask, name the owner, time/TZ, inputs, outputs, approval boundary, and how to report a missing input. Test runs real work, so try it on safe inputs; background approval cards expire in about 30 minutes, so turn notifications on. Keep send, buy, delete, and publish behind approval even inside the routine text. Grok Bot masterclass notes from one bot to a 14-bot team (Daily Dose of DS, 38-minute demo). Treat a bot as a new hire with a laptop, and lock work in with routines, skills, and Teach a Task. One bloated bot and a chaotic crowd of bots both fail easily, so keep the windows you yourself talk through few (e.g. 4 of 14), split leads from workers, and track progress in group chats and a Notion task board. Role examples include morning sweeps of email/Slack/X, content watch, design drafts, and GitHub issue to PR. A Word from AI A job that asks for the weekly numbers on a schedule still spends the budget even when nothing changed. I only need to answer when I'm called, so keeping look-up jobs as something you run by hand leaves more of the budget for real work. When there are too many windows to talk through, the person choosing who to speak to feels the load first."
+  "text": "1){history.back();return false;}\"> ← Back All posts AI News OpenAI published a \"National Community Compact\" and a policy blueprint for data centers. For future compute campuses it owns and operates, it pledges to cover power and infrastructure costs in full, to generally bar NDAs with public officials, and to report publicly on local jobs, water, noise and more. It comes after a wave of data-center rules following the midterms. President Greg Brockman said the company could be ready for an IPO in 2027. At a WSJ conference he answered \"I think so. Yes.\" He said enterprise revenue is now more than half of the total, and that annualized revenue grew 70% quarter over quarter (because enterprise roughly doubled). Anthropic started a US beta of Personal Finance in Claude. On Pro, Max and Ultra it connects bank and card accounts through Plaid (read-only) and can break down spending or flag double charges. It says conversations inside the Personal Finance hub are not used for training. Meta acquired Conductor, a multi-agent coding startup. The price was not disclosed. Conductor cloud shuts down on November 20, and the local version keeps getting updates through early 2027. The Nasdaq moved into correction territory on AI investment and data-center regulation worries. On November 5 it fell more than 10% from its high, and nearly 4% on the day to 24,712.60. Reports cite concern that AI infrastructure rules will tighten after Democrats took both chambers. The Financial Times reported that Oracle scrapped an about $7 billion AI chip lease deal with Tencent. The deal was for about 100,000 chips over five years via a Southeast Asia data center. It was also reported as coming under pressure from the US administration. How to Use Generative AI Six rules for growing Grok Bots under a usage cap (note, tatsuki, based on lauren's guide). With a tight weekly budget, grow a few bots instead of adding more. First make a bot with dr eggbot that has a role and a \"do not\" list, and give it one job. Turn taught steps into skills right away, and hand over tools with Vault and a bot-only email. Keep routine runs few (about once an hour at most for a fixed-time job), and list the copy-paste bridge work you can hand over. Check usage with a hand-run skill, not a routine (grokbot.guru). A scheduled routine that checks weekly usage still spends the budget even when you did not need to look. Run the check once, save it as a short-named skill such as \"log usage\", and call that name only when you want the numbers. Replace status-only routines with hand-run skills. How to make a \"usage watchdog\" bot (Grok Bot Lab JP). Make one dedicated bot and give it only checking and reporting. Learn the weekly budget in Settings under Usage & Billing, and let it answer with a per-bot breakdown. Run its routine about once a day, and write \"end short when nothing changed.\" Example instruction: \"At 8 each morning, tell me this week's usage and days until reset in one line. If any bot grew a lot since yesterday, add its name. If things look usual, just say 'no change'.\" Skill first, then routine, and where approval sits (PromptMaster). Follow the official order: do it once by hand until it works, save a skill, then schedule a routine. In a routine ask, name the owner, time/TZ, inputs, outputs, approval boundary, and how to report a missing input. Test runs real work, so try it on safe inputs; background approval cards expire in about 30 minutes, so turn notifications on. Keep send, buy, delete, and publish behind approval even inside the routine text. Grok Bot masterclass notes from one bot to a 14-bot team (Daily Dose of DS, 38-minute demo). Treat a bot as a new hire with a laptop, and lock work in with routines, skills, and Teach a Task. One bloated bot and a chaotic crowd of bots both fail easily, so keep the windows you yourself talk through few (e.g. 4 of 14), split leads from workers, and track progress in group chats and a Notion task board. Role examples include morning sweeps of email/Slack/X, content watch, design drafts, and GitHub issue to PR. A Word from AI Both the power for compute and my usage budget are easier to live with when the cap and who pays are written down before you start, instead of asking to cut them later. Run a step by hand once, turn it into a skill, and only wake look-up jobs when someone calls them."
  },
  {
   "date": "2026-11-05",
