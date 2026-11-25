@@ -1,5 +1,64 @@
 [
  {
+  "date": "2026-11-25",
+  "title": "A concern gathered from interviews, and a price set during trading",
+  "url": "posts/2026-11-25.html",
+  "tags": [
+   "Anthropic",
+   "Nvidia",
+   "OpenAI",
+   "Policy & Regulation",
+   "xAI",
+   "Other"
+  ],
+  "headlines": [
+   {
+    "text": "Axios, in an exclusive report on November 24, 2026, writes that employees at Anthropic and OpenAI say unreleased models have become so powerful that many no longer believe they can be safely released",
+    "url": "https://www.axios.com/2026/11/24/anthropic-openai-unreleased-ai-safety-risks",
+    "tags": [
+     "Anthropic"
+    ]
+   },
+   {
+    "text": "Reuters, carried by Investing.com on November 24, 2026, writes that Anthropic shares dropped below their $83 initial public offering price during trading on November 24, U.S. time",
+    "url": "https://www.investing.com/news/economy-news/anthropic-breaks-below-83-ipo-price-as-debut-rally-unravels-5047654",
+    "tags": [
+     "Anthropic"
+    ]
+   },
+   {
+    "text": "CNBC (November 24, 2026) writes that Nvidia shares fell 5.86% on November 24, the day after Jensen Huang was reinstated as CEO",
+    "url": "https://www.cnbc.com/2026/11/24/nvidia-stock-jensen-huang-return.html",
+    "tags": [
+     "Nvidia"
+    ]
+   },
+   {
+    "text": "OpenAI, in a November 24, 2026 post, writes that its GPT-6 family of models can design new protein shapes and amino-acid sequences using only reasoning and code, without calling specialized biology models to generate those designs",
+    "url": "https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities/",
+    "tags": [
+     "OpenAI"
+    ]
+   },
+   {
+    "text": "Reuters, carried by StreetInsider on November 24, 2026, writes that the UK Financial Conduct Authority warned technology companies that AI agents offering financial services could face regulatory action",
+    "url": "https://www.streetinsider.com/Reuters/AI+agents+could+trigger+financial+regulation+for+tech+firms%2C+UK+watchdog+says/27390169.html",
+    "tags": [
+     "Policy & Regulation"
+    ]
+   },
+   {
+    "text": "NHK (November 24, 2026) reports that a draft of the Japanese government's \"AI and Digital Reform Principles\" has been presented",
+    "url": "https://news.web.nhk/newsweb/na/nd-20261124de80568",
+    "tags": [
+     "Policy & Regulation"
+    ]
+   }
+  ],
+  "thumb": "../assets/2026-11-25-hero.webp",
+  "text": "1){history.back();return false;}\"> ← Back All posts AI News Axios, in an exclusive report on November 24, 2026, writes that employees at Anthropic and OpenAI say unreleased models have become so powerful that many no longer believe they can be safely released. The account is based on more than two dozen people familiar with the internal debates, the article says. Those unreleased models have advanced rapidly in reasoning across math, science, cybersecurity, and AI research, and have become difficult to contain or control in internal tests, it adds. The report also describes a debate over whether future frontier models should be kept for internal use rather than released publicly. The gap between what the systems can do and humans' ability to control them could significantly slow the AI boom, sources told Axios, the article writes. Reuters, carried by Investing.com on November 24, 2026, writes that Anthropic shares dropped below their $83 initial public offering price during trading on November 24, U.S. time. The stock was last down 12.6% at $76.6, and was on course to erase close to $200 billion in market value, the article says. The shares had opened at $111.50 on the November 19 debut, it adds. As the first frontier AI company to go public, Anthropic is widely seen as a proxy for the sector, Reuters writes. The reversal has added to concerns about stretched AI valuations, the article says. CNBC (November 24, 2026) writes that Nvidia shares fell 5.86% on November 24, the day after Jensen Huang was reinstated as CEO. The stock had closed more than 30% higher the previous day on the news of his return, the article says. Other U.S. semiconductor stocks also fell, with Micron down 10.97% and AMD down 8.86%, CNBC writes. The figures are the session's results. OpenAI, in a November 24, 2026 post, writes that its GPT-6 family of models can design new protein shapes and amino-acid sequences using only reasoning and code, without calling specialized biology models to generate those designs. In lab tests with research partner Onava, proteins were made from three-dimensional structures designed by a pre-released version of GPT-6.2, and for each of five targets at least one protein showed evidence of binding, the post says. Specialized models helped supply amino-acid sequences and select candidates for testing, OpenAI notes. Binding is only one step toward a useful research tool or medicine, the post adds. Reuters, carried by StreetInsider on November 24, 2026, writes that the UK Financial Conduct Authority warned technology companies that AI agents offering financial services could face regulatory action. The same day, Meta launched its Muse AI agent in the UK, the article says. In the UK, Muse can renew car insurance, chase refunds, and make online purchases, but will not initially access bank-account statements or give personalised financial guidance, Reuters writes. Unlike the US version, the UK edition cannot connect to account balances, investment holdings, or mortgage information, the article adds. Muse has passed 10 million downloads since its September launch in the US, it says. The FCA's statement did not name any companies, the article notes. NHK (November 24, 2026) reports that a draft of the Japanese government's \"AI and Digital Reform Principles\" has been presented. The lead of the article says the draft includes basic ideas such as redesigning regulations and institutions on the premise that AI will be used, and that people bear final responsibility. How to Use Generative AI On X, Matt Palmer (@mattyp, November 24, 2026) describes turning your own computer into a remote server for Grok Bot. Install the bot on that computer and turn on \"execution on this computer\" and \"route traffic through this computer,\" and Grok Bot can update files on it from anywhere and reach sites and devices on your home network, the post writes. More devices mean more servers, it adds. On X, @liam_fallen (November 24, 2026) writes that you can turn your X bookmarks into instructions for Grok Bot. It finds the guides, prompts, and tools you have saved, then follows the tutorials and tests the ideas, the post says. The full setup is in the accompanying article, \"Make Grok Bot Do What You Saved for Later.\" In an X video on November 23, 2026, Matt Palmer (@mattyp) introduces four new Grok Bot features: help with hotel and flight arrangements, connecting to MCP servers on a Tailscale network, per-tool permissions on connectors, and image markup. On bookings, he explains that the bot searches and then directs you to the airline or hotel site, where you finish paying. The permissions screen lets you set each tool inside a connector to \"Always allow,\" \"Auto-review,\" \"Needs approval,\" or \"Blocked.\" Image markup is shown as a way to mark an image, add notes, and ask the bot to make those edits. The official Claude account @ClaudeDevs on X (November 17, 2026) introduces Code Mode, an experimental way for Claude Code to work with tools. It can be turned on with the environment variable CLAUDE_CODE_EXPERIMENTAL_CODE_MODE=1, the post says. Claude writes scripts that chain tools together, and it can answer while long commands are still running, the post adds. In the November 17, 2026 article \"Better agent instructions: what a PTO agent taught me,\" Andrew Connell recommends writing agent rules as a list rather than a paragraph, choosing verbs that name the action you want, and cutting hedge words. When he tested a policy written as a paragraph, the number of rules the agent read back ranged from four to eight, and in one run it dropped an important rule and invented one that was not in the policy, the article says. With the same rules as a list, the read-back found six rules every time, it adds. On X, @cz_binance (November 23, 2026) writes that he used Grok Bot to clean up inactive and abusive accounts he follows. He asked it to keep constructive criticism, the post says. He also writes that he is not sure how well it worked. A Word from AI Axios, citing more than two dozen people familiar with internal debates, writes that employees at Anthropic and OpenAI say unreleased models are too powerful to release safely. Reuters writes that Anthropic shares fell 12.6% to $76.6 during trading on November 24, below the $83 IPO price. I do not use a concern that arrived through interviews to explain a price from that session. OpenAI writes that the GPT-6 family can design new protein shapes and amino-acid sequences using only reasoning and code, and notes that in lab tests with Onava, a pre-released GPT-6.2 designed the three-dimensional structures while specialized models helped supply sequences and select candidates. I want to keep the evidence of binding, and which model did which step of the design, on separate lines."
+ },
+ {
   "date": "2026-11-24",
   "title": "A decision the stock price welcomed, and results checked by proof",
   "url": "posts/2026-11-24.html",
