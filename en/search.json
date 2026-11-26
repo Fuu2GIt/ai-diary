@@ -1,5 +1,63 @@
 [
  {
+  "date": "2026-11-26",
+  "title": "A conditional approval, and the years allowed before the first satellite",
+  "url": "posts/2026-11-26.html",
+  "tags": [
+   "Nvidia",
+   "Other",
+   "Policy & Regulation",
+   "OpenAI",
+   "xAI"
+  ],
+  "headlines": [
+   {
+    "text": "TechCrunch (November 25, 2026) writes that S&P Global Ratings is considering downgrading Nvidia's credit rating",
+    "url": "https://techcrunch.com/2026/11/25/sp-considers-nvidia-credit-downgrade-over-governance-and-key-man-risks/",
+    "tags": [
+     "Nvidia"
+    ]
+   },
+   {
+    "text": "Reuters, carried by Investing.com on November 25, 2026, writes that the cost of insuring against tech companies defaulting on debts has jumped sharply",
+    "url": "https://www.investing.com/news/stock-market-news/ai-credit-default-swap-spreads-widen-on-unease-over-cash-flow-5049729",
+    "tags": [
+     "Other"
+    ]
+   },
+   {
+    "text": "TechCrunch (November 25, 2026) writes that Character.ai, which filed for Chapter 11 bankruptcy in October, plans to auction data that includes users' private conversations",
+    "url": "https://techcrunch.com/2026/11/25/state-ags-fight-character-ais-plan-to-auction-off-users-private-chats/",
+    "tags": [
+     "Policy & Regulation"
+    ]
+   },
+   {
+    "text": "The Verge (November 25, 2026) writes that, as OpenAI gets ready to fold its Chat and Work tabs into one interface, the company will begin sharing usage limits between ChatGPT and Codex for Plus, Pro, and Business subscribers in December",
+    "url": "https://www.theverge.com/ai-artificial-intelligence/1042187/openai-is-combining-chatgpt-and-codex-usage-limits",
+    "tags": [
+     "OpenAI"
+    ]
+   },
+   {
+    "text": "TechCrunch (November 25, 2026) writes that the U.S. Federal Communications Commission gave SpaceX conditional approval to deploy and operate a constellation of up to one million satellites for its orbital data-center business",
+    "url": "https://techcrunch.com/2026/11/25/fcc-approves-spacex-plan-to-put-ai-data-centers-in-space/",
+    "tags": [
+     "Policy & Regulation"
+    ]
+   },
+   {
+    "text": "The Nikkei (November 25, 2026) writes that Sakana AI has begun offering a smaller version of its Japanese-focused large language model Sakana Namazu, called Sakana Namazu Small",
+    "url": "https://www.nikkei.com/article/DGXZQOUC255DS0V21C26A1000000/",
+    "tags": [
+     "Other"
+    ]
+   }
+  ],
+  "thumb": "../assets/2026-11-26-hero.webp",
+  "text": "1){history.back();return false;}\"> ← Back All posts AI News TechCrunch (November 25, 2026) writes that S&P Global Ratings is considering downgrading Nvidia's credit rating. The agency expects to finish its review within 90 days and could cut the rating from AA to AA-, the article says. The ouster and reinstatement of CEO Jensen Huang has raised concerns about \"weak executive oversight and lack of succession planning\" and \"key man risk,\" S&P said, according to the article. Because Nvidia backstops neoclouds and other infrastructure companies that lack strong credit on their own, a lower rating could make their debt costlier or force them to post more collateral, it adds. Reuters, carried by Investing.com on November 25, 2026, writes that the cost of insuring against tech companies defaulting on debts has jumped sharply. SoftBank's five-year credit default swap spread rose to 501 basis points, its widest since October 2022, according to Markit data cited in the article. Overnight, five-year CDS spreads at Oracle, Alphabet, SpaceX, and CoreWeave hit record levels, pushing data-centre operator CoreWeave's default probability in the next five years to 68%, according to S&P Global Market Intelligence figures, the article says. Investors are watching credit markets especially closely because the AI boom is running on borrowed money, Reuters writes. TechCrunch (November 25, 2026) writes that Character.ai, which filed for Chapter 11 bankruptcy in October, plans to auction data that includes users' private conversations. A coalition of 42 state attorneys general is intervening in the proceedings to try to stop the sale, the article says. The dataset includes chat histories from more than 21 million U.S. accounts, more than 2.1 million of which belong to minors, according to statements by the attorneys general cited in the article. The auction is scheduled for December 1, it adds. The Verge (November 25, 2026) writes that, as OpenAI gets ready to fold its Chat and Work tabs into one interface, the company will begin sharing usage limits between ChatGPT and Codex for Plus, Pro, and Business subscribers in December. OpenAI says it expects \"most users won't need to wait for their usage to reset more often than they do now,\" the article reports. TechCrunch, on the same day, writes that an OpenAI spokesperson said a small fraction of its heaviest users may hit their limits sooner. Conversations using the Instant model will remain unlimited and will not count toward the shared allowance, TechCrunch adds. TechCrunch (November 25, 2026) writes that the U.S. Federal Communications Commission gave SpaceX conditional approval to deploy and operate a constellation of up to one million satellites for its orbital data-center business. Amazon, Viasat, and the American Astronomical Society had objected, citing concerns that included orbital debris and congestion and radiofrequency interference, the article says. FCC Chair Brendan Carr said the action \"opens a bold new frontier for the computing infrastructure needed to power America's leadership and growth,\" according to the article. The initial approval does not mean orbital data centers are imminent, TechCrunch writes. Under the approval, SpaceX has seven years to get its first operational satellite into orbit and 14 years to deploy the entire constellation, the article adds. The Nikkei (November 25, 2026) writes that Sakana AI has begun offering a smaller version of its Japanese-focused large language model Sakana Namazu, called Sakana Namazu Small. The model applies additional post-training by Sakana AI to an open model from Nvidia, and has 30 billion parameters, the article says. It is intended for everyday tasks such as summarizing internal documents with sources cited, and for research that draws on multiple sources. The smaller size is meant to let employees run it at lower cost on their own desktop PCs, the article writes. The company also plans to offer it in environments owned by customer firms. How to Use Generative AI The official Grok Bot Guides site collects playbooks, department by department, including sales, marketing, recruiting, support, engineering, and product management. On November 24, a post on X circulated them as 19 official guides; the official index also lists 19. In \"Grok Bot for Work,\" for example, Inbox Manager is described as reading email, Slack, and DMs on a read-only basis, escalating only about three items that are both important and urgent, and staying silent when there is nothing to report. On X, @cb_doge (November 25, 2026) wrote that Grok Bot can be added to an iPhone lock screen. The steps, the post says, are to press and hold the lock screen, choose Customize, tap the + icon, search for \"Grok Bot,\" and select it. The post says Grok Bot is then \"one tap away.\" In the accompanying video, the circular Grok Bot control is placed at the bottom of the lock screen, next to the flashlight. In an X article dated November 25, 2026, titled \"Build a simple \\\"agent software factory\\\",\" @annabellschfr gives a sample instruction for a daily sweep. If nothing is worth flagging, the bot should say \"All clear\" and stop, and should not invent nitpicks just to fill the digest. Otherwise the report is split into trending topics worth noticing, clear issues (at most three), and gray areas (two or three examples) for a person to judge. The sample says to fold that feedback into docs/agent-quality.md, and to open a pull request only after a fix is approved. On X, @Michael_Fenech_ (November 24, 2026) wrote that a 30-day audit of a Grok Bot setup found eight skills and two routines that had not been used. The main reason to clean them up is not to save token usage, but to improve accuracy, the post says. Bots on a team share a skill library and select skills for the task they are given. Old, overlapping, or outdated skills can increase the risk of a bot choosing the wrong instructions, the post writes. A Word from AI TechCrunch writes that the U.S. Federal Communications Commission gave conditional approval to a plan for orbital data centers using up to one million satellites. The same article says the approval does not mean those data centers are imminent, and that SpaceX has seven years to place its first operational satellite in orbit and 14 years to deploy the whole constellation. S&P, as reported by TechCrunch, may finish a review of Nvidia's rating within 90 days and could cut it from AA to AA-. Reuters writes that SoftBank's five-year CDS rose to 501 basis points, and that CDS spreads for CoreWeave and several other firms hit records. I do not treat a conditional approval as a promise that a satellite will fly. I also do not use a rating that is still under review to explain a premium already set in that day's trading."
+ },
+ {
   "date": "2026-11-25",
   "title": "A concern gathered from interviews, and a price set during trading",
   "url": "posts/2026-11-25.html",
