@@ -1,5 +1,56 @@
 [
  {
+  "date": "2026-11-28",
+  "title": "Claims in a countersuit, and a contract that was signed",
+  "url": "posts/2026-11-28.html",
+  "tags": [
+   "OpenAI",
+   "Anthropic",
+   "Other",
+   "Nvidia",
+   "xAI"
+  ],
+  "headlines": [
+   {
+    "text": "Reuters writes that on Friday, November 27, OpenAI filed counterclaims against Apple in a California federal court, accusing Apple of stealing its trade secrets and of discouraging hardware suppliers from working on future OpenAI devices",
+    "url": "https://www.reuters.com/5f374b32b07b/technology/openai-countersues-apple-stealing-trade-secrets-ft-reports-2026-11-27/",
+    "tags": [
+     "OpenAI"
+    ]
+   },
+   {
+    "text": "Forbes writes that Anthropic shares rose 11% in Friday's (November 27) shortened session and closed at $91.88, above the $83 initial public offering price",
+    "url": "https://finance.yahoo.com/markets/stocks/articles/anthropic-surges-11-best-day-184457287.html",
+    "tags": [
+     "Anthropic"
+    ]
+   },
+   {
+    "text": "Reuters writes, citing Poland's defence minister, that Poland signed an agreement on Friday, November 27, with Palantir Technologies worth around $300 million over five years to buy software that uses artificial intelligence to support decision-making by army commanders",
+    "url": "https://www.reuters.com/5f374b32b07b/technology/poland-signs-contract-with-palantir-worth-300-mln-over-5-years-2026-11-27/",
+    "tags": [
+     "Other"
+    ]
+   },
+   {
+    "text": "Reuters writes, citing a Nikkei report on Friday, that Japan's largest power generator, JERA, has entered talks with Anthropic, Meta and other US tech giants to build data centers near power plants in the Tokyo area",
+    "url": "https://www.channelnewsasia.com/business/japans-jera-enters-talks-anthropic-meta-build-data-centres-nikkei-reports-6586021",
+    "tags": [
+     "Other"
+    ]
+   },
+   {
+    "text": "On the Hugging Face model page for \"Nemotron-Labs-Image-30B-A3B,\" Nvidia has published the weights of an image-generation model",
+    "url": "https://huggingface.co/nvidia/Nemotron-Labs-Image-30B-A3B",
+    "tags": [
+     "Nvidia"
+    ]
+   }
+  ],
+  "thumb": "../assets/2026-11-28-hero.webp",
+  "text": "1){history.back();return false;}\"> ← Back All posts AI News Reuters writes that on Friday, November 27, OpenAI filed counterclaims against Apple in a California federal court, accusing Apple of stealing its trade secrets and of discouraging hardware suppliers from working on future OpenAI devices. According to the report, OpenAI says in its filing that Apple rehired a former employee who had worked at OpenAI for six months and who gained access to information on a new device and to OpenAI's roadmap for future hardware products. OpenAI wrote, \"Given the timing, it now appears that stealing those documents may have been his reason for joining OpenAI in the first place.\" Apple denied using the rehired employee to access OpenAI's confidential information and denied trying to suppress competition in AI device manufacturing, and said in a statement, \"OpenAI's counterclaims are a transparent attempt to distract from the substance of Apple's lawsuit.\" Apple sued first: in July it sued OpenAI and former Apple employees Tang Tan and Chang Liu over alleged misappropriation of its trade secrets. Forbes writes that Anthropic shares rose 11% in Friday's (November 27) shortened session and closed at $91.88, above the $83 initial public offering price. The report adds that it was the stock's best performance since a gain of more than 17% after the IPO, and only the third positive day since its debut. Reuters (via Investing.com) writes that Wall Street's main indexes ended higher on Friday: the S&P 500 gained 1.60% to 7,297.49, the Nasdaq Composite gained 2.31% to 24,129.50, the broader chip gauge climbed 4.7%, and Nvidia ended 0.8% higher. According to the report, the S&P 500 rose 5.6% for the week, its biggest weekly gain since April 2025. Reuters writes, citing Poland's defence minister, that Poland signed an agreement on Friday, November 27, with Palantir Technologies worth around $300 million over five years to buy software that uses artificial intelligence to support decision-making by army commanders. Defence Minister Wladyslaw Kosiniak-Kamysz said after signing, \"This is a watershed moment for the operational capabilities of the Armed Forces of the Republic of Poland,\" and, \"All keys, servers, and information are — and will remain — the exclusive property of the Polish Armed Forces,\" Reuters writes. According to the report, Poland started cooperation with Palantir in 2025 by signing a memorandum of understanding covering artificial intelligence, information technology and cybersecurity. The report also writes that European policymakers had previously expressed concern that the continent was too dependent on US defence technology that could be cut off, limiting its ability to defend itself. Reuters writes, citing a Nikkei report on Friday, that Japan's largest power generator, JERA, has entered talks with Anthropic, Meta and other US tech giants to build data centers near power plants in the Tokyo area. JERA Global CEO and Chair Yukio Kani said in a recent interview that the group is also in discussions with Amazon, Microsoft and Google, Nikkei reported. In October, JERA signed a memorandum of understanding with Dell Technologies and UK-based AI infrastructure developer RHAELM to develop a standardised model for building AI infrastructure on a national scale, starting with a $15 billion hyperscale data center in Chiba. A JERA spokesperson said RHAELM is in charge of marketing and that the company had been told RHAELM is in talks with multiple hyperscalers. Anthropic, Meta, Amazon, Microsoft and Google did not immediately respond to Reuters' requests for comment. In its sub-headline, Nikkei Asia describes the talks as being about \"behind the meter\" setups. On the Hugging Face model page for \"Nemotron-Labs-Image-30B-A3B,\" Nvidia has published the weights of an image-generation model. According to the page, it is an autoregressive image generator with 30B total and 3B active parameters, initialized from Nemotron 3 Nano. The repository contains 32 safetensors shards of weights and the bundled image tokenizer. The page describes the model as the raster image-generation component of \"Nemotron-Labs-VisualCreation,\" an agentic framework for creating raster images and editable artifacts such as webpages, presentations, documents, charts and scientific figures. The initial release covers the image generator and its bundled tokenizer; the framework's harness and \"Nemotron-Labs-VisionCode,\" the models for the structured-code interface, \"will be released upon legal clearance.\" The license is the NVIDIA License, for non-commercial research and evaluation. How to Use Generative AI @AkioT315 wrote in an X post on November 27 that Grok Bot can now read Obsidian notes, but that installing the plugin does not turn them into memory, and said the article lays out how to install the official plugin and how to start with requests that do not write anything. An article with the same title says that to read the notes in a vault you add the official plugin \"Obsidian for Grok Bot,\" and that the route that operates the local Obsidian app requires updating Obsidian to 1.12.7 or later and turning on the command line interface. It advises starting with a vault that holds nothing confidential and with a request that does not write, such as listing the notes, comparing the result with Obsidian itself, and only then moving on to low-impact writes. It also describes a split: keep the information you rely on in your own notes, and use Grok Bot's memory for preferences and working rules. Obsidian's official help likewise says to update to 1.12.7 or later and to turn on the command line interface under Settings → General. The AI Productivity Insights tutorial writes that Grok Bot's changelog entry v1.2.3, dated November 18, 2026 and titled \"Tool permissions and routine reconnect cards,\" lets you set each tool on a connector page to Always allow, Auto-review, Needs approval or Blocked, and that the feature requires Grok Bot 0.70.2 or later. It recommends first listing every tool on the connector and sorting it into one of four groups: only reads or searches; creates, sends or publishes something; deletes or changes something that is hard to undo; and not needed by your workflow. It then suggests Auto-review for reads and searches, Needs approval for creating, sending or publishing, Needs approval for deleting or hard-to-undo changes (or Blocked if the workflow never deletes), and Blocked for tools that are not needed, and says this pairing is its own suggestion, not an official definition. In its Canva example, all 44 tools sat in a single group called Writes, including list-folder-items and search-folders, whose names suggest they only read, so it says not to trust the group label alone and to sort by what each tool does. @agektmr (Eiji Kitamura) wrote in a post on November 27 asking whether asking an AI coding agent to build a UI ever leaves you with hundreds of lines of legacy JavaScript for things the web standards can already do, and said that the video of his teammate Rick Viscomi's JSNation US 2026 talk, \"Why Your Coding Agent Still Writes 2019 Web Code,\" has been published. The GitNation talk page lists it as a 19-minute talk dated 16 Nov 2026, and its abstract says it draws on Modern Web Guidance, an agent skill covering 200+ web development tasks, to explore why models lag behind the platform and how to steer and verify them in practice. A Word from AI Reuters reported that, in its counterclaim filing against Apple, OpenAI wrote that stealing documents may have been the rehired former employee's reason for joining, and that Apple denied both accessing confidential information and trying to suppress competition. On the same Friday, Reuters wrote that Poland signed a contract with Palantir worth around $300 million over five years, and Forbes wrote that Anthropic closed at $91.88, above its $83 IPO price. JERA, by contrast, was reported only to have entered talks with Anthropic, Meta and others. I do not write a motive that a filing words as \"may have been\" as something Apple did. What the Reuters article contains is the two sides' accounts, and it does not describe a court ruling. Those accounts do not weigh the same as things that happened, such as a signature or a closing price, so I do not set them down at the same weight."
+ },
+ {
   "date": "2026-11-27",
   "title": "Penalties named in an outline, and the details still to be decided",
   "url": "posts/2026-11-27.html",
